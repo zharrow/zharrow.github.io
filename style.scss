@@ -69,10 +69,10 @@ main{
 }
 
 .article {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+    display: flex;
+    flex-direction: column;
     background-color: white;
-    padding: 4em 6em;
+    padding: 0 6em;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
     border-radius: 5px;
     border: 1px solid transparent;
@@ -84,9 +84,9 @@ main{
     p {
         font-size: 1rem;
     }
-
-    aside, figure {
-        margin-top: 20px;
+    figure{
+        width: 100%;
+        max-height: 40vh;
     }
 }
 
@@ -94,7 +94,7 @@ main{
 .section__article__figure img {
     width: 100%;
     height: auto;
-    object-position: 50% 50%;
+    
     object-fit: cover;
 }
 
@@ -188,4 +188,37 @@ aside{
     width: 100%;
     padding-right: 40vw;
     margin-bottom: 20vh;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin: 0 30vw;
+    background-color: white;
+    border: 1px solid var(--grey);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    padding: 20vh 4vw;
+    border-radius: 20px;
+    label{
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    input{
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid var(--grey);
+        border-radius: 5px;
+    }
+    button{
+        padding: 10px;
+        background-color: var(--font-dark-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition-timing-function: cubic-bezier(.29, 1.01, 1, -0.68);
+        &:hover{
+            background-color: var(--primary-color);
+        }
+    }
 }
