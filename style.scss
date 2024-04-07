@@ -24,8 +24,11 @@ a{
     }
 }
 p{
-    line-height: 25px;
+    font-weight: 300;
+    line-height: 30px;
+    margin-bottom: 3vw;
 }
+
 
 header {
     position: sticky;
@@ -105,12 +108,12 @@ main{
     }
 }
 
-footer {
+.footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 5vw;
     height: 18vh;
-    background-color: var(--font-dark-color);
+    background-color: #1c0630;
     color: white;
     nav{
         display: flex;
@@ -130,7 +133,6 @@ footer {
     grid-template-columns: 4fr 1fr;
     grid-gap: 20px;
     min-height: 100vh;
-    font-weight: 300;
     div{
         padding-right: 4vw;
     }
@@ -167,7 +169,7 @@ aside{
     position: sticky;
     top: 100px;
     padding: 0 1vw;
-    max-height: 80vh;
+    max-height: 100vh;
     li{
         list-style-type: disc;
         padding-bottom: 10px;
@@ -221,4 +223,20 @@ form{
             background-color: var(--primary-color);
         }
     }
+}
+
+.image{
+    overflow: hidden;
+    width: 100%;
+    height: 400px;
+    
+    img{
+        width: 100%;
+        height: auto;
+        vertical-align:baseline;
+    }
+}
+
+hr{
+    margin: 5vw 0;
 }
