@@ -145,15 +145,7 @@ main{
     }
 }
 
-.grid_article{
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-gap: 20px;
-    min-height: 100vh;
-    div{
-        padding-right: 4vw;
-    }
-}
+
 .title_article{
     padding-top: 4vw;
 }
@@ -215,7 +207,15 @@ aside{
         font-weight: 500;
     }
 }
-
+.grid_article{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-gap: 20px;
+    min-height: 100vh;
+    div{
+        padding-right: 4vw;
+    }
+}
 .banner_article{
     width: 100%;
     padding-right: 40vw;
