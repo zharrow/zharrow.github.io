@@ -185,6 +185,9 @@ aside {
   padding: 2vw;
   max-height: 100vh;
 }
+aside a {
+  font-size: 14px;
+}
 aside h2 {
   color: #561592;
   font-weight: 600;
