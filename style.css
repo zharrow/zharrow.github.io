@@ -1,15 +1,19 @@
+@charset "UTF-8";
 :root {
   --font-dark-color: #061a2c;
-  --grey: #c0c0c0;
+  --grey: #f0f0f0;
   --background-light-color: #F1F1F1;
   --primary-color: #561592;
 }
 
-html, body {
+* {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
   box-sizing: border-box;
+}
+
+html, body {
+  font-family: "Poppins", sans-serif;
   color: var(--font-dark-color);
   background-color: var(--background-light-color);
 }
@@ -28,7 +32,6 @@ a:visited {
 p {
   font-weight: 300;
   line-height: 30px;
-  margin-bottom: 3vw;
 }
 
 header {
@@ -75,10 +78,12 @@ main {
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 0 6em;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   border: 1px solid transparent;
+}
+.article .article_text {
+  padding: 5vw;
 }
 .article h2 {
   font-size: 1.2rem;
@@ -98,7 +103,7 @@ main {
 }
 
 .article:hover {
-  border: 1px solid var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
 .article:hover h2 {
   color: var(--primary-color);
@@ -108,7 +113,7 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 5vw;
-  height: 18vh;
+  height: 40vh;
   background-color: #1c0630;
   color: white;
 }
@@ -118,7 +123,20 @@ main {
   justify-content: center;
 }
 .footer ul {
-  padding: 0;
+  padding-top: 20px;
+}
+.footer li {
+  padding-top: 15px;
+}
+.footer a {
+  color: var(--grey);
+}
+.footer a:hover {
+  padding-bottom: 4px;
+  color: var(--background-light-color);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 .footer a:visited {
   color: var(--background-light-color);
@@ -234,6 +252,47 @@ form button:hover {
 
 hr {
   margin: 5vw 0;
+}
+
+.footer_article {
+  padding: 0 5vw 2vw 5vw;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 100px;
+}
+.footer_article .links {
+  padding-top: 6px;
+  font-weight: 600;
+  color: #561592;
+}
+.footer_article .links:hover {
+  padding-top: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+.footer_article .links:hover::before {
+  color: var(--primary-color);
+  content: "➞ ";
+}
+
+.comments {
+  margin-top: 5vw;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.comments .comment {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  border-bottom: 1px solid var(--grey);
+}
+.comments .comment img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 /*# sourceMappingURL=style.css.map */
