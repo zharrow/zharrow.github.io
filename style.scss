@@ -154,6 +154,9 @@ main{
         padding-right: 4vw;
     }
 }
+.title_article{
+    padding-top: 4vw;
+}
 
 table {
     width: 100%;
@@ -179,20 +182,30 @@ tr {
     padding: 1vw;
 }
 
+aside li ul{
+    padding: 5px 20px;
+    list-style: square;
+}
+
 aside{
-    border: 1px solid var(--grey);
+    border: 1px solid #561592;
+    box-shadow: 2px 2px 2px var(--grey);
     border-radius: 20px;
     background-color: #f7f7f7;
     position: sticky;
     top: 100px;
-    padding: 0 1vw;
+    padding: 2vw;
     max-height: 100vh;
+    h2{
+        color: #561592;
+        font-weight: 600;
+        padding-bottom: 20px;}
     li{
         list-style-type: disc;
         padding-bottom: 10px;
     }
-    li li{
-        padding: 5px 0;
+    .sub_menu_ul{
+        padding: 5px 20px;
         list-style: number;
     }
     li a:hover{
