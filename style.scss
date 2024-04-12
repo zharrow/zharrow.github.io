@@ -330,3 +330,18 @@ hr{
     margin-top: 8vw;
     margin-bottom: 2vw;
 }
+
+@media screen and (max-width: 1500px) {
+    .grid_article{
+        grid-template-columns: 1fr;
+    }
+    aside{
+        display: none;
+    }
+    *{
+        font-size: 16px;
+    }
+    table{
+        font-size: 12px;
+    }
+  }
