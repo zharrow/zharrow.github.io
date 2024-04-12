@@ -271,7 +271,7 @@ form{
 }
 
 hr{
-    margin: 5vw 0;
+    margin: 1vw 0;
 }
 
 .footer_article{
@@ -306,11 +306,27 @@ hr{
         display: flex;
         flex-direction: row;
         padding: 20px;
-        border-bottom: 1px solid var(--grey);
+        
         img{
             width: 50px;
             height: 50px;
             border-radius: 50%;
+            vertical-align: center;
         }
     }
+}
+
+.comments_text{
+    padding-top: 10px;
+    padding-left: 20px;
+    border-bottom: 1px solid var(--grey);
+    p{
+        font-size: 1rem;
+        font-weight: 300;
+    }
+}
+
+.title_table{
+    margin-top: 8vw;
+    margin-bottom: 2vw;
 }
