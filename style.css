@@ -16,6 +16,7 @@ html, body {
   font-family: "Poppins", sans-serif;
   color: var(--font-dark-color);
   background-color: var(--background-light-color);
+  font-weight: 500;
 }
 html li, body li {
   list-style: none;
