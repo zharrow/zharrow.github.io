@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="keywords" content="HTML, SCSS">
-    <meta name="description" content="Connexion - Blog de la musculation">
+    <meta name="description" content="Plan du site - Blog de la musculation">
     <meta name="author" content="Florent Detres">
     <meta http-equiv="refresh" content="30">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - Blog de la musculation</title>
+    <title>Plan du site - Blog de la musculation</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/logo.png">
 </head>
@@ -25,14 +25,19 @@
     </header>
 
     <main aria-label="Contenu principal"> 
-        <form action="zharrow.github.io/index.html">
-            <h1>Connexion</h1>
-            <label for="email">Email: </label>
-            <input type="email" id="email" name="email" required autofocus autocomplete="username">
-            <label for="password">Mot de passe:</label>
-            <input type="password" id="password" name="password" minlength="8" autocomplete="current-password">
-            <button type="submit">Se connecter</button>
-        </form>
+        <h1>Plan du site</h1>
+        <div class="sitemap_container">
+            <ul class="sitemap_list">
+                <li><a href="index.html"><strong>Accueil</strong></a>
+                    <ul class="sitemap_sublist">
+                        <li><a href="article.html">Article</a></li>
+                        <li><a href="login.html">Connexion</a></li>
+                        <li><a href="mentions.html">Mentions légales</a></li>
+                        <li><a href="cgv.html">Conditions Générales d'Utilisation</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </main>
 
     
