@@ -10,16 +10,16 @@
 </head>
 
 <body>
-    <header>
-        <a href="index.html">
-            <img src="assets/logo.png" width="64" alt="Logo du blog sur l'accessibilité">
+    <header aria-label="Haut de page">
+        <a href="index.html" title="Blog de musculation">
+            <img src="assets/logo.png" width="64" alt="">
         </a>
         <nav>
             <menu>
-                <li><a href="index.html" aria-current="page">Accueil</a></li>
-                <li><a href="login.html">Connexion</a></li>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="login.html" aria-current="page">Connexion</a></li>
             </menu>
-        </nav>
+    </nav>
     </header>
     <main>
         <section>
@@ -172,25 +172,21 @@
         </section>
     </main>
     <footer class="footer">
-        <div>
-            <h2>Menu</h2>
-            <nav>
-                <ul>
-                    <li><a href="index.html" aria-current="page">Accueil</a></li>
-                    <li><a href="login.html">Connexion</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div>
-            <h2>Liens utiles</h2>
-            <nav>
-                <ul>
-                    <li><a href="">Plan du site</a></li>
-                    <li><a href="">Mentions légales</a></li>
-                    <li><a href="">Conditions Générales d'Utilisation</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav aria-describedby="footer-menu">
+            <h2 id="footer-menu">Menu</h2>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="login.html" aria-current="page">Connexion</a></li>
+            </ul>
+        </nav>
+        <nav aria-describedby="footer-links">
+            <h2 id="footer-links">Liens utiles</h2>
+            <ul>
+                <li><a href="">Plan du site</a></li>
+                <li><a href="">Mentions légales</a></li>
+                <li><a href="">Conditions Générales d'Utilisation</a></li>
+            </ul>
+        </nav>
     </footer>
 </body>
 
