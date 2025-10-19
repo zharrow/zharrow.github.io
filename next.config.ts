@@ -6,7 +6,7 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 // Pour GitHub Pages, utiliser le nom du repo comme basePath
 // Par exemple: const basePath = '/portfolio-florent';
 const isProduction = process.env.NODE_ENV === 'production';
-const basePath = isProduction ? '/zharrow' : '';
+const basePath =  '';
 
 const nextConfig: NextConfig = {
   output: 'export', // Export statique pour GitHub Pages
