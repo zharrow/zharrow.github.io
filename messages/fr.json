@@ -1,0 +1,217 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "À propos",
+    "contact": "Contact",
+    "contactMe": "Me contacter"
+  },
+  "hero": {
+    "badge": "Développeur Full Stack",
+    "title": "Transformez vos idées en",
+    "titleHighlight": "expériences digitales",
+    "subtitle": "Développeur web passionné, je crée des solutions élégantes et performantes qui font la différence.",
+    "viewProjects": "Voir mes projets",
+    "contactMe": "Me contacter",
+    "scrollDown": "Découvrir",
+    "stats": {
+      "experience": "Années d'expérience",
+      "projects": "Projets réalisés",
+      "satisfaction": "Clients satisfaits"
+    }
+  },
+  "services": {
+    "label": "Services",
+    "title": "Ce que je peux faire",
+    "titleHighlight": "pour vous",
+    "subtitle": "Des solutions complètes et sur-mesure pour donner vie à vos projets digitaux",
+    "cta": {
+      "text": "Vous avez un projet en tête ?",
+      "button": "Discutons-en ensemble"
+    },
+    "items": {
+      "shopify": {
+        "title": "Boutique Shopify",
+        "description": "Création de boutiques e-commerce haut de gamme sur Shopify, optimisées pour la conversion et la performance.",
+        "features": ["Design sur mesure", "Apps & intégrations", "Optimisation conversion"]
+      },
+      "wordpress": {
+        "title": "Site WordPress",
+        "description": "Sites WordPress professionnels, performants et faciles à gérer, adaptés à vos besoins spécifiques.",
+        "features": ["Thème personnalisé", "Performance optimale", "SEO avancé"]
+      },
+      "saas": {
+        "title": "SaaS sur mesure",
+        "description": "Applications SaaS et solutions fullstack personnalisées, évolutives et robustes pour votre business.",
+        "features": ["Architecture moderne", "API scalable", "Dashboard admin"]
+      }
+    }
+  },
+  "portfolio": {
+    "label": "Portfolio",
+    "title": "Mes dernières",
+    "titleHighlight": "réalisations",
+    "subtitle": "Une sélection de projets qui illustrent mon expertise et ma passion pour le développement",
+    "categories": {
+      "all": "Tous",
+      "webdev": "Web Development",
+      "design": "UI/UX Design",
+      "mobile": "Mobile",
+      "saas": "SaaS"
+    },
+    "cta": {
+      "text": "Vous voulez voir plus de projets ?",
+      "button": "Voir mon GitHub"
+    },
+    "projects": {
+      "ecommerce": {
+        "title": "E-Commerce Platform",
+        "category": "Web Development",
+        "description": "Plateforme e-commerce complète avec panier, paiement sécurisé et dashboard admin."
+      },
+      "saas": {
+        "title": "SaaS Dashboard",
+        "category": "UI/UX Design",
+        "description": "Dashboard moderne pour application SaaS avec analytics et gestion utilisateurs."
+      },
+      "fitness": {
+        "title": "Mobile Fitness App",
+        "category": "Mobile",
+        "description": "Application mobile de suivi fitness avec plans d'entraînement personnalisés."
+      },
+      "portfolio": {
+        "title": "Portfolio Designer",
+        "category": "Web Development",
+        "description": "Portfolio élégant pour designer avec galerie interactive et animations."
+      },
+      "realestate": {
+        "title": "Real Estate Platform",
+        "category": "Web Development",
+        "description": "Plateforme immobilière avec recherche avancée, cartes interactives et visites virtuelles."
+      },
+      "taskmanager": {
+        "title": "Task Management Tool",
+        "category": "SaaS",
+        "description": "Outil de gestion de tâches collaboratif avec kanban, timeline et notifications."
+      }
+    }
+  },
+  "about": {
+    "label": "À propos",
+    "title": "Développeur passionné par",
+    "titleHighlight": "l'innovation",
+    "bio": {
+      "intro": "Bonjour ! Je suis {name}, un développeur web full stack avec plus de 5 ans d'expérience dans la création d'applications web et mobile modernes.",
+      "passion": "Ma passion pour le développement a commencé avec une simple curiosité pour la technologie, qui s'est transformée en une carrière dédiée à la création de solutions digitales innovantes et performantes.",
+      "specialization": "Je me spécialise dans le développement d'interfaces utilisateur élégantes et d'architectures backend robustes. Mon approche combine expertise technique, créativité et attention méticuleuse aux détails.",
+      "hobby": "Quand je ne code pas, vous me trouverez probablement en train d'explorer de nouvelles technologies, de contribuer à des projets open source, ou de partager mes connaissances avec la communauté."
+    },
+    "skills": {
+      "title": "Compétences Techniques"
+    },
+    "values": {
+      "title": "Mes",
+      "titleHighlight": "Valeurs",
+      "items": {
+        "cleanCode": {
+          "title": "Code Propre",
+          "description": "J'écris du code maintenable, testé et documenté."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Toujours à l'affût des dernières technologies."
+        },
+        "passion": {
+          "title": "Passion",
+          "description": "Chaque projet est une opportunité d'excellence."
+        },
+        "collaboration": {
+          "title": "Collaboration",
+          "description": "Communication transparente et travail d'équipe."
+        },
+        "quality": {
+          "title": "Qualité",
+          "description": "Standards élevés et attention aux détails."
+        },
+        "learning": {
+          "title": "Apprentissage",
+          "description": "Formation continue et veille technologique."
+        }
+      }
+    },
+    "timeline": {
+      "title": "Mon",
+      "titleHighlight": "Parcours",
+      "items": {
+        "2024": {
+          "title": "Développeur Full Stack Senior",
+          "company": "Freelance",
+          "description": "Accompagnement de startups et PME dans leurs projets digitaux."
+        },
+        "2022": {
+          "title": "Lead Developer",
+          "company": "Tech Company",
+          "description": "Direction technique et architecture de solutions web complexes."
+        },
+        "2020": {
+          "title": "Développeur Full Stack",
+          "company": "Digital Agency",
+          "description": "Développement d'applications web et mobile pour divers clients."
+        },
+        "2018": {
+          "title": "Développeur Junior",
+          "company": "Startup",
+          "description": "Premiers pas dans le développement professionnel."
+        }
+      }
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Travaillons",
+    "titleHighlight": "ensemble",
+    "subtitle": "Une idée, un projet ? N'hésitez pas à me contacter, je serais ravi d'en discuter avec vous.",
+    "info": {
+      "title": "Informations de contact",
+      "email": "Email",
+      "phone": "Téléphone",
+      "location": "Localisation",
+      "availability": {
+        "status": "Disponible pour des missions",
+        "description": "Je suis actuellement disponible pour de nouveaux projets. Réponse sous 24h garantie."
+      }
+    },
+    "form": {
+      "name": "Nom complet",
+      "namePlaceholder": "Votre nom",
+      "email": "Email",
+      "emailPlaceholder": "votre@email.com",
+      "subject": "Sujet",
+      "subjectPlaceholder": "De quoi souhaitez-vous parler ?",
+      "message": "Message",
+      "messagePlaceholder": "Décrivez votre projet ou votre besoin...",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé !",
+      "successMessage": "Merci pour votre message ! Je vous répondrai dans les plus brefs délais."
+    }
+  },
+  "footer": {
+    "brand": {
+      "name": "Florent Detres",
+      "description": "Développeur web passionné, créant des expériences digitales exceptionnelles avec une attention particulière aux détails et à la performance."
+    },
+    "navigation": "Navigation",
+    "servicesTitle": "Services",
+    "legal": "Légal",
+    "legalLinks": {
+      "terms": "Mentions légales",
+      "privacy": "Politique de confidentialité",
+      "cgv": "CGV"
+    },
+    "rights": "Tous droits réservés.",
+    "madeWith": "Conçu et développé avec",
+    "madeIn": "en France"
+  }
+}
