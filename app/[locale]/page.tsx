@@ -8,6 +8,9 @@ import AboutPremium from "@/components/sections/AboutPremium";
 import ContactPremium from "@/components/sections/ContactPremium";
 import SmoothScroll from "@/components/SmoothScroll";
 
+// Force static generation for GitHub Pages
+export const dynamic = 'force-static';
+
 export default function Home() {
   return (
     <>

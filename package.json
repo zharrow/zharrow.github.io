@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
+    "build:export": "node scripts/build-export.js",
     "start": "next start",
     "lint": "eslint"
   },
