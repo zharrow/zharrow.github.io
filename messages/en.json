@@ -1,0 +1,217 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "contact": "Contact",
+    "contactMe": "Contact Me"
+  },
+  "hero": {
+    "badge": "Full Stack Developer",
+    "title": "Transform your ideas into",
+    "titleHighlight": "digital experiences",
+    "subtitle": "Passionate web developer creating elegant and high-performance solutions that make a difference.",
+    "viewProjects": "View My Projects",
+    "contactMe": "Contact Me",
+    "scrollDown": "Discover",
+    "stats": {
+      "experience": "Years of experience",
+      "projects": "Projects completed",
+      "satisfaction": "Satisfied clients"
+    }
+  },
+  "services": {
+    "label": "Services",
+    "title": "What I can do",
+    "titleHighlight": "for you",
+    "subtitle": "Complete and tailor-made solutions to bring your digital projects to life",
+    "cta": {
+      "text": "Do you have a project in mind?",
+      "button": "Let's discuss it"
+    },
+    "items": {
+      "shopify": {
+        "title": "Shopify Store",
+        "description": "Creation of high-end e-commerce stores on Shopify, optimized for conversion and performance.",
+        "features": ["Custom design", "Apps & integrations", "Conversion optimization"]
+      },
+      "wordpress": {
+        "title": "WordPress Website",
+        "description": "Professional, high-performance and easy-to-manage WordPress sites, tailored to your specific needs.",
+        "features": ["Custom theme", "Optimal performance", "Advanced SEO"]
+      },
+      "saas": {
+        "title": "Custom SaaS",
+        "description": "Custom SaaS applications and fullstack solutions, scalable and robust for your business.",
+        "features": ["Modern architecture", "Scalable API", "Admin dashboard"]
+      }
+    }
+  },
+  "portfolio": {
+    "label": "Portfolio",
+    "title": "My latest",
+    "titleHighlight": "achievements",
+    "subtitle": "A selection of projects that illustrate my expertise and passion for development",
+    "categories": {
+      "all": "All",
+      "webdev": "Web Development",
+      "design": "UI/UX Design",
+      "mobile": "Mobile",
+      "saas": "SaaS"
+    },
+    "cta": {
+      "text": "Want to see more projects?",
+      "button": "View My GitHub"
+    },
+    "projects": {
+      "ecommerce": {
+        "title": "E-Commerce Platform",
+        "category": "Web Development",
+        "description": "Complete e-commerce platform with cart, secure payment and admin dashboard."
+      },
+      "saas": {
+        "title": "SaaS Dashboard",
+        "category": "UI/UX Design",
+        "description": "Modern dashboard for SaaS application with analytics and user management."
+      },
+      "fitness": {
+        "title": "Mobile Fitness App",
+        "category": "Mobile",
+        "description": "Fitness tracking mobile app with personalized workout plans."
+      },
+      "portfolio": {
+        "title": "Portfolio Designer",
+        "category": "Web Development",
+        "description": "Elegant portfolio for designers with interactive gallery and animations."
+      },
+      "realestate": {
+        "title": "Real Estate Platform",
+        "category": "Web Development",
+        "description": "Real estate platform with advanced search, interactive maps and virtual tours."
+      },
+      "taskmanager": {
+        "title": "Task Management Tool",
+        "category": "SaaS",
+        "description": "Collaborative task management tool with kanban, timeline and notifications."
+      }
+    }
+  },
+  "about": {
+    "label": "About",
+    "title": "Developer passionate about",
+    "titleHighlight": "innovation",
+    "bio": {
+      "intro": "Hello! I'm {name}, a full stack web developer with over 5 years of experience in creating modern web and mobile applications.",
+      "passion": "My passion for development started with a simple curiosity for technology, which has turned into a career dedicated to creating innovative and high-performance digital solutions.",
+      "specialization": "I specialize in developing elegant user interfaces and robust backend architectures. My approach combines technical expertise, creativity and meticulous attention to detail.",
+      "hobby": "When I'm not coding, you'll probably find me exploring new technologies, contributing to open source projects, or sharing my knowledge with the community."
+    },
+    "skills": {
+      "title": "Technical Skills"
+    },
+    "values": {
+      "title": "My",
+      "titleHighlight": "Values",
+      "items": {
+        "cleanCode": {
+          "title": "Clean Code",
+          "description": "I write maintainable, tested and documented code."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Always on the lookout for the latest technologies."
+        },
+        "passion": {
+          "title": "Passion",
+          "description": "Every project is an opportunity for excellence."
+        },
+        "collaboration": {
+          "title": "Collaboration",
+          "description": "Transparent communication and teamwork."
+        },
+        "quality": {
+          "title": "Quality",
+          "description": "High standards and attention to detail."
+        },
+        "learning": {
+          "title": "Learning",
+          "description": "Continuous training and technology watch."
+        }
+      }
+    },
+    "timeline": {
+      "title": "My",
+      "titleHighlight": "Journey",
+      "items": {
+        "2024": {
+          "title": "Senior Full Stack Developer",
+          "company": "Freelance",
+          "description": "Supporting startups and SMEs in their digital projects."
+        },
+        "2022": {
+          "title": "Lead Developer",
+          "company": "Tech Company",
+          "description": "Technical leadership and architecture of complex web solutions."
+        },
+        "2020": {
+          "title": "Full Stack Developer",
+          "company": "Digital Agency",
+          "description": "Development of web and mobile applications for various clients."
+        },
+        "2018": {
+          "title": "Junior Developer",
+          "company": "Startup",
+          "description": "First steps in professional development."
+        }
+      }
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Let's work",
+    "titleHighlight": "together",
+    "subtitle": "An idea, a project? Feel free to contact me, I'd be happy to discuss it with you.",
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "availability": {
+        "status": "Available for missions",
+        "description": "I am currently available for new projects. Response within 24 hours guaranteed."
+      }
+    },
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "What would you like to talk about?",
+      "message": "Message",
+      "messagePlaceholder": "Describe your project or need...",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent!",
+      "successMessage": "Thank you for your message! I will respond as soon as possible."
+    }
+  },
+  "footer": {
+    "brand": {
+      "name": "Florent Detres",
+      "description": "Passionate web developer, creating exceptional digital experiences with particular attention to detail and performance."
+    },
+    "navigation": "Navigation",
+    "servicesTitle": "Services",
+    "legal": "Legal",
+    "legalLinks": {
+      "terms": "Legal Notice",
+      "privacy": "Privacy Policy",
+      "cgv": "Terms of Sale"
+    },
+    "rights": "All rights reserved.",
+    "madeWith": "Designed and developed with",
+    "madeIn": "in France"
+  }
+}
