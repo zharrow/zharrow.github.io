@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Award, Book, Code2, Coffee, Heart, Lightbulb } from "lucide-react";
+import { InfiniteMarquee } from "@/components/ui/infinite-marquee";
 
 const skills = [
   { name: "React / Next.js", level: 95 },
@@ -70,6 +71,21 @@ const timeline = [
     company: "Startup",
     description: "Premiers pas dans le développement professionnel.",
   },
+];
+
+const technologies = [
+  { name: "React", icon: "⚛️" },
+  { name: "Next.js", icon: "▲" },
+  { name: "TypeScript", icon: "TS" },
+  { name: "Node.js", icon: "🟢" },
+  { name: "Python", icon: "🐍" },
+  { name: "Tailwind", icon: "💨" },
+  { name: "PostgreSQL", icon: "🐘" },
+  { name: "MongoDB", icon: "🍃" },
+  { name: "Docker", icon: "🐳" },
+  { name: "AWS", icon: "☁️" },
+  { name: "Git", icon: "📦" },
+  { name: "Figma", icon: "🎨" },
 ];
 
 export default function About() {
@@ -251,6 +267,31 @@ export default function About() {
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Technologies Marquee */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-20"
+        >
+          <h3 className="text-2xl font-bold text-primary-50 mb-8 text-center">
+            Technologies <span className="gradient-text">& Outils</span>
+          </h3>
+          <InfiniteMarquee speed={50} pauseOnHover>
+            {technologies.map((tech) => (
+              <div
+                key={tech.name}
+                className="flex items-center gap-3 px-6 py-4 bg-dark-800/50 backdrop-blur-sm rounded-xl border border-dark-700 hover:border-accent-gold/50 transition-all duration-300"
+              >
+                <span className="text-2xl">{tech.icon}</span>
+                <span className="text-primary-100 font-medium whitespace-nowrap">
+                  {tech.name}
+                </span>
+              </div>
+            ))}
+          </InfiniteMarquee>
         </motion.div>
       </div>
     </section>

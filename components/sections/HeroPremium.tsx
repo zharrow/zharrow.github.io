@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
+import { Typewriter } from "@/components/ui/typewriter";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export default function HeroPremium() {
   const t = useTranslations("hero");
@@ -29,7 +30,16 @@ export default function HeroPremium() {
           <h1 className="text-[clamp(2.5rem,8vw,7rem)] font-medium leading-[1.1] tracking-[-0.02em] text-black-deep">
             {t("title")}{" "}
             <span className="text-orange-pantone inline-block">
-              {t("titleHighlight")}
+              <Typewriter
+                texts={[
+                  t("titleHighlight"),
+                  "créatives",
+                  "innovantes",
+                  "performantes"
+                ]}
+                speed={120}
+                delay={2500}
+              />
             </span>
           </h1>
 
@@ -50,27 +60,22 @@ export default function HeroPremium() {
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
           >
-            <Button
-              asChild
-              size="lg"
-              className="bg-black-deep text-white-pure hover:bg-gray-secondary transition-all duration-500 px-8 py-6 text-base font-medium rounded-none group"
+            <MagneticButton
+              href="#portfolio"
+              strength={0.3}
+              className="bg-black-deep text-white-pure hover:bg-gray-secondary transition-all duration-500 px-8 py-6 text-base font-medium rounded-none group relative overflow-hidden inline-block"
             >
-              <a href="#portfolio" className="relative overflow-hidden">
-                <span className="relative z-10">{t("viewProjects")}</span>
-                <span className="absolute inset-0 bg-orange-pantone transform translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              </a>
-            </Button>
+              <span className="relative z-10">{t("viewProjects")}</span>
+              <span className="absolute inset-0 bg-orange-pantone transform translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            </MagneticButton>
 
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-2 border-black-deep text-black-deep hover:bg-black-deep hover:text-white-pure transition-all duration-500 px-8 py-6 text-base font-medium rounded-none"
+            <MagneticButton
+              href="#contact"
+              strength={0.3}
+              className="border-2 border-black-deep text-black-deep hover:bg-black-deep hover:text-white-pure transition-all duration-500 px-8 py-6 text-base font-medium rounded-none inline-block"
             >
-              <a href="#contact" className="link-underline">
-                {t("contactMe")}
-              </a>
-            </Button>
+              {t("contactMe")}
+            </MagneticButton>
           </motion.div>
         </motion.div>
 

@@ -12,37 +12,68 @@ export default function Header() {
   const t = useTranslations("nav");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("accueil");
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const navItems = [
-    { href: "#accueil", label: t("home") },
-    { href: "#services", label: t("services") },
-    { href: "#portfolio", label: t("portfolio") },
-    { href: "#apropos", label: t("about") },
-    { href: "#contact", label: t("contact") },
+    { href: "#accueil", label: t("home"), id: "accueil" },
+    { href: "#services", label: t("services"), id: "services" },
+    { href: "#portfolio", label: t("portfolio"), id: "portfolio" },
+    { href: "#apropos", label: t("about"), id: "apropos" },
+    { href: "#contact", label: t("contact"), id: "contact" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Calculate scroll progress
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      setScrollProgress(scrolled);
+
+      // Detect active section
+      const sections = navItems.map(item => item.id);
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+
+      if (current) {
+        setActiveSection(current);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial call
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-dark-900/80 backdrop-blur-lg shadow-lg"
-          : "bg-transparent"
-      )}
-    >
-      <nav className="container mx-auto px-6 py-4">
+    <>
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-gold via-accent-copper to-accent-gold z-50 origin-left"
+        style={{ scaleX: scrollProgress / 100 }}
+        initial={{ scaleX: 0 }}
+      />
+
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          isScrolled
+            ? "bg-dark-900/80 backdrop-blur-lg shadow-lg mt-1"
+            : "bg-transparent mt-1"
+        )}
+      >
+        <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.a
@@ -65,10 +96,18 @@ export default function Header() {
               >
                 <a
                   href={item.href}
-                  className="text-primary-100 hover:text-accent-gold transition-colors duration-300 relative group"
+                  className={cn(
+                    "text-primary-100 hover:text-accent-gold transition-colors duration-300 relative group",
+                    activeSection === item.id && "text-accent-gold"
+                  )}
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-gold transition-all duration-300 group-hover:w-full"></span>
+                  <span
+                    className={cn(
+                      "absolute -bottom-1 left-0 h-0.5 bg-accent-gold transition-all duration-300",
+                      activeSection === item.id ? "w-full" : "w-0 group-hover:w-full"
+                    )}
+                  ></span>
                 </a>
               </motion.li>
             ))}
@@ -148,5 +187,6 @@ export default function Header() {
         </AnimatePresence>
       </nav>
     </motion.header>
+    </>
   );
 }

@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Mail, MapPin, Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Confetti } from "@/components/ui/confetti";
 
 export default function ContactPremium() {
   const [formData, setFormData] = useState({
@@ -196,10 +196,10 @@ export default function ContactPremium() {
               </div>
 
               {/* Submit Button */}
-              <Button
+              <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-14 bg-black-deep text-white-pure hover:bg-orange-pantone transition-all duration-500 text-sm font-medium tracking-wide uppercase rounded-none disabled:opacity-50 group relative overflow-hidden"
+                className="w-full h-14 bg-black-deep text-white-pure hover:bg-orange-pantone transition-all duration-500 text-sm font-medium tracking-wide uppercase disabled:opacity-50 group relative overflow-hidden"
               >
                 <span className="relative z-10 flex items-center justify-center gap-3">
                   {isSubmitting ? (
@@ -216,7 +216,10 @@ export default function ContactPremium() {
                 {!isSubmitting && submitStatus === "idle" && (
                   <span className="absolute inset-0 bg-orange-pantone transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 )}
-              </Button>
+              </button>
+
+              {/* Confetti Animation */}
+              <Confetti trigger={submitStatus === "success"} />
 
               {/* Success Message */}
               {submitStatus === "success" && (

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Code, Palette, Rocket, Settings, Smartphone, Zap } from "lucide-react";
+import { Card3D } from "@/components/ui/card-3d";
 
 const services = [
   {
@@ -123,10 +124,14 @@ export default function Services() {
             <motion.div
               key={service.title}
               variants={itemVariants}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative"
+              className="group"
             >
-              <div className="h-full bg-dark-800/50 backdrop-blur-sm rounded-2xl p-8 border border-dark-700 hover:border-accent-gold/50 transition-all duration-300">
+              <Card3D
+                className="h-full"
+                glowColor={service.color.includes("gold") ? "rgba(212, 175, 55, 0.4)" : service.color.includes("copper") ? "rgba(184, 115, 51, 0.4)" : "rgba(138, 154, 91, 0.4)"}
+                intensity={10}
+              >
+                <div className="h-full bg-dark-800/50 backdrop-blur-sm rounded-2xl p-8 border border-dark-700 hover:border-accent-gold/50 transition-all duration-300 hover:shadow-2xl hover:shadow-accent-gold/20">
                 {/* Icon */}
                 <div className="relative mb-6">
                   <div
@@ -159,11 +164,12 @@ export default function Services() {
                   ))}
                 </ul>
 
-                {/* Hover Effect Border */}
-                <div
-                  className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none`}
-                ></div>
-              </div>
+                  {/* Hover Effect Border */}
+                  <div
+                    className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none`}
+                  ></div>
+                </div>
+              </Card3D>
             </motion.div>
           ))}
         </motion.div>

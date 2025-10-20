@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Award, Coffee, Heart, Zap } from "lucide-react";
+import { InfiniteMarquee } from "@/components/ui/infinite-marquee";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
 
 const values = [
   {
@@ -31,6 +33,25 @@ const skills = [
   { name: "Backend Architecture", level: 90 },
   { name: "UI/UX Design", level: 85 },
   { name: "E-commerce", level: 92 },
+];
+
+const technologies = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "Shopify",
+  "WordPress",
+  "PostgreSQL",
+  "MongoDB",
+  "Tailwind CSS",
+  "SCSS",
+  "Framer Motion",
+  "Prisma",
+  "GraphQL",
+  "REST API",
+  "Docker",
+  "Git",
 ];
 
 export default function AboutPremium() {
@@ -87,9 +108,9 @@ export default function AboutPremium() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8 border-t border-black-deep/10">
               {[
-                { number: "5+", label: "Années" },
-                { number: "50+", label: "Projets" },
-                { number: "100%", label: "Satisfaction" },
+                { number: 5, suffix: "+", label: "Années" },
+                { number: 50, suffix: "+", label: "Projets" },
+                { number: 100, suffix: "%", label: "Satisfaction" },
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -100,7 +121,12 @@ export default function AboutPremium() {
                   className="text-center"
                 >
                   <div className="text-4xl font-medium text-orange-pantone mb-2">
-                    {stat.number}
+                    <AnimatedCounter
+                      from={0}
+                      to={stat.number}
+                      duration={2}
+                      suffix={stat.suffix}
+                    />
                   </div>
                   <div className="text-sm text-gray-secondary uppercase tracking-[0.15em]">
                     {stat.label}
@@ -156,6 +182,29 @@ export default function AboutPremium() {
             </div>
           </motion.div>
         </div>
+
+        {/* Technologies Marquee */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-32"
+        >
+          <h3 className="text-2xl font-medium text-black-deep text-center mb-12">
+            Technologies & Outils
+          </h3>
+          <InfiniteMarquee speed={30} pauseOnHover className="py-8">
+            {technologies.map((tech) => (
+              <div
+                key={tech}
+                className="px-8 py-4 border border-black-deep/10 bg-cream text-black-deep text-sm font-medium tracking-wide whitespace-nowrap hover:border-orange-pantone hover:text-orange-pantone transition-all duration-500"
+              >
+                {tech}
+              </div>
+            ))}
+          </InfiniteMarquee>
+        </motion.div>
 
         {/* Values Section */}
         <motion.div

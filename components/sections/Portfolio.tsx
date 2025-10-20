@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { useState } from "react";
+import { Card3D } from "@/components/ui/card-3d";
 
 const projects = [
   {
@@ -171,69 +172,75 @@ export default function Portfolio() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="group relative bg-dark-800/50 rounded-2xl overflow-hidden border border-dark-700 hover:border-accent-gold/50 transition-all duration-300"
             >
-              {/* Project Image */}
-              <div className="relative h-64 bg-gradient-to-br from-dark-700 to-dark-900 overflow-hidden">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}
-                ></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-6xl font-bold text-dark-600 group-hover:scale-110 transition-transform duration-300">
-                    {project.id}
+              <Card3D
+                className="h-full"
+                glowColor="rgba(212, 175, 55, 0.3)"
+                intensity={8}
+              >
+                <div className="group relative bg-dark-800/50 rounded-2xl overflow-hidden border border-dark-700 hover:border-accent-gold/50 transition-all duration-300 h-full">
+                  {/* Project Image */}
+                  <div className="relative h-64 bg-gradient-to-br from-dark-700 to-dark-900 overflow-hidden">
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}
+                    ></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-6xl font-bold text-dark-600 group-hover:scale-110 transition-transform duration-300">
+                        {project.id}
+                      </div>
+                    </div>
+
+                    {/* Overlay on hover */}
+                    <div className="absolute inset-0 bg-dark-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                      <motion.a
+                        href={project.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="w-12 h-12 rounded-full bg-accent-gold text-dark-900 flex items-center justify-center hover:bg-accent-copper transition-colors"
+                      >
+                        <Github size={20} />
+                      </motion.a>
+                      <motion.a
+                        href={project.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="w-12 h-12 rounded-full bg-accent-gold text-dark-900 flex items-center justify-center hover:bg-accent-copper transition-colors"
+                      >
+                        <ExternalLink size={20} />
+                      </motion.a>
+                    </div>
+                  </div>
+
+                  {/* Project Info */}
+                  <div className="p-6">
+                    <div className="text-sm text-accent-gold mb-2">
+                      {project.category}
+                    </div>
+                    <h3 className="text-xl font-bold text-primary-50 mb-3 group-hover:text-accent-gold transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-primary-300 text-sm mb-4 leading-relaxed">
+                      {project.description}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 text-xs bg-dark-700 text-primary-400 rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-dark-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                  <motion.a
-                    href={project.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-12 h-12 rounded-full bg-accent-gold text-dark-900 flex items-center justify-center hover:bg-accent-copper transition-colors"
-                  >
-                    <Github size={20} />
-                  </motion.a>
-                  <motion.a
-                    href={project.links.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-12 h-12 rounded-full bg-accent-gold text-dark-900 flex items-center justify-center hover:bg-accent-copper transition-colors"
-                  >
-                    <ExternalLink size={20} />
-                  </motion.a>
-                </div>
-              </div>
-
-              {/* Project Info */}
-              <div className="p-6">
-                <div className="text-sm text-accent-gold mb-2">
-                  {project.category}
-                </div>
-                <h3 className="text-xl font-bold text-primary-50 mb-3 group-hover:text-accent-gold transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-primary-300 text-sm mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-xs bg-dark-700 text-primary-400 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </Card3D>
             </motion.div>
           ))}
         </motion.div>

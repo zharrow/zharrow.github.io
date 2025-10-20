@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { ShoppingBag, Layout, Rocket } from "lucide-react";
+import { Card3D } from "@/components/ui/card-3d";
 
 const services = [
   {
@@ -83,8 +84,14 @@ export default function ServicesPremium() {
               <motion.div
                 key={service.id}
                 variants={itemVariants}
-                className="group relative bg-cream hover:bg-white-pure card-hover border border-black-deep/10 p-12 min-h-[500px] flex flex-col cursor-default"
               >
+                <Card3D
+                  className="h-full"
+                  glowColor="rgba(255, 122, 0, 0.2)"
+                  intensity={8}
+                >
+                  <div className="group relative bg-cream hover:bg-white-pure card-hover border border-black-deep/10 p-12 min-h-[500px] flex flex-col cursor-default h-full">
+
                 {/* Number */}
                 <div className="absolute top-8 right-8 text-[120px] font-medium leading-none text-black-deep/5 group-hover:text-orange-pantone/10 transition-colors duration-700">
                   {String(index + 1).padStart(2, '0')}
@@ -120,8 +127,10 @@ export default function ServicesPremium() {
                   </ul>
                 </div>
 
-                {/* Hover Line */}
-                <div className="absolute bottom-0 left-0 w-0 h-px bg-orange-pantone group-hover:w-full transition-all duration-700" />
+                    {/* Hover Line */}
+                    <div className="absolute bottom-0 left-0 w-0 h-px bg-orange-pantone group-hover:w-full transition-all duration-700" />
+                  </div>
+                </Card3D>
               </motion.div>
             );
           })}

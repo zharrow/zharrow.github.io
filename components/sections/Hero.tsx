@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
+import { Typewriter } from "@/components/ui/typewriter";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export default function Hero() {
   return (
@@ -61,7 +64,18 @@ export default function Hero() {
             className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary-50 mb-6 leading-tight"
           >
             Transformez vos idées en{" "}
-            <span className="gradient-text">expériences digitales</span>
+            <span className="gradient-text">
+              <Typewriter
+                texts={[
+                  "expériences digitales",
+                  "applications web",
+                  "solutions innovantes",
+                  "produits performants"
+                ]}
+                speed={100}
+                delay={2000}
+              />
+            </span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -82,22 +96,20 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <motion.a
+            <MagneticButton
               href="#portfolio"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-accent-gold text-dark-900 rounded-full font-semibold text-lg hover:bg-accent-copper transition-all duration-300 shadow-lg hover:shadow-accent-gold/50 w-full sm:w-auto"
+              strength={0.4}
+              className="px-8 py-4 bg-accent-gold text-dark-900 rounded-full font-semibold text-lg hover:bg-accent-copper transition-all duration-300 shadow-lg hover:shadow-accent-gold/50 w-full sm:w-auto text-center"
             >
               Voir mes projets
-            </motion.a>
-            <motion.a
+            </MagneticButton>
+            <MagneticButton
               href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-transparent border-2 border-accent-gold text-accent-gold rounded-full font-semibold text-lg hover:bg-accent-gold hover:text-dark-900 transition-all duration-300 w-full sm:w-auto"
+              strength={0.4}
+              className="px-8 py-4 bg-transparent border-2 border-accent-gold text-accent-gold rounded-full font-semibold text-lg hover:bg-accent-gold hover:text-dark-900 transition-all duration-300 w-full sm:w-auto text-center"
             >
               Me contacter
-            </motion.a>
+            </MagneticButton>
           </motion.div>
 
           {/* Stats */}
@@ -108,9 +120,9 @@ export default function Hero() {
             className="grid grid-cols-3 gap-8 mt-20 max-w-2xl mx-auto"
           >
             {[
-              { number: "5+", label: "Années d'expérience" },
-              { number: "50+", label: "Projets réalisés" },
-              { number: "100%", label: "Clients satisfaits" },
+              { number: 5, suffix: "+", label: "Années d'expérience" },
+              { number: 50, suffix: "+", label: "Projets réalisés" },
+              { number: 100, suffix: "%", label: "Clients satisfaits" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -120,7 +132,11 @@ export default function Hero() {
                 className="text-center"
               >
                 <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-                  {stat.number}
+                  <AnimatedCounter
+                    to={stat.number}
+                    suffix={stat.suffix}
+                    duration={2}
+                  />
                 </div>
                 <div className="text-sm text-primary-400">{stat.label}</div>
               </motion.div>
