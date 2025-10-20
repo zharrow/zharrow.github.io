@@ -35,8 +35,8 @@ const skills = [
 
 export default function AboutPremium() {
   return (
-    <section id="apropos" className="py-32 md:py-40 bg-white-pure px-6 md:px-12">
-      <div className="max-w-container mx-auto">
+    <section id="apropos" className="py-32 md:py-40 bg-white-pure">
+      <div className="section-container">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

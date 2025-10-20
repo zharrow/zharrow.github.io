@@ -1,0 +1,203 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'utilities';
+
+// Reset & Base
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: auto; // Lenis will handle smooth scroll
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  font-family: $font-sans;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $cream;
+  color: $black-deep;
+}
+
+// Premium Typography Scale
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+// Custom Scrollbar - Minimal
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $gray-secondary;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $black-deep;
+}
+
+// SECTIONS
+section {
+  margin-bottom: 4rem; // Espacement entre sections
+
+  @include tablet {
+    margin-bottom: 6rem;
+  }
+
+  @include desktop {
+    margin-bottom: 8rem;
+  }
+}
+
+// SECTION CONTAINER - LA VRAIE SOLUTION
+.section-container {
+  @include container;
+}
+
+// Sections backgrounds
+.bg-cream {
+  background-color: $cream;
+}
+
+.bg-gray-light {
+  background-color: $gray-light;
+}
+
+.bg-white-pure {
+  background-color: $white-pure;
+}
+
+.bg-black-deep {
+  background-color: $black-deep;
+}
+
+// Text colors
+.text-black-deep {
+  color: $black-deep;
+}
+
+.text-gray-secondary {
+  color: $gray-secondary;
+}
+
+.text-white-pure {
+  color: $white-pure;
+}
+
+.text-orange-pantone {
+  color: $orange-pantone;
+}
+
+// Utility Classes
+.link-underline {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: $orange-pantone;
+    transition: width $transition-base;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.card-hover {
+  @include transition(all);
+
+  &:hover {
+    transform: translateY(-2px);
+    background: $white-pure;
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(40px);
+  @include transition(opacity, transform);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Buttons - Style Premium
+.btn-primary {
+  background: $black-deep;
+  color: $white-pure;
+  padding: 1.25rem 2.5rem; // Plus de padding
+  border: none;
+  border-radius: 0.5rem; // Bordures arrondies (8px)
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  @include transition(background, transform);
+
+  &:hover {
+    background: $orange-pantone;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-outline {
+  background: transparent;
+  color: $black-deep;
+  padding: 1.25rem 2.5rem; // Plus de padding
+  border: 2px solid $black-deep;
+  border-radius: 0.5rem; // Bordures arrondies (8px)
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  @include transition(background, color, transform);
+
+  &:hover {
+    background: $black-deep;
+    color: $white-pure;
+    transform: translateY(-2px);
+  }
+}

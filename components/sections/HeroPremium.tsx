@@ -8,7 +8,7 @@ export default function HeroPremium() {
   const t = useTranslations("hero");
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-cream px-6 md:px-12 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-cream overflow-hidden">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{
@@ -18,7 +18,7 @@ export default function HeroPremium() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-container mx-auto w-full text-center">
+      <div className="relative z-10 max-w-[1280px] mx-auto w-full text-center px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}

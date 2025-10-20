@@ -14,8 +14,8 @@ export default function FooterPremium() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black-deep text-white-pure py-16 px-6 md:px-12">
-      <div className="max-w-container mx-auto">
+    <footer className="bg-black-deep text-white-pure py-16">
+      <div className="section-container">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-12">
           {/* Brand */}

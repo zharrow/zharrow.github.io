@@ -43,8 +43,8 @@ export default function ContactPremium() {
   };
 
   return (
-    <section id="contact" className="py-32 md:py-40 bg-gray-light px-6 md:px-12">
-      <div className="max-w-container mx-auto">
+    <section id="contact" className="py-32 md:py-40 bg-gray-light">
+      <div className="section-container">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

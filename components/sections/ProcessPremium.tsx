@@ -50,9 +50,9 @@ export default function ProcessPremium() {
     <section
       ref={containerRef}
       id="process"
-      className="py-32 md:py-40 bg-cream px-6 md:px-12 overflow-hidden"
+      className="py-32 md:py-40 bg-cream px-6 md:px-12 lg:px-16 xl:px-24 overflow-hidden"
     >
-      <div className="max-w-container mx-auto">
+      <div className="section-container">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

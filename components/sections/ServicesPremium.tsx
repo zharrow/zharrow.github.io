@@ -40,7 +40,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 };
@@ -49,8 +49,8 @@ export default function ServicesPremium() {
   const t = useTranslations("services");
 
   return (
-    <section id="services" className="py-32 md:py-40 bg-cream px-6 md:px-12">
-      <div className="max-w-container mx-auto">
+    <section id="services" className="py-32 md:py-40 bg-cream">
+      <div className="section-container">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

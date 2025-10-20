@@ -38,7 +38,7 @@ export default function HeaderPremium() {
           : "bg-transparent"
       )}
     >
-      <nav className="max-w-container mx-auto px-6 md:px-12 py-6">
+      <nav className="max-w-[1280px] mx-auto px-6 md:px-12 py-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.a
