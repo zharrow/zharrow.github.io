@@ -88,7 +88,7 @@ export default function HeroPremium() {
         >
           <a
             href="#services"
-            className="flex flex-col items-center gap-2 text-gray-secondary hover:text-black-deep transition-colors duration-500"
+            className="flex flex-col items-center gap-2 text-gray-secondary hover:text-black-deep transition-colors duration-500 link-underline"
           >
             <span className="text-sm tracking-wide uppercase">{t("scrollDown")}</span>
             <motion.div
