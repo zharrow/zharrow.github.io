@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { ShoppingBag, Layout, Rocket } from "lucide-react";
+import { ShoppingBag, Layout, Rocket, Calculator } from "lucide-react";
 import { Card3D } from "@/components/ui/card-3d";
+import { PriceSimulatorModal } from "@/components/ui/price-simulator-modal";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { useState } from "react";
 
 const services = [
   {
@@ -48,6 +51,8 @@ const itemVariants = {
 
 export default function ServicesPremium() {
   const t = useTranslations("services");
+  const tSimulator = useTranslations("simulator");
+  const [isSimulatorOpen, setIsSimulatorOpen] = useState(false);
 
   return (
     <section id="services" className="py-32 md:py-40 bg-cream">
@@ -135,7 +140,32 @@ export default function ServicesPremium() {
             );
           })}
         </motion.div>
+
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+          className="text-center mt-20"
+        >
+          <MagneticButton
+            onClick={() => setIsSimulatorOpen(true)}
+            strength={0.3}
+            className="bg-orange-pantone text-white-pure transition-colors px-8 py-6 text-base font-medium inline-flex items-center gap-4 group relative overflow-hidden uppercase tracking-wide duration-500"
+          >
+            <span className="absolute inset-0 bg-black-deep transform translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            <Calculator className="w-5 h-5 relative z-10" />
+            <span className="relative z-10">{tSimulator("cta")}</span>
+          </MagneticButton>
+        </motion.div>
       </div>
+
+      {/* Price Simulator Modal */}
+      <PriceSimulatorModal
+        isOpen={isSimulatorOpen}
+        onClose={() => setIsSimulatorOpen(false)}
+      />
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/zharrow", label: "GitHub" },
@@ -11,6 +12,7 @@ const socialLinks = [
 ];
 
 export default function FooterPremium() {
+  const t = useTranslations("footer");
   const currentYear = new Date().getFullYear();
 
   return (
@@ -21,27 +23,26 @@ export default function FooterPremium() {
           {/* Brand */}
           <div>
             <h3 className="text-xl font-medium mb-4 tracking-tight">
-              Florent Detres
+              {t("brand.name")}
             </h3>
             <p className="text-gray-secondary text-sm leading-relaxed max-w-xs">
-              Développeur web créant des expériences digitales premium
-              avec attention aux détails.
+              {t("brand.description")}
             </p>
           </div>
 
           {/* Navigation */}
           <div>
             <h4 className="text-sm uppercase tracking-[0.2em] text-gray-secondary mb-6">
-              Navigation
+              {t("navigation.title")}
             </h4>
             <ul className="space-y-3">
-              {["Accueil", "Services", "Portfolio", "À propos", "Contact"].map((item) => (
+              {(["home", "services", "portfolio", "about", "contact"] as const).map((item) => (
                 <li key={item}>
                   <a
-                    href={`#${item.toLowerCase().replace(/\s+/g, "")}`}
+                    href={`#${item === "home" ? "" : item === "about" ? "apropos" : item}`}
                     className="text-white-pure/70 hover:text-orange-pantone transition-colors duration-500 text-sm link-underline inline-block"
                   >
-                    {item}
+                    {t(`navigation.${item}`)}
                   </a>
                 </li>
               ))}
@@ -51,7 +52,7 @@ export default function FooterPremium() {
           {/* Social */}
           <div>
             <h4 className="text-sm uppercase tracking-[0.2em] text-gray-secondary mb-6">
-              Réseaux
+              {t("social.title")}
             </h4>
             <div className="flex gap-4">
               {socialLinks.map((social) => {
@@ -77,10 +78,10 @@ export default function FooterPremium() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white-pure/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-secondary">
           <p>
-            © {currentYear} Florent Detres. Tous droits réservés.
+            © {currentYear} {t("brand.name")}. {t("copyright")}
           </p>
           <p className="flex items-center gap-2">
-            Conçu et développé en France
+            {t("madeIn")}
           </p>
         </div>
       </div>

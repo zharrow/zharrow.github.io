@@ -10,7 +10,12 @@
   "hero": {
     "badge": "Développeur Full Stack",
     "title": "Transformez vos idées en",
-    "titleHighlight": "expériences digitales",
+    "titleHighlight": {
+      "digital" : "expériences digitales",
+      "innovative": "solutions innovantes",
+      "creatives": "projets créatifs",
+      "performing": "applications performantes"
+    },
     "subtitle": "Développeur web passionné, je crée des solutions élégantes et performantes qui font la différence.",
     "viewProjects": "Voir mes projets",
     "contactMe": "Me contacter",
@@ -32,19 +37,19 @@
     },
     "items": {
       "shopify": {
-        "title": "Boutique Shopify",
-        "description": "Création de boutiques e-commerce haut de gamme sur Shopify, optimisées pour la conversion et la performance.",
-        "features": ["Design sur mesure", "Apps & intégrations", "Optimisation conversion"]
+        "title": "E-commerce & Shopify",
+        "description": "Boutiques en ligne complètes avec catalogue produits, checkout sécurisé, gestion des commandes et intégrations de paiement (Stripe, PayPal).",
+        "features": ["Catalogue & filtres avancés", "Checkout & paiements", "Back-office & analytics"]
       },
       "wordpress": {
-        "title": "Site WordPress",
-        "description": "Sites WordPress professionnels, performants et faciles à gérer, adaptés à vos besoins spécifiques.",
-        "features": ["Thème personnalisé", "Performance optimale", "SEO avancé"]
+        "title": "Sites Web & Portails",
+        "description": "Sites vitrines, institutionnels, landing pages et portails intranet avec CMS headless, authentification avancée et design system personnalisé.",
+        "features": ["Design system sur mesure", "CMS Headless (Strapi/Sanity)", "SEO technique & performance"]
       },
       "saas": {
-        "title": "SaaS sur mesure",
-        "description": "Applications SaaS et solutions fullstack personnalisées, évolutives et robustes pour votre business.",
-        "features": ["Architecture moderne", "API scalable", "Dashboard admin"]
+        "title": "Applications Web & SaaS",
+        "description": "Web apps complètes avec authentification OAuth/JWT, dashboard analytique, API REST, génération PDF, notifications push et architecture scalable.",
+        "features": ["Auth avancée & RBAC", "API REST & webhooks", "Dashboard & monitoring"]
       }
     }
   },
@@ -100,69 +105,57 @@
   "about": {
     "label": "À propos",
     "title": "Développeur passionné par",
-    "titleHighlight": "l'innovation",
-    "bio": {
-      "intro": "Bonjour ! Je suis {name}, un développeur web full stack avec plus de 5 ans d'expérience dans la création d'applications web et mobile modernes.",
-      "passion": "Ma passion pour le développement a commencé avec une simple curiosité pour la technologie, qui s'est transformée en une carrière dédiée à la création de solutions digitales innovantes et performantes.",
-      "specialization": "Je me spécialise dans le développement d'interfaces utilisateur élégantes et d'architectures backend robustes. Mon approche combine expertise technique, créativité et attention méticuleuse aux détails.",
-      "hobby": "Quand je ne code pas, vous me trouverez probablement en train d'explorer de nouvelles technologies, de contribuer à des projets open source, ou de partager mes connaissances avec la communauté."
+    "titleHighlight": "l'excellence",
+    "intro": {
+      "greeting": "Bonjour, je suis",
+      "name": "Florent Detres",
+      "description": "développeur web full stack avec une passion pour la création d'expériences digitales premium."
     },
-    "skills": {
-      "title": "Compétences Techniques"
+    "paragraphs": {
+      "experience": "Depuis plus de 5 ans, j'accompagne des entreprises dans leur transformation digitale en créant des solutions sur mesure qui allient esthétique et performance.",
+      "approach": "Mon approche se concentre sur trois piliers :",
+      "pillars": {
+        "design": "design épuré",
+        "code": "code de qualité",
+        "results": "résultats mesurables"
+      },
+      "services": "Que ce soit pour une boutique Shopify, un site WordPress ou une application SaaS, je m'assure que chaque pixel et chaque ligne de code servent votre vision."
+    },
+    "stats": {
+      "years": "Années",
+      "projects": "Projets",
+      "satisfaction": "Satisfaction"
+    },
+    "expertise": {
+      "title": "Expertise",
+      "skills": {
+        "frontend": "Frontend Development",
+        "backend": "Backend Architecture",
+        "uiux": "UI/UX Design",
+        "ecommerce": "E-commerce"
+      }
+    },
+    "technologies": {
+      "title": "Technologies & Outils"
     },
     "values": {
-      "title": "Mes",
-      "titleHighlight": "Valeurs",
+      "title": "Mes valeurs",
       "items": {
-        "cleanCode": {
-          "title": "Code Propre",
-          "description": "J'écris du code maintenable, testé et documenté."
-        },
-        "innovation": {
-          "title": "Innovation",
-          "description": "Toujours à l'affût des dernières technologies."
-        },
         "passion": {
           "title": "Passion",
-          "description": "Chaque projet est une opportunité d'excellence."
+          "description": "Chaque projet est traité avec soin et dévouement"
+        },
+        "performance": {
+          "title": "Performance",
+          "description": "Code optimisé pour des expériences ultra-rapides"
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "Standards élevés et attention aux moindres détails"
         },
         "collaboration": {
           "title": "Collaboration",
-          "description": "Communication transparente et travail d'équipe."
-        },
-        "quality": {
-          "title": "Qualité",
-          "description": "Standards élevés et attention aux détails."
-        },
-        "learning": {
-          "title": "Apprentissage",
-          "description": "Formation continue et veille technologique."
-        }
-      }
-    },
-    "timeline": {
-      "title": "Mon",
-      "titleHighlight": "Parcours",
-      "items": {
-        "2024": {
-          "title": "Développeur Full Stack Senior",
-          "company": "Freelance",
-          "description": "Accompagnement de startups et PME dans leurs projets digitaux."
-        },
-        "2022": {
-          "title": "Lead Developer",
-          "company": "Tech Company",
-          "description": "Direction technique et architecture de solutions web complexes."
-        },
-        "2020": {
-          "title": "Développeur Full Stack",
-          "company": "Digital Agency",
-          "description": "Développement d'applications web et mobile pour divers clients."
-        },
-        "2018": {
-          "title": "Développeur Junior",
-          "company": "Startup",
-          "description": "Premiers pas dans le développement professionnel."
+          "description": "Communication claire et transparente tout au long"
         }
       }
     }
@@ -171,47 +164,938 @@
     "label": "Contact",
     "title": "Travaillons",
     "titleHighlight": "ensemble",
-    "subtitle": "Une idée, un projet ? N'hésitez pas à me contacter, je serais ravi d'en discuter avec vous.",
+    "subtitle": "Une idée, un projet ? Parlons-en autour d'un café virtuel",
     "info": {
-      "title": "Informations de contact",
       "email": "Email",
-      "phone": "Téléphone",
       "location": "Localisation",
+      "locationCountry": "France",
+      "locationDetails": "Remote & disponible pour déplacements",
       "availability": {
-        "status": "Disponible pour des missions",
-        "description": "Je suis actuellement disponible pour de nouveaux projets. Réponse sous 24h garantie."
+        "status": "Disponible",
+        "description": "Actuellement disponible pour de nouveaux projets. Réponse sous 24h garantie."
       }
     },
     "form": {
       "name": "Nom complet",
-      "namePlaceholder": "Votre nom",
-      "email": "Email",
-      "emailPlaceholder": "votre@email.com",
-      "subject": "Sujet",
-      "subjectPlaceholder": "De quoi souhaitez-vous parler ?",
-      "message": "Message",
-      "messagePlaceholder": "Décrivez votre projet ou votre besoin...",
+      "namePlaceholder": "Jean Dupont",
+      "email": "Adresse email",
+      "emailPlaceholder": "jean.dupont@email.com",
+      "phone": "Téléphone",
+      "phonePlaceholder": "+33 6 12 34 56 78",
+      "phoneOptional": "(Recommandé)",
+      "company": "Entreprise",
+      "companyPlaceholder": "Votre entreprise",
+      "companyOptional": "(Recommandé)",
+      "budget": "Budget estimé",
+      "budgetPlaceholder": "Sélectionnez une fourchette",
+      "budgetOptional": "(Recommandé)",
+      "budgetOptions": {
+        "lessThan5k": "Moins de 5 000 €",
+        "5kTo10k": "5 000 € - 10 000 €",
+        "10kTo20k": "10 000 € - 20 000 €",
+        "20kTo50k": "20 000 € - 50 000 €",
+        "moreThan50k": "Plus de 50 000 €"
+      },
+      "message": "Votre message",
+      "messagePlaceholder": "Parlez-moi de votre projet, vos objectifs et vos besoins...",
+      "characterCount": "caractères",
       "submit": "Envoyer le message",
       "sending": "Envoi en cours...",
       "success": "Message envoyé !",
-      "successMessage": "Merci pour votre message ! Je vous répondrai dans les plus brefs délais."
+      "successMessage": "✓ Merci pour votre message ! Je vous répondrai dans les plus brefs délais.",
+      "error": "Une erreur est survenue. Veuillez réessayer.",
+      "responseGuarantee": "Réponse garantie sous 24h"
+    }
+  },
+  "process": {
+    "label": "Processus",
+    "title": "Comment je",
+    "titleHighlight": "travaille",
+    "subtitle": "Une méthode éprouvée en 5 étapes pour garantir la réussite de votre projet",
+    "steps": {
+      "discovery": {
+        "number": "01",
+        "title": "Découverte",
+        "description": "Analyse de vos besoins, objectifs et vision du projet",
+        "details": [
+          "Entretien approfondi pour comprendre vos objectifs",
+          "Analyse de votre marché et de vos concurrents",
+          "Définition du périmètre et des livrables",
+          "Proposition de solution technique adaptée"
+        ],
+        "duration": "1-2 semaines"
+      },
+      "design": {
+        "number": "02",
+        "title": "Design",
+        "description": "Création de maquettes et prototypes interactifs",
+        "details": [
+          "Wireframes et architecture de l'information",
+          "Maquettes haute fidélité sur Figma",
+          "Prototypes interactifs pour validation",
+          "Design system et guide de style"
+        ],
+        "duration": "2-3 semaines"
+      },
+      "development": {
+        "number": "03",
+        "title": "Développement",
+        "description": "Codage propre, testé et optimisé pour la performance",
+        "details": [
+          "Code modulaire et maintenable",
+          "Tests unitaires et d'intégration",
+          "Optimisation des performances",
+          "Revues de code régulières"
+        ],
+        "duration": "4-8 semaines"
+      },
+      "launch": {
+        "number": "04",
+        "title": "Lancement",
+        "description": "Déploiement et formation pour une prise en main facile",
+        "details": [
+          "Configuration de l'environnement de production",
+          "Migration des données si nécessaire",
+          "Formation à l'utilisation de la plateforme",
+          "Documentation technique et utilisateur"
+        ],
+        "duration": "1 semaine"
+      },
+      "support": {
+        "number": "05",
+        "title": "Suivi",
+        "description": "Support continu et évolutions selon vos besoins",
+        "details": [
+          "Monitoring et alertes automatiques",
+          "Corrections de bugs en priorité",
+          "Évolutions et nouvelles fonctionnalités",
+          "Support technique réactif"
+        ],
+        "duration": "En continu"
+      }
     }
   },
   "footer": {
     "brand": {
       "name": "Florent Detres",
-      "description": "Développeur web passionné, créant des expériences digitales exceptionnelles avec une attention particulière aux détails et à la performance."
+      "description": "Développeur web créant des expériences digitales premium avec attention aux détails."
     },
-    "navigation": "Navigation",
-    "servicesTitle": "Services",
-    "legal": "Légal",
-    "legalLinks": {
-      "terms": "Mentions légales",
-      "privacy": "Politique de confidentialité",
-      "cgv": "CGV"
+    "navigation": {
+      "title": "Navigation",
+      "home": "Accueil",
+      "services": "Services",
+      "portfolio": "Portfolio",
+      "about": "À propos",
+      "contact": "Contact"
     },
-    "rights": "Tous droits réservés.",
-    "madeWith": "Conçu et développé avec",
-    "madeIn": "en France"
+    "social": {
+      "title": "Réseaux"
+    },
+    "copyright": "Tous droits réservés.",
+    "madeIn": "Conçu et développé en France"
+  },
+  "caseStudy": {
+    "title": "Case Study",
+    "client": "Client",
+    "duration": "Durée",
+    "team": "Équipe",
+    "role": "Rôle",
+    "keyPoints": "Points Clés",
+    "technologies": "Technologies",
+    "toolsServices": "Outils & Services",
+    "projectOverview": "Aperçu du Projet",
+    "cta": {
+      "title": "Intéressé par un projet similaire ?",
+      "description": "Discutons de vos besoins et voyons comment je peux vous aider à atteindre vos objectifs.",
+      "viewSite": "Voir le Site",
+      "viewCode": "Voir le Code",
+      "contact": "Me Contacter"
+    },
+    "projects": {
+      "1": {
+        "title": "Luxury E-Commerce",
+        "category": "Shopify",
+        "description": "Boutique haut de gamme avec expérience d'achat premium",
+        "client": "Marque de Luxe Française",
+        "duration": "3 mois",
+        "team": "Designer + Développeur",
+        "role": "Lead Developer & Shopify Expert",
+        "challenge": {
+          "title": "Le Défi",
+          "description": "Le client souhaitait migrer son ancienne boutique vers Shopify tout en conservant une identité premium et en améliorant drastiquement l'expérience utilisateur et les conversions.",
+          "points": [
+            "Migration de 500+ produits depuis WooCommerce",
+            "Création d'une expérience premium sur mobile et desktop",
+            "Intégration d'un système de personnalisation de produits",
+            "Optimisation pour un temps de chargement < 2s",
+            "Mise en place d'un système de fidélité et de recommandations"
+          ]
+        },
+        "solution": {
+          "title": "La Solution",
+          "description": "J'ai développé un thème Shopify sur mesure avec des fonctionnalités avancées, en mettant l'accent sur la performance et l'expérience utilisateur premium.",
+          "approach": [
+            {
+              "title": "Architecture Shopify Plus",
+              "description": "Utilisation de Shopify Plus avec thème custom en Liquid et JavaScript vanilla pour des performances optimales. Mise en place d'Apps personnalisées pour les besoins spécifiques."
+            },
+            {
+              "title": "Design System Premium",
+              "description": "Création d'un design system cohérent avec animations subtiles, typographie élégante et mise en page aérée pour refléter le positionnement haut de gamme de la marque."
+            },
+            {
+              "title": "Personnalisation Produits",
+              "description": "Développement d'un configurateur de produits interactif permettant aux clients de personnaliser leurs achats en temps réel avec prévisualisation 3D."
+            },
+            {
+              "title": "Optimisation Performance",
+              "description": "Lazy loading des images, compression automatique, CDN Shopify optimisé, et code minifié pour garantir un chargement ultra-rapide même sur mobile."
+            }
+          ]
+        },
+        "results": {
+          "title": "Résultats & Impact",
+          "metrics": [
+            {
+              "label": "Conversion",
+              "value": "+180%",
+              "description": "Augmentation du taux de conversion en 3 mois"
+            },
+            {
+              "label": "Panier Moyen",
+              "value": "+65%",
+              "description": "Hausse de la valeur moyenne des commandes"
+            },
+            {
+              "label": "Performance",
+              "value": "1.8s",
+              "description": "Temps de chargement moyen de la page"
+            }
+          ],
+          "testimonial": {
+            "quote": "Florent a transformé notre vision en une boutique en ligne exceptionnelle. Les ventes ont explosé et nos clients adorent la nouvelle expérience.",
+            "author": "Marie Dubois",
+            "position": "Directrice Marketing"
+          }
+        },
+        "gallery": [
+          {"alt": "Page d'accueil", "caption": "Design épuré de la page d'accueil"},
+          {"alt": "Page produit", "caption": "Configurateur de produit interactif"},
+          {"alt": "Panier", "caption": "Processus de checkout optimisé"},
+          {"alt": "Mobile", "caption": "Expérience mobile premium"}
+        ]
+      },
+      "2": {
+        "title": "Corporate Website",
+        "category": "WordPress",
+        "description": "Site vitrine élégant pour cabinet d'avocats",
+        "client": "Cabinet d'Avocats International",
+        "duration": "2 mois",
+        "team": "Designer + Développeur + Rédacteur",
+        "role": "WordPress Developer & Technical Lead",
+        "challenge": {
+          "title": "Le Défi",
+          "description": "Créer un site web professionnel reflétant l'expertise et le prestige du cabinet tout en facilitant la prise de contact et la découverte des services.",
+          "points": [
+            "Refonte complète de l'identité numérique du cabinet",
+            "Présentation claire de 15+ domaines d'expertise",
+            "Système de prise de rendez-vous en ligne",
+            "Multilingue (FR/EN/ES) pour clientèle internationale",
+            "Conformité RGPD et sécurité renforcée"
+          ]
+        },
+        "solution": {
+          "title": "La Solution",
+          "description": "Développement d'un thème WordPress custom avec ACF Pro pour une flexibilité maximale et une expérience utilisateur irréprochable.",
+          "approach": [
+            {
+              "title": "Thème Custom WordPress",
+              "description": "Création d'un thème sur mesure avec architecture modulaire, permettant une personnalisation complète des pages via Advanced Custom Fields."
+            },
+            {
+              "title": "Système Multilingue",
+              "description": "Intégration de WPML pour une gestion professionnelle des 3 langues avec traduction des contenus et adaptation culturelle."
+            },
+            {
+              "title": "Prise de Rendez-vous",
+              "description": "Développement d'un système de réservation connecté au calendrier du cabinet avec notifications automatiques par email."
+            },
+            {
+              "title": "Sécurité & Performance",
+              "description": "Mise en place de certificats SSL, firewall WAF, optimisation des images et mise en cache pour un score PageSpeed de 95/100."
+            }
+          ]
+        },
+        "results": {
+          "title": "Résultats & Impact",
+          "metrics": [
+            {
+              "label": "Performance",
+              "value": "95/100",
+              "description": "Score Google PageSpeed Insights"
+            },
+            {
+              "label": "Contacts",
+              "value": "+240%",
+              "description": "Augmentation des demandes de consultation"
+            },
+            {
+              "label": "Rendez-vous",
+              "value": "150+/mois",
+              "description": "Réservations en ligne mensuelles"
+            }
+          ],
+          "testimonial": {
+            "quote": "Un site qui reflète parfaitement notre professionnalisme. Nos clients nous complimentent régulièrement sur la facilité de navigation et l'esthétique moderne.",
+            "author": "Maître Jean Dupont",
+            "position": "Associé Fondateur"
+          }
+        },
+        "gallery": [
+          {"alt": "Accueil", "caption": "Hero section avec video background"},
+          {"alt": "Expertises", "caption": "Présentation des domaines d'expertise"},
+          {"alt": "Équipe", "caption": "Profils des avocats"},
+          {"alt": "Contact", "caption": "Formulaire de prise de rendez-vous"}
+        ]
+      },
+      "3": {
+        "title": "Task Management SaaS",
+        "category": "SaaS",
+        "description": "Application de gestion de projets avec dashboard analytics",
+        "client": "Startup Tech Parisienne",
+        "duration": "6 mois",
+        "team": "3 Développeurs + UX Designer",
+        "role": "Full Stack Developer & Tech Lead",
+        "challenge": {
+          "title": "Le Défi",
+          "description": "Développer une application SaaS complète de gestion de projets capable de rivaliser avec les leaders du marché tout en offrant une expérience utilisateur supérieure.",
+          "points": [
+            "Architecture scalable pour supporter 10,000+ utilisateurs",
+            "Interface intuitive sans courbe d'apprentissage",
+            "Collaboration temps réel entre équipes",
+            "Système d'analytics et de reporting avancé",
+            "Sécurité enterprise-grade et conformité RGPD"
+          ]
+        },
+        "solution": {
+          "title": "La Solution",
+          "description": "Construction d'une stack moderne Next.js avec base de données PostgreSQL et déploiement sur Vercel pour des performances optimales.",
+          "approach": [
+            {
+              "title": "Architecture Full Stack",
+              "description": "Utilisation de Next.js 14 avec App Router, React Server Components, et API Routes. Base de données PostgreSQL via Prisma ORM pour la fiabilité et la performance."
+            },
+            {
+              "title": "Temps Réel & Collaboration",
+              "description": "Intégration de WebSockets pour la synchronisation temps réel des modifications et la présence utilisateur. Système de permissions granulaires."
+            },
+            {
+              "title": "Dashboard Analytics",
+              "description": "Développement de visualisations de données interactives avec Chart.js et statistiques en temps réel sur l'avancement des projets."
+            },
+            {
+              "title": "Performance & Scalabilité",
+              "description": "Optimisations côté serveur avec React Server Components, caching stratégique, et déploiement edge pour des temps de réponse < 100ms."
+            }
+          ]
+        },
+        "results": {
+          "title": "Résultats & Impact",
+          "metrics": [
+            {
+              "label": "Utilisateurs",
+              "value": "1,200+",
+              "description": "Utilisateurs actifs en 6 mois"
+            },
+            {
+              "label": "Satisfaction",
+              "value": "4.8/5",
+              "description": "Note moyenne sur Product Hunt"
+            },
+            {
+              "label": "Performance",
+              "value": "< 100ms",
+              "description": "Temps de réponse API moyen"
+            }
+          ],
+          "testimonial": {
+            "quote": "L'application dépasse nos attentes. Nos utilisateurs adorent la fluidité et la puissance des fonctionnalités. Le meilleur investissement technique que nous ayons fait.",
+            "author": "Thomas Martin",
+            "position": "CEO & Co-founder"
+          }
+        },
+        "gallery": [
+          {"alt": "Dashboard", "caption": "Vue d'ensemble des projets"},
+          {"alt": "Kanban", "caption": "Board Kanban avec drag & drop"},
+          {"alt": "Analytics", "caption": "Dashboard analytics détaillé"},
+          {"alt": "Collaboration", "caption": "Collaboration temps réel"}
+        ]
+      },
+      "4": {
+        "title": "Fashion Brand Store",
+        "category": "Shopify",
+        "description": "Boutique mode avec collections dynamiques",
+        "client": "Marque de Mode Émergente",
+        "duration": "4 mois",
+        "team": "Designer + Développeur + Content Creator",
+        "role": "Shopify Developer & E-commerce Consultant",
+        "challenge": {
+          "title": "Le Défi",
+          "description": "Lancer une boutique en ligne pour une nouvelle marque de mode avec un budget limité mais des ambitions de croissance rapide.",
+          "points": [
+            "Design moderne et tendance qui se démarque",
+            "Collections saisonnières avec rotations fréquentes",
+            "Expérience mobile-first pour une audience Gen Z",
+            "Intégration sociale (Instagram Shopping)",
+            "Système de pré-commandes et drops limités"
+          ]
+        },
+        "solution": {
+          "title": "La Solution",
+          "description": "Développement d'une boutique Shopify Plus avec headless frontend React pour une flexibilité maximale et des performances exceptionnelles.",
+          "approach": [
+            {
+              "title": "Headless Shopify",
+              "description": "Utilisation de Shopify Storefront API avec frontend React custom pour un contrôle total du design et des animations."
+            },
+            {
+              "title": "Collections Dynamiques",
+              "description": "Système de gestion de collections automatisé avec tags et métafields, permettant des mises à jour rapides sans intervention technique."
+            },
+            {
+              "title": "Social Commerce",
+              "description": "Intégration complète d'Instagram Shopping, TikTok Shop, et boutons d'achat direct depuis les réseaux sociaux."
+            },
+            {
+              "title": "Drops & Pré-commandes",
+              "description": "Développement d'un système de countdown et de pré-commandes avec notifications par email et SMS pour créer l'urgence."
+            }
+          ]
+        },
+        "results": {
+          "title": "Résultats & Impact",
+          "metrics": [
+            {
+              "label": "Revenus",
+              "value": "+250%",
+              "description": "Croissance des ventes en 6 mois"
+            },
+            {
+              "label": "Mobile",
+              "value": "78%",
+              "description": "Part des ventes sur mobile"
+            },
+            {
+              "label": "Social",
+              "value": "45%",
+              "description": "Conversions via réseaux sociaux"
+            }
+          ],
+          "testimonial": {
+            "quote": "Florent a compris notre vision et l'a surpassée. Notre boutique est devenue un véritable outil de croissance pour notre marque.",
+            "author": "Sophie Laurent",
+            "position": "Founder & Creative Director"
+          }
+        },
+        "gallery": [
+          {"alt": "Home", "caption": "Landing page avec video hero"},
+          {"alt": "Collection", "caption": "Grille de produits avec filtres"},
+          {"alt": "Product", "caption": "Page produit avec galerie"},
+          {"alt": "Checkout", "caption": "Checkout optimisé mobile"}
+        ]
+      },
+      "5": {
+        "title": "Restaurant Website",
+        "category": "WordPress",
+        "description": "Site avec réservation en ligne et menu interactif",
+        "client": "Restaurant Gastronomique",
+        "duration": "2 mois",
+        "team": "Designer + Développeur",
+        "role": "WordPress Developer & UX Designer",
+        "challenge": {
+          "title": "Le Défi",
+          "description": "Créer une présence en ligne digne d'un restaurant étoilé avec système de réservation intégré et menu digital interactif.",
+          "points": [
+            "Design élégant reflétant l'ambiance du restaurant",
+            "Menu digital avec photos professionnelles",
+            "Système de réservation avec gestion des tables",
+            "Intégration des allergènes et régimes spéciaux",
+            "Galerie photos et actualités régulières"
+          ]
+        },
+        "solution": {
+          "title": "La Solution",
+          "description": "Site WordPress sur mesure avec WooCommerce adapté pour les réservations et un menu digital interactif développé en JavaScript.",
+          "approach": [
+            {
+              "title": "Design Gastronomique",
+              "description": "Création d'un design épuré et élégant avec grande typographie, images plein écran et animations subtiles reflétant le standing du restaurant."
+            },
+            {
+              "title": "Menu Interactif",
+              "description": "Développement d'un menu digital avec filtres par allergènes, régimes alimentaires, et catégories. Photos haute qualité et descriptions détaillées."
+            },
+            {
+              "title": "Réservations Intelligentes",
+              "description": "Adaptation de WooCommerce Bookings pour gérer les réservations de tables avec sélection de créneaux, nombre de convives et demandes spéciales."
+            },
+            {
+              "title": "Performance & SEO",
+              "description": "Optimisation des images lourdes, lazy loading, et SEO local pour apparaître en première position sur les recherches Google locales."
+            }
+          ]
+        },
+        "results": {
+          "title": "Résultats & Impact",
+          "metrics": [
+            {
+              "label": "Réservations",
+              "value": "500+/mois",
+              "description": "Réservations en ligne mensuelles"
+            },
+            {
+              "label": "Taux de remplissage",
+              "value": "+40%",
+              "description": "Augmentation de l'occupation"
+            },
+            {
+              "label": "SEO Local",
+              "value": "1ère",
+              "description": "Position Google Maps locale"
+            }
+          ],
+          "testimonial": {
+            "quote": "Le site a révolutionné notre gestion. Plus besoin de téléphone pour les réservations, et nos clients adorent découvrir le menu en ligne avant de venir.",
+            "author": "Chef Pierre Mercier",
+            "position": "Chef & Propriétaire"
+          }
+        },
+        "gallery": [
+          {"alt": "Accueil", "caption": "Hero avec ambiance du restaurant"},
+          {"alt": "Menu", "caption": "Menu interactif avec filtres"},
+          {"alt": "Réservation", "caption": "Système de réservation"},
+          {"alt": "Galerie", "caption": "Galerie de plats"}
+        ]
+      },
+      "6": {
+        "title": "CRM Platform",
+        "category": "SaaS",
+        "description": "Solution CRM sur mesure pour PME",
+        "client": "Agence de Services B2B",
+        "duration": "8 mois",
+        "team": "4 Développeurs + Product Manager",
+        "role": "Full Stack Developer & Database Architect",
+        "challenge": {
+          "title": "Le Défi",
+          "description": "Développer un CRM sur mesure adapté aux besoins spécifiques des PME françaises, plus simple et abordable que les solutions existantes.",
+          "points": [
+            "Interface simple sans formation nécessaire",
+            "Gestion complète du pipeline de vente",
+            "Automatisation des tâches répétitives",
+            "Rapports et analytics en temps réel",
+            "Intégrations avec outils existants (emails, calendrier)"
+          ]
+        },
+        "solution": {
+          "title": "La Solution",
+          "description": "Application web moderne construite avec React et Node.js, déployée sur AWS avec architecture microservices pour la scalabilité.",
+          "approach": [
+            {
+              "title": "Stack MERN Moderne",
+              "description": "Frontend React avec Redux pour la gestion d'état, backend Node.js/Express, et base de données MongoDB pour la flexibilité des données clients."
+            },
+            {
+              "title": "Pipeline Visuel",
+              "description": "Interface Kanban drag-and-drop pour visualiser et gérer le pipeline de vente avec statuts personnalisables et automatisations."
+            },
+            {
+              "title": "Automatisations",
+              "description": "Système d'automatisation no-code permettant de créer des workflows personnalisés (emails automatiques, rappels, tâches)."
+            },
+            {
+              "title": "Intégrations",
+              "description": "Connexions avec Gmail, Outlook, Google Calendar, Zapier, et webhooks pour s'intégrer à l'écosystème existant des entreprises."
+            }
+          ]
+        },
+        "results": {
+          "title": "Résultats & Impact",
+          "metrics": [
+            {
+              "label": "Clients",
+              "value": "50+",
+              "description": "PME utilisatrices actives"
+            },
+            {
+              "label": "Productivité",
+              "value": "+60%",
+              "description": "Gain de temps reporté"
+            },
+            {
+              "label": "Satisfaction",
+              "value": "4.7/5",
+              "description": "Score de satisfaction client"
+            }
+          ],
+          "testimonial": {
+            "quote": "Enfin un CRM pensé pour les PME ! Simple, efficace, et le support est excellent. Nous avons gagné un temps fou dans notre gestion commerciale.",
+            "author": "Marc Durand",
+            "position": "Directeur Commercial"
+          }
+        },
+        "gallery": [
+          {"alt": "Dashboard", "caption": "Vue d'ensemble du pipeline"},
+          {"alt": "Contacts", "caption": "Gestion des contacts"},
+          {"alt": "Analytics", "caption": "Rapports de vente"},
+          {"alt": "Automation", "caption": "Éditeur d'automatisations"}
+        ]
+      }
+    }
+  },
+  "simulator": {
+    "cta": "Simuler mon devis",
+    "modalTitle": "Simulateur",
+    "modalSubtitle": "Estimez votre projet",
+    "intro": {
+      "title": "Configurez votre projet",
+      "description": "Personnalisez votre projet en sélectionnant les fonctionnalités qui correspondent à vos besoins. Obtenez une estimation instantanée du prix et de la durée de réalisation."
+    },
+    "projectType": {
+      "title": "Type de prestation",
+      "description": "Sélectionnez le type de projet qui correspond à vos besoins",
+      "discount": "-25% sur le total",
+      "startingFrom": "À partir de"
+    },
+    "design": {
+      "title": "Design & Expérience Utilisateur",
+      "description": "Personnalisez l'identité visuelle et l'expérience de votre projet",
+      "included": "Inclus",
+      "requires": "Nécessite"
+    },
+    "structure": {
+      "title": "Structure & Contenu",
+      "description": "Choisissez les sections de votre site et leur niveau de sophistication",
+      "remove": "Retirer",
+      "levels": {
+        "basic": "Basique",
+        "advanced": "Avancé",
+        "premium": "Premium"
+      }
+    },
+    "technical": {
+      "title": "Fonctionnalités Techniques",
+      "description": "Ajoutez des fonctionnalités avancées à votre projet",
+      "included": "Inclus",
+      "conditions": "Conditions",
+      "requiresWarning": "⚠ Nécessite"
+    },
+    "otherOptions": {
+      "text": "D'autres options (Performance, SEO, Maintenance, Contenu) sont disponibles.",
+      "contact": "Contactez-nous pour un devis personnalisé incluant ces options."
+    },
+    "summary": {
+      "title": "Estimation du projet",
+      "subtitle": "Résumé de votre configuration",
+      "empty": "Sélectionnez un type de projet pour commencer votre simulation",
+      "pricing": {
+        "label": "Tarification",
+        "ht": "Prix HT",
+        "vat": "TVA (20%)",
+        "ttc": "Prix TTC",
+        "maintenanceLabel": "Maintenance mensuelle",
+        "perMonth": "/mois"
+      },
+      "duration": {
+        "label": "Durée estimée",
+        "weeks": "semaines",
+        "week": "semaine",
+        "workingDays": "jours ouvrés"
+      },
+      "complexity": {
+        "label": "Complexité",
+        "simple": "Projet simple",
+        "standard": "Projet standard",
+        "complex": "Projet complexe"
+      },
+      "actions": {
+        "download": "Télécharger le devis",
+        "reset": "Réinitialiser"
+      },
+      "disclaimer": "* Prix indicatifs. Un devis personnalisé sera établi après analyse détaillée de vos besoins."
+    },
+    "config": {
+      "projectTypes": {
+        "vitrine": {
+          "name": "Site vitrine",
+          "description": "Présence web simple"
+        },
+        "institutionnel": {
+          "name": "Site institutionnel",
+          "description": "Arborescence multi-pages"
+        },
+        "ecommerce": {
+          "name": "E-commerce",
+          "description": "Catalogue, panier, paiements"
+        },
+        "webapp": {
+          "name": "Web App / SaaS",
+          "description": "Application dynamique avec comptes"
+        },
+        "refonte": {
+          "name": "Refonte",
+          "description": "Refonte graphique ou technique"
+        },
+        "audit": {
+          "name": "Audit / Conseil",
+          "description": "UX, performance, SEO"
+        },
+        "design-system": {
+          "name": "Design System / UI Kit",
+          "description": "Système de design complet"
+        },
+        "prototype": {
+          "name": "Prototype / MVP",
+          "description": "Version testable"
+        },
+        "landing": {
+          "name": "Landing Page",
+          "description": "Page unique optimisée"
+        },
+        "intranet": {
+          "name": "Intranet / Portail interne",
+          "description": "Portail sécurisé interne"
+        }
+      },
+      "designOptions": {
+        "categories": {
+          "direction": "Direction artistique",
+          "ux": "UX Design",
+          "ui": "UI Design"
+        },
+        "items": {
+          "design-custom": {
+            "name": "Design sur mesure",
+            "description": "Charte graphique complète"
+          },
+          "design-refonte": {
+            "name": "Refonte design",
+            "description": "Adaptation design existant"
+          },
+          "design-template": {
+            "name": "Template personnalisé",
+            "description": "Basé sur template modifié"
+          },
+          "ux-wireframes": {
+            "name": "Wireframes",
+            "description": "Schémas basse fidélité"
+          },
+          "ux-prototype": {
+            "name": "Prototypage interactif",
+            "description": "Prototype Figma"
+          },
+          "ux-tests": {
+            "name": "Tests utilisateurs",
+            "description": "Scénarios, itérations"
+          },
+          "ux-audit": {
+            "name": "Audit UX",
+            "description": "Rapport d'analyse"
+          },
+          "ui-design-system": {
+            "name": "Design system",
+            "description": "Tokens, variables, composants"
+          },
+          "ui-animations": {
+            "name": "Animations",
+            "description": "Transitions, Framer Motion"
+          },
+          "ui-dark-mode": {
+            "name": "Mode clair/sombre",
+            "description": "Thème dynamique"
+          },
+          "ui-accessibility": {
+            "name": "Accessibilité",
+            "description": "Respect WCAG"
+          }
+        }
+      },
+      "sectionOptions": {
+        "header": {
+          "name": "Header",
+          "basic": "Header simple",
+          "advanced": "Navigation multi-niveau",
+          "premium": "Mega-menu sticky"
+        },
+        "hero": {
+          "name": "Hero",
+          "basic": "Hero simple",
+          "advanced": "Avec vidéo / 3D",
+          "premium": "Animations avancées"
+        },
+        "footer": {
+          "name": "Footer",
+          "basic": "Footer simple",
+          "advanced": "Avec newsletter",
+          "premium": "Multi-colonnes dynamiques"
+        },
+        "services": {
+          "name": "Services",
+          "basic": "Liste simple",
+          "advanced": "Cartes dynamiques",
+          "premium": "Animation, filtres"
+        },
+        "about": {
+          "name": "À propos",
+          "basic": "Présentation simple",
+          "advanced": "Timeline, équipe",
+          "premium": "Storytelling"
+        },
+        "portfolio": {
+          "name": "Portfolio",
+          "basic": "Galerie simple",
+          "advanced": "Filtrable",
+          "premium": "Carrousel avancé"
+        },
+        "blog": {
+          "name": "Blog",
+          "basic": "Articles simples",
+          "advanced": "Avec pagination",
+          "premium": "CMS dynamique"
+        },
+        "contact": {
+          "name": "Contact",
+          "basic": "Formulaire simple",
+          "advanced": "Formulaire complet",
+          "premium": "Validation, reCAPTCHA"
+        },
+        "faq": {
+          "name": "FAQ",
+          "basic": "Liste Q&R",
+          "advanced": "Accordéon",
+          "premium": "Recherche indexée"
+        },
+        "testimonials": {
+          "name": "Témoignages",
+          "basic": "Liste simple",
+          "advanced": "Slider",
+          "premium": "CMS dynamique"
+        },
+        "legal": {
+          "name": "Mentions légales",
+          "basic": "Page statique",
+          "advanced": "Génération auto",
+          "premium": "Multi-langues"
+        },
+        "careers": {
+          "name": "Carrières",
+          "basic": "Offres simples",
+          "advanced": "Formulaire RH",
+          "premium": "Intégration Notion/API"
+        }
+      },
+      "technicalFeatures": {
+        "categories": {
+          "architecture": "Architecture",
+          "auth": "Authentification",
+          "backoffice": "Back-office",
+          "ecommerce": "E-commerce",
+          "documents": "Documents",
+          "api": "API / intégrations",
+          "storage": "Stockage",
+          "notifications": "Notifications",
+          "search": "Recherche"
+        },
+        "items": {
+          "arch-static": {
+            "name": "Statique",
+            "description": "SSG / HTML"
+          },
+          "arch-dynamic": {
+            "name": "Dynamique",
+            "description": "SSR / CMS"
+          },
+          "arch-headless": {
+            "name": "Headless CMS",
+            "description": "Strapi / Sanity"
+          },
+          "auth-basic": {
+            "name": "Basique",
+            "description": "Login / Register"
+          },
+          "auth-advanced": {
+            "name": "Avancée",
+            "description": "OAuth / JWT / RBAC"
+          },
+          "backoffice-crud": {
+            "name": "CRUD",
+            "description": "Gestion contenu"
+          },
+          "backoffice-dashboard": {
+            "name": "Dashboard analytique",
+            "description": "Graphiques / stats"
+          },
+          "ecom-catalog": {
+            "name": "Catalogue",
+            "description": "Produits / catégories"
+          },
+          "ecom-checkout": {
+            "name": "Checkout",
+            "description": "Stripe / PayPal"
+          },
+          "ecom-orders": {
+            "name": "Commandes",
+            "description": "Statuts, historique"
+          },
+          "ecom-emails": {
+            "name": "Emails transactionnels",
+            "description": "Factures, reçus"
+          },
+          "doc-pdf": {
+            "name": "Génération PDF",
+            "description": "Devis, factures"
+          },
+          "doc-signature": {
+            "name": "Signature électronique",
+            "description": "DocuSign"
+          },
+          "api-external": {
+            "name": "API externe",
+            "description": "Services tiers"
+          },
+          "api-webhooks": {
+            "name": "Webhooks",
+            "description": "Zapier, Make"
+          },
+          "storage-upload": {
+            "name": "Upload fichiers",
+            "description": "Cloud / S3"
+          },
+          "storage-images": {
+            "name": "Optimisation images",
+            "description": "Responsive / lazy load"
+          },
+          "storage-video": {
+            "name": "Vidéothèque",
+            "description": "Gestion vidéo"
+          },
+          "notif-email": {
+            "name": "Email",
+            "description": "SMTP / EmailJS"
+          },
+          "notif-push": {
+            "name": "Push",
+            "description": "Firebase / WS"
+          },
+          "search-basic": {
+            "name": "Basique",
+            "description": "Filtrage / mots-clés"
+          },
+          "search-advanced": {
+            "name": "Avancée",
+            "description": "Algolia / Meilisearch"
+          }
+        }
+      }
+    }
   }
 }

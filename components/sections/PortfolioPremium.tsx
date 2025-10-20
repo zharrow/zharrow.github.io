@@ -546,8 +546,29 @@ const caseStudies: CaseStudy[] = [
 
 export default function PortfolioPremium() {
   const t = useTranslations("portfolio");
+  const tCase = useTranslations("caseStudy");
   const [modalOpen, setModalOpen] = useState(false);
   const [currentCaseStudyIndex, setCurrentCaseStudyIndex] = useState(0);
+
+  // Fonction helper pour récupérer un projet traduit
+  const getTranslatedProject = (projectId: string): CaseStudy => {
+    const project = tCase.raw(`projects.${projectId}`);
+    const baseProject = caseStudies.find(p => p.id === parseInt(projectId));
+
+    return {
+      id: parseInt(projectId),
+      ...project,
+      image: baseProject?.image || `/projects/project-${projectId}.jpg`,
+      stack: baseProject?.stack || [],
+      tools: baseProject?.tools || [],
+      links: baseProject?.links,
+      gallery: project.gallery?.map((g: any, idx: number) => ({
+        src: baseProject?.gallery?.[idx]?.src || `/projects/project-${projectId}.jpg`,
+        alt: g.alt,
+        caption: g.caption
+      }))
+    };
+  };
 
   const openCaseStudy = (index: number) => {
     setCurrentCaseStudyIndex(index);
@@ -744,7 +765,7 @@ export default function PortfolioPremium() {
       <CaseStudyModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        caseStudy={caseStudies[currentCaseStudyIndex]}
+        caseStudy={getTranslatedProject(String(caseStudies[currentCaseStudyIndex].id))}
         onNavigate={handleNavigate}
         hasPrev={currentCaseStudyIndex > 0}
         hasNext={currentCaseStudyIndex < caseStudies.length - 1}

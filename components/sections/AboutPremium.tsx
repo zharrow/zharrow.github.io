@@ -2,44 +2,32 @@
 
 import { motion } from "framer-motion";
 import { Award, Coffee, Heart, Zap } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { InfiniteMarquee } from "@/components/ui/infinite-marquee";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 
-const values = [
-  {
-    icon: Heart,
-    title: "Passion",
-    description: "Chaque projet est traité avec soin et dévouement",
-  },
-  {
-    icon: Zap,
-    title: "Performance",
-    description: "Code optimisé pour des expériences ultra-rapides",
-  },
-  {
-    icon: Award,
-    title: "Excellence",
-    description: "Standards élevés et attention aux moindres détails",
-  },
-  {
-    icon: Coffee,
-    title: "Collaboration",
-    description: "Communication claire et transparente tout au long",
-  },
-];
+const valueIcons = {
+  passion: Heart,
+  performance: Zap,
+  excellence: Award,
+  collaboration: Coffee,
+};
 
-const skills = [
-  { name: "Frontend Development", level: 95 },
-  { name: "Backend Architecture", level: 90 },
-  { name: "UI/UX Design", level: 85 },
-  { name: "E-commerce", level: 92 },
+const skillLevels = [
+  { key: "frontend", level: 95 },
+  { key: "backend", level: 90 },
+  { key: "uiux", level: 85 },
+  { key: "ecommerce", level: 92 },
 ];
 
 const technologies = [
+  "Angular",
+  "C# .NET",
+  "Unity",
   "React",
   "Next.js",
   "TypeScript",
-  "Node.js",
+  "GSAP",
   "Shopify",
   "WordPress",
   "PostgreSQL",
@@ -52,11 +40,13 @@ const technologies = [
   "REST API",
   "Docker",
   "Git",
+  "Kubernetes",
 ];
 
 export default function AboutPremium() {
+  const t = useTranslations("about");
   return (
-    <section id="apropos" className="py-32 md:py-40 bg-white-pure">
+    <section id="apropos" className="relative z-10 py-32 md:py-40 bg-white-pure">
       <div className="section-container">
         {/* Section Header */}
         <motion.div
@@ -67,11 +57,11 @@ export default function AboutPremium() {
           className="text-center mb-20"
         >
           <span className="text-sm uppercase tracking-[0.2em] text-gray-secondary mb-4 block">
-            À propos
+            {t("label")}
           </span>
           <h2 className="text-[clamp(2rem,5vw,4rem)] font-medium leading-tight tracking-[-0.02em] text-black-deep">
-            Développeur passionné par{" "}
-            <span className="text-orange-pantone">l'excellence</span>
+            {t("title")}{" "}
+            <span className="text-orange-pantone">{t("titleHighlight")}</span>
           </h2>
         </motion.div>
 
@@ -86,34 +76,34 @@ export default function AboutPremium() {
             className="space-y-6"
           >
             <p className="text-lg leading-relaxed text-black-deep">
-              Bonjour, je suis{" "}
+              {t("intro.greeting")}{" "}
               <span className="font-medium text-orange-pantone">
-                Florent Detres
+                {t("intro.name")}
               </span>
-              , développeur web full stack avec une passion pour la création d'expériences digitales premium.
+              , {t("intro.description")}
             </p>
 
             <p className="text-gray-secondary leading-relaxed">
-              Depuis plus de 5 ans, j'accompagne des entreprises dans leur transformation digitale en créant des solutions sur mesure qui allient esthétique et performance.
+              {t("paragraphs.experience")}
             </p>
 
             <p className="text-gray-secondary leading-relaxed">
-              Mon approche se concentre sur trois piliers : <strong className="text-black-deep">design épuré</strong>, <strong className="text-black-deep">code de qualité</strong> et <strong className="text-black-deep">résultats mesurables</strong>.
+              {t("paragraphs.approach")} <strong className="text-black-deep">{t("paragraphs.pillars.design")}</strong>, <strong className="text-black-deep">{t("paragraphs.pillars.code")}</strong> et <strong className="text-black-deep">{t("paragraphs.pillars.results")}</strong>.
             </p>
 
             <p className="text-gray-secondary leading-relaxed">
-              Que ce soit pour une boutique Shopify, un site WordPress ou une application SaaS, je m'assure que chaque pixel et chaque ligne de code servent votre vision.
+              {t("paragraphs.services")}
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8 border-t border-black-deep/10">
               {[
-                { number: 5, suffix: "+", label: "Années" },
-                { number: 50, suffix: "+", label: "Projets" },
-                { number: 100, suffix: "%", label: "Satisfaction" },
+                { number: 5, suffix: "+", labelKey: "years" },
+                { number: 50, suffix: "+", labelKey: "projects" },
+                { number: 100, suffix: "%", labelKey: "satisfaction" },
               ].map((stat, index) => (
                 <motion.div
-                  key={stat.label}
+                  key={stat.labelKey}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -129,7 +119,7 @@ export default function AboutPremium() {
                     />
                   </div>
                   <div className="text-sm text-gray-secondary uppercase tracking-[0.15em]">
-                    {stat.label}
+                    {t(`stats.${stat.labelKey}`)}
                   </div>
                 </motion.div>
               ))}
@@ -144,13 +134,13 @@ export default function AboutPremium() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <h3 className="text-2xl font-medium text-black-deep mb-12">
-              Expertise
+              {t("expertise.title")}
             </h3>
 
             <div className="space-y-8">
-              {skills.map((skill, index) => (
+              {skillLevels.map((skill, index) => (
                 <motion.div
-                  key={skill.name}
+                  key={skill.key}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -158,7 +148,7 @@ export default function AboutPremium() {
                 >
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-sm font-medium text-black-deep">
-                      {skill.name}
+                      {t(`expertise.skills.${skill.key}`)}
                     </span>
                     <span className="text-sm text-gray-secondary">
                       {skill.level}%
@@ -196,7 +186,7 @@ export default function AboutPremium() {
       >
         <div className="section-container mb-16">
           <h3 className="text-3xl font-medium text-white-pure text-center">
-            Technologies & Outils
+            {t("technologies.title")}
           </h3>
         </div>
         <InfiniteMarquee speed={30} pauseOnHover className="py-8">
@@ -221,16 +211,16 @@ export default function AboutPremium() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <h3 className="text-3xl font-medium text-black-deep text-center mb-20">
-            Mes valeurs
+            {t("values.title")}
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => {
-              const Icon = value.icon;
+            {(["passion", "performance", "excellence", "collaboration"] as const).map((valueKey, index) => {
+              const Icon = valueIcons[valueKey];
 
               return (
                 <motion.div
-                  key={value.title}
+                  key={valueKey}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -246,11 +236,11 @@ export default function AboutPremium() {
                   </div>
 
                   <h4 className="text-lg font-medium text-black-deep mb-3 group-hover:text-orange-pantone transition-colors duration-500">
-                    {value.title}
+                    {t(`values.items.${valueKey}.title`)}
                   </h4>
 
                   <p className="text-sm text-gray-secondary leading-relaxed">
-                    {value.description}
+                    {t(`values.items.${valueKey}.description`)}
                   </p>
                 </motion.div>
               );

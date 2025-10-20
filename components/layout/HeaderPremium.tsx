@@ -109,22 +109,33 @@ export default function HeaderPremium() {
               <LanguageSwitcher />
               <a
                 href="#contact"
-                className="px-6 py-3 bg-black-deep text-white-pure hover:bg-orange-pantone transition-all duration-500 text-sm font-medium tracking-wide uppercase group relative overflow-hidden"
+                className="px-6 py-3 border-2 border-black-deep text-black-deep hover:bg-black-deep hover:text-white-pure transition-all duration-500 text-sm font-medium tracking-wide uppercase"
               >
-                <span className="relative z-10">{t("contactMe")}</span>
-                <span className="absolute inset-0 bg-orange-pantone transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                {t("contactMe")}
               </a>
             </motion.li>
           </ul>
 
           {/* Mobile Menu */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="md:hidden flex items-center gap-3">
             <LanguageSwitcher />
             <a
               href="#contact"
-              className="px-4 py-2 bg-black-deep text-white-pure text-sm font-medium"
+              className="relative px-5 py-2.5 bg-orange-pantone text-white-pure text-xs font-medium tracking-wide uppercase group overflow-hidden border border-orange-pantone"
             >
-              {t("contactMe")}
+              <span className="absolute inset-0 bg-black-deep transform translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              <span className="relative z-10 flex items-center gap-1.5">
+                <svg
+                  className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform duration-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                {t("contactMe")}
+              </span>
             </a>
           </div>
         </div>

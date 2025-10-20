@@ -3,7 +3,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ExternalLink, Calendar, Users, TrendingUp } from "lucide-react";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 
 // SVG Github icon
 const GithubIcon = () => (
@@ -93,11 +94,14 @@ export function CaseStudyModal({
   hasPrev = false,
   hasNext = false,
 }: CaseStudyModalProps) {
+  const t = useTranslations("caseStudy");
+  const scrollPositionRef = useRef(0);
+
   // Prevent body scroll when modal is open and hide header
   useEffect(() => {
     if (isOpen) {
       // Save current scroll position
-      const scrollY = window.scrollY;
+      scrollPositionRef.current = window.scrollY;
 
       // Disable Lenis smooth scroll
       const html = document.documentElement;
@@ -106,7 +110,7 @@ export function CaseStudyModal({
       // Lock body and html scroll completely
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
+      document.body.style.top = `-${scrollPositionRef.current}px`;
       document.body.style.width = "100%";
 
       html.style.overflow = "hidden";
@@ -127,7 +131,6 @@ export function CaseStudyModal({
       html.classList.remove('lenis-stopped');
 
       // Restore scroll position
-      const scrollY = document.body.style.top;
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.top = "";
@@ -138,7 +141,7 @@ export function CaseStudyModal({
       html.style.width = "";
       html.style.height = "";
 
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      window.scrollTo(0, scrollPositionRef.current);
 
       // Show the header when modal is closed
       const header = document.querySelector('header');
@@ -149,7 +152,6 @@ export function CaseStudyModal({
     return () => {
       const html = document.documentElement;
       html.classList.remove('lenis-stopped');
-      const scrollY = document.body.style.top;
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.top = "";
@@ -158,9 +160,6 @@ export function CaseStudyModal({
       html.style.position = "";
       html.style.width = "";
       html.style.height = "";
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
-      }
       const header = document.querySelector('header');
       const progressBar = document.querySelector('.fixed.top-0.h-1');
       if (header) (header as HTMLElement).style.display = '';
@@ -224,7 +223,7 @@ export function CaseStudyModal({
               {/* Project Title */}
               <div className="flex-1">
                 <span className="text-xs uppercase tracking-[0.2em] text-gray-secondary block mb-1">
-                  Case Study
+                  {t("title")}
                 </span>
                 <h2 className="text-xl md:text-2xl font-medium text-black-deep">
                   {caseStudy.title}
@@ -298,28 +297,28 @@ export function CaseStudyModal({
                 <div>
                   <div className="flex items-center gap-2 text-orange-pantone mb-2">
                     <Users size={18} />
-                    <span className="text-xs uppercase tracking-[0.15em]">Client</span>
+                    <span className="text-xs uppercase tracking-[0.15em]">{t("client")}</span>
                   </div>
                   <p className="text-black-deep font-medium">{caseStudy.client}</p>
                 </div>
                 <div>
                   <div className="flex items-center gap-2 text-orange-pantone mb-2">
                     <Calendar size={18} />
-                    <span className="text-xs uppercase tracking-[0.15em]">Durée</span>
+                    <span className="text-xs uppercase tracking-[0.15em]">{t("duration")}</span>
                   </div>
                   <p className="text-black-deep font-medium">{caseStudy.duration}</p>
                 </div>
                 <div>
                   <div className="flex items-center gap-2 text-orange-pantone mb-2">
                     <Users size={18} />
-                    <span className="text-xs uppercase tracking-[0.15em]">Équipe</span>
+                    <span className="text-xs uppercase tracking-[0.15em]">{t("team")}</span>
                   </div>
                   <p className="text-black-deep font-medium">{caseStudy.team}</p>
                 </div>
                 <div>
                   <div className="flex items-center gap-2 text-orange-pantone mb-2">
                     <TrendingUp size={18} />
-                    <span className="text-xs uppercase tracking-[0.15em]">Rôle</span>
+                    <span className="text-xs uppercase tracking-[0.15em]">{t("role")}</span>
                   </div>
                   <p className="text-black-deep font-medium">{caseStudy.role}</p>
                 </div>
@@ -344,7 +343,7 @@ export function CaseStudyModal({
                 </div>
                 <div className="bg-white-pure p-8 border border-black-deep/10">
                   <h4 className="text-sm uppercase tracking-[0.15em] text-orange-pantone mb-6">
-                    Points Clés
+                    {t("keyPoints")}
                   </h4>
                   <ul className="space-y-4">
                     {caseStudy.challenge.points.map((point, index) => (
@@ -408,7 +407,7 @@ export function CaseStudyModal({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div>
                     <h4 className="text-sm uppercase tracking-[0.15em] text-orange-pantone mb-6">
-                      Technologies
+                      {t("technologies")}
                     </h4>
                     <div className="flex flex-wrap gap-3">
                       {caseStudy.stack.map((tech) => (
@@ -423,7 +422,7 @@ export function CaseStudyModal({
                   </div>
                   <div>
                     <h4 className="text-sm uppercase tracking-[0.15em] text-orange-pantone mb-6">
-                      Outils & Services
+                      {t("toolsServices")}
                     </h4>
                     <div className="flex flex-wrap gap-3">
                       {caseStudy.tools.map((tool) => (
@@ -497,7 +496,7 @@ export function CaseStudyModal({
                 className="mb-20"
               >
                 <h3 className="text-3xl md:text-4xl font-medium text-black-deep mb-12">
-                  Aperçu du Projet
+                  {t("projectOverview")}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {caseStudy.gallery.map((item, index) => (
@@ -527,10 +526,10 @@ export function CaseStudyModal({
               className="text-center pt-12 border-t border-black-deep/10"
             >
               <h3 className="text-2xl md:text-3xl font-medium text-black-deep mb-6">
-                Intéressé par un projet similaire ?
+                {t("cta.title")}
               </h3>
               <p className="text-gray-secondary mb-8 max-w-2xl mx-auto">
-                Discutons de vos besoins et voyons comment je peux vous aider à atteindre vos objectifs.
+                {t("cta.description")}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
                 {caseStudy.links?.live && (
@@ -541,7 +540,7 @@ export function CaseStudyModal({
                     className="inline-flex items-center gap-3 px-8 py-4 bg-orange-pantone text-white-pure hover:bg-black-deep transition-all duration-300 text-sm font-medium tracking-wide uppercase"
                   >
                     <ExternalLink size={18} />
-                    <span>Voir le Site</span>
+                    <span>{t("cta.viewSite")}</span>
                   </a>
                 )}
                 {caseStudy.links?.github && (
@@ -552,7 +551,7 @@ export function CaseStudyModal({
                     className="inline-flex items-center gap-3 px-8 py-4 bg-black-deep text-white-pure hover:bg-orange-pantone transition-all duration-300 text-sm font-medium tracking-wide uppercase"
                   >
                     <GithubIcon />
-                    <span>Voir le Code</span>
+                    <span>{t("cta.viewCode")}</span>
                   </a>
                 )}
                 <a
@@ -560,7 +559,7 @@ export function CaseStudyModal({
                   onClick={onClose}
                   className="inline-flex items-center gap-3 px-8 py-4 border-2 border-black-deep text-black-deep hover:bg-black-deep hover:text-white-pure transition-all duration-300 text-sm font-medium tracking-wide uppercase"
                 >
-                  <span>Me Contacter</span>
+                  <span>{t("cta.contact")}</span>
                 </a>
               </div>
             </motion.section>
