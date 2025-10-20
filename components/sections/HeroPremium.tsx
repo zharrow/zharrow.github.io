@@ -32,10 +32,10 @@ export default function HeroPremium() {
             <span className="text-orange-pantone inline-block">
               <Typewriter
                 texts={[
-                  t("titleHighlight"),
-                  "créatives",
-                  "innovantes",
-                  "performantes"
+                  t("titleHighlight.digital"),
+                  t("titleHighlight.creatives"),
+                  t("titleHighlight.innovative"),
+                  t("titleHighlight.performing")
                 ]}
                 speed={120}
                 delay={2500}

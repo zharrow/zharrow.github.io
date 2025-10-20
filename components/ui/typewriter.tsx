@@ -13,8 +13,8 @@ interface TypewriterProps {
 export function Typewriter({
   texts,
   className = "",
-  delay = 2000,
-  speed = 100,
+  delay = 1500,
+  speed = 300,
 }: TypewriterProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");

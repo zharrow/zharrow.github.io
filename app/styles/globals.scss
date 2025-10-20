@@ -54,6 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 // Custom Scrollbar - Minimal
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -69,18 +70,32 @@ h1, h2, h3, h4, h5, h6 {
   background: $black-deep;
 }
 
-// SECTIONS
-section {
-  margin-bottom: 4rem; // Espacement entre sections
+// Horizontal scrollbar for Process section
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: $orange-pantone rgba($black-deep, 0.1);
 
-  @include tablet {
-    margin-bottom: 6rem;
+  &::-webkit-scrollbar {
+    height: 8px;
   }
 
-  @include desktop {
-    margin-bottom: 8rem;
+  &::-webkit-scrollbar-track {
+    background: rgba($black-deep, 0.05);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $orange-pantone;
+    border-radius: 4px;
+
+    &:hover {
+      background: darken($orange-pantone, 10%);
+    }
   }
 }
+
+// SECTIONS - Removed margin-bottom to prevent sections from being stuck together
+// Spacing is now handled by py-* classes on each section
 
 // SECTION CONTAINER - LA VRAIE SOLUTION
 .section-container {
@@ -119,6 +134,11 @@ section {
 
 .text-orange-pantone {
   color: $orange-pantone;
+}
+
+// Lists - Remove default bullets
+ul, ol {
+  list-style: none;
 }
 
 // Utility Classes

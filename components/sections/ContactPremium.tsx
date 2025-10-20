@@ -65,28 +65,28 @@ export default function ContactPremium() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
           {/* Left - Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-2 space-y-12"
+            className="space-y-12"
           >
             {/* Email */}
-            <div className="group">
+            <div className="group bg-white-pure border border-black-deep/10 p-8 hover:border-orange-pantone transition-all duration-500">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 flex-shrink-0 border border-black-deep/20 flex items-center justify-center group-hover:border-orange-pantone group-hover:bg-orange-pantone transition-all duration-500">
-                  <Mail className="w-5 h-5 text-black-deep group-hover:text-white-pure transition-colors duration-500" />
+                <div className="w-14 h-14 flex-shrink-0 border border-black-deep/20 flex items-center justify-center group-hover:border-orange-pantone group-hover:bg-orange-pantone transition-all duration-500">
+                  <Mail className="w-6 h-6 text-black-deep group-hover:text-white-pure transition-colors duration-500" />
                 </div>
-                <div>
-                  <h3 className="text-sm uppercase tracking-[0.15em] text-gray-secondary mb-2">
+                <div className="flex-1">
+                  <h3 className="text-xs uppercase tracking-[0.2em] text-gray-secondary mb-3">
                     Email
                   </h3>
                   <a
                     href="mailto:florent.detres@protonmail.com"
-                    className="text-black-deep hover:text-orange-pantone transition-colors duration-500 link-underline inline-block"
+                    className="text-base text-black-deep hover:text-orange-pantone transition-colors duration-500 link-underline inline-block font-medium"
                   >
                     florent.detres@protonmail.com
                   </a>
@@ -95,17 +95,17 @@ export default function ContactPremium() {
             </div>
 
             {/* Location */}
-            <div className="group">
+            <div className="group bg-white-pure border border-black-deep/10 p-8 hover:border-orange-pantone transition-all duration-500">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 flex-shrink-0 border border-black-deep/20 flex items-center justify-center group-hover:border-orange-pantone group-hover:bg-orange-pantone transition-all duration-500">
-                  <MapPin className="w-5 h-5 text-black-deep group-hover:text-white-pure transition-colors duration-500" />
+                <div className="w-14 h-14 flex-shrink-0 border border-black-deep/20 flex items-center justify-center group-hover:border-orange-pantone group-hover:bg-orange-pantone transition-all duration-500">
+                  <MapPin className="w-6 h-6 text-black-deep group-hover:text-white-pure transition-colors duration-500" />
                 </div>
-                <div>
-                  <h3 className="text-sm uppercase tracking-[0.15em] text-gray-secondary mb-2">
+                <div className="flex-1">
+                  <h3 className="text-xs uppercase tracking-[0.2em] text-gray-secondary mb-3">
                     Localisation
                   </h3>
-                  <p className="text-black-deep">France</p>
-                  <p className="text-sm text-gray-secondary mt-1">
+                  <p className="text-base text-black-deep font-medium mb-2">France</p>
+                  <p className="text-sm text-gray-secondary">
                     Remote & disponible pour déplacements
                   </p>
                 </div>
@@ -113,14 +113,14 @@ export default function ContactPremium() {
             </div>
 
             {/* Availability */}
-            <div className="p-6 border border-black-deep/10 bg-white-pure">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-2 h-2 bg-orange-pantone rounded-full animate-pulse" />
-                <span className="text-sm font-medium text-black-deep uppercase tracking-[0.15em]">
+            <div className="bg-black-deep p-8 border border-black-deep">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-3 h-3 bg-orange-pantone rounded-full animate-pulse" />
+                <span className="text-sm font-medium text-white-pure uppercase tracking-[0.2em]">
                   Disponible
                 </span>
               </div>
-              <p className="text-sm text-gray-secondary leading-relaxed">
+              <p className="text-base text-white-pure/80 leading-relaxed">
                 Actuellement disponible pour de nouveaux projets. Réponse sous 24h garantie.
               </p>
             </div>
@@ -132,9 +132,9 @@ export default function ContactPremium() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-3"
+            className="lg:col-span-2"
           >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-white-pure p-8 md:p-12">
+            <form onSubmit={handleSubmit} className="space-y-8 bg-white-pure border border-black-deep/10 p-12 md:p-16">
               {/* Name */}
               <div>
                 <label
@@ -150,7 +150,7 @@ export default function ContactPremium() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full border-black-deep/10 focus:border-orange-pantone rounded-none h-12"
+                  className="w-full border-black-deep/10 focus:border-orange-pantone rounded-none h-14 text-base"
                   placeholder="Votre nom"
                 />
               </div>
@@ -170,7 +170,7 @@ export default function ContactPremium() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full border-black-deep/10 focus:border-orange-pantone rounded-none h-12"
+                  className="w-full border-black-deep/10 focus:border-orange-pantone rounded-none h-14 text-base"
                   placeholder="votre@email.com"
                 />
               </div>
@@ -189,8 +189,8 @@ export default function ContactPremium() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={6}
-                  className="w-full border-black-deep/10 focus:border-orange-pantone rounded-none resize-none"
+                  rows={8}
+                  className="w-full border-black-deep/10 focus:border-orange-pantone rounded-none resize-none text-base"
                   placeholder="Parlez-moi de votre projet..."
                 />
               </div>
@@ -199,7 +199,7 @@ export default function ContactPremium() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-14 bg-black-deep text-white-pure hover:bg-orange-pantone transition-all duration-500 text-sm font-medium tracking-wide uppercase disabled:opacity-50 group relative overflow-hidden"
+                className="w-full h-16 bg-black-deep text-white-pure hover:bg-orange-pantone transition-all duration-500 text-base font-medium tracking-wide uppercase disabled:opacity-50 group relative overflow-hidden"
               >
                 <span className="relative z-10 flex items-center justify-center gap-3">
                   {isSubmitting ? (

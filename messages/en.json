@@ -10,7 +10,12 @@
   "hero": {
     "badge": "Full Stack Developer",
     "title": "Transform your ideas into",
-    "titleHighlight": "digital experiences",
+    "titleHighlight": {
+      "digital" : "digital experiences",
+      "innovative": "innovative solutions",
+      "creatives": "creative projects",
+      "performing": "high-performing applications"
+    },
     "subtitle": "Passionate web developer creating elegant and high-performance solutions that make a difference.",
     "viewProjects": "View My Projects",
     "contactMe": "Contact Me",

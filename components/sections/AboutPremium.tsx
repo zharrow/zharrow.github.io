@@ -76,7 +76,7 @@ export default function AboutPremium() {
         </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-40">
           {/* Left Column - Text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -183,28 +183,35 @@ export default function AboutPremium() {
           </motion.div>
         </div>
 
-        {/* Technologies Marquee */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-32"
-        >
-          <h3 className="text-2xl font-medium text-black-deep text-center mb-12">
+        {/* Technologies Marquee - Full Width */}
+      </div>
+
+      {/* Technologies Section - Outside container for full width */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="mbt-20 bg-black-deep py-20"
+      >
+        <div className="section-container mb-16">
+          <h3 className="text-3xl font-medium text-white-pure text-center">
             Technologies & Outils
           </h3>
-          <InfiniteMarquee speed={30} pauseOnHover className="py-8">
-            {technologies.map((tech) => (
-              <div
-                key={tech}
-                className="px-8 py-4 border border-black-deep/10 bg-cream text-black-deep text-sm font-medium tracking-wide whitespace-nowrap hover:border-orange-pantone hover:text-orange-pantone transition-all duration-500"
-              >
-                {tech}
-              </div>
-            ))}
-          </InfiniteMarquee>
-        </motion.div>
+        </div>
+        <InfiniteMarquee speed={30} pauseOnHover className="py-8">
+          {technologies.map((tech) => (
+            <div
+              key={tech}
+              className="px-8 py-4 border border-white-pure/20 bg-transparent text-white-pure text-sm font-medium tracking-wide whitespace-nowrap hover:border-orange-pantone hover:text-orange-pantone transition-all duration-500"
+            >
+              {tech}
+            </div>
+          ))}
+        </InfiniteMarquee>
+      </motion.div>
+
+      <div className="section-container">
 
         {/* Values Section */}
         <motion.div
@@ -213,11 +220,11 @@ export default function AboutPremium() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h3 className="text-2xl font-medium text-black-deep text-center mb-16">
+          <h3 className="text-3xl font-medium text-black-deep text-center mb-20">
             Mes valeurs
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => {
               const Icon = value.icon;
 
@@ -232,10 +239,10 @@ export default function AboutPremium() {
                     duration: 0.6,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="group text-center"
+                  className="group bg-cream border border-black-deep/10 p-8 hover:border-orange-pantone transition-all duration-500"
                 >
-                  <div className="w-16 h-16 mx-auto mb-6 border border-black-deep/20 flex items-center justify-center group-hover:border-orange-pantone group-hover:bg-orange-pantone transition-all duration-500">
-                    <Icon className="w-7 h-7 text-black-deep group-hover:text-white-pure transition-colors duration-500" />
+                  <div className="mb-6 inline-flex items-center justify-center w-14 h-14 border border-black-deep/20 group-hover:border-orange-pantone group-hover:bg-orange-pantone transition-all duration-500">
+                    <Icon className="w-6 h-6 text-black-deep group-hover:text-white-pure transition-colors duration-500" />
                   </div>
 
                   <h4 className="text-lg font-medium text-black-deep mb-3 group-hover:text-orange-pantone transition-colors duration-500">

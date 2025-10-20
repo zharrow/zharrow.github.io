@@ -601,8 +601,8 @@ export default function PortfolioPremium() {
             >
               <Card3D
                 className="h-full"
-                glowColor="rgba(255, 122, 0, 0.15)"
-                intensity={10}
+                glowColor="rgba(255, 122, 0, 0.08)"
+                intensity={5}
               >
                 <article className="group relative bg-white-pure overflow-hidden h-full">
               {/* Image Container */}
@@ -663,42 +663,49 @@ export default function PortfolioPremium() {
               </div>
 
               {/* Content */}
-              <div className="p-8">
-                {/* Category badge */}
-                <div className="inline-block px-3 py-1 border border-black-deep/10 text-xs uppercase tracking-[0.15em] text-gray-secondary mb-4">
-                  {project.category}
-                </div>
-
+              <div className="p-10">
                 {/* Title */}
-                <h3 className="text-2xl font-medium text-black-deep mb-3 group-hover:text-orange-pantone transition-colors duration-500">
+                <h3 className="text-2xl font-medium text-black-deep mb-2 group-hover:text-orange-pantone transition-colors duration-500">
                   {project.title}
                 </h3>
 
+                {/* Category badge */}
+                <div className="inline-block px-3 py-1 border border-black-deep/10 text-xs uppercase tracking-[0.15em] text-gray-secondary mb-6">
+                  {project.category}
+                </div>
+
                 {/* Description */}
-                <p className="text-gray-secondary text-sm leading-relaxed mb-6">
+                <p className="text-gray-secondary leading-relaxed mb-8">
                   {project.description}
                 </p>
 
                 {/* Stack */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs text-gray-secondary border border-black-deep/10 px-3 py-1"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="mb-6">
+                  <span className="text-xs uppercase tracking-[0.15em] text-gray-secondary block mb-3">
+                    Stack
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-xs text-gray-secondary border border-black-deep/10 px-3 py-1 hover:border-orange-pantone hover:text-orange-pantone transition-colors duration-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Result */}
-                <div className="flex items-center justify-between pt-4 border-t border-black-deep/10">
-                  <span className="text-xs uppercase tracking-[0.15em] text-gray-secondary">
-                    Résultat
-                  </span>
-                  <span className="text-sm font-medium text-orange-pantone">
-                    {project.result}
-                  </span>
+                <div className="pt-6 border-t border-black-deep/10">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs uppercase tracking-[0.15em] text-gray-secondary">
+                      Résultat
+                    </span>
+                    <span className="text-lg font-medium text-orange-pantone">
+                      {project.result}
+                    </span>
+                  </div>
                 </div>
               </div>
 
