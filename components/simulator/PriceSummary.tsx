@@ -8,7 +8,11 @@ import { Calculator, Clock, TrendingUp, Download, Mail } from "lucide-react";
 import { useState } from "react";
 import { QuoteData } from "@/lib/simulator/types";
 
-export function PriceSummary() {
+interface PriceSummaryProps {
+  onCloseModal?: () => void;
+}
+
+export function PriceSummary({ onCloseModal }: PriceSummaryProps = {}) {
   const t = useTranslations("simulator");
   const {
     projectType,
@@ -110,11 +114,19 @@ export function PriceSummary() {
     // Stocker les données du devis dans sessionStorage pour les récupérer dans le formulaire
     sessionStorage.setItem('pendingQuote', JSON.stringify(quoteData));
 
-    // Scroll vers la section contact
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    // Fermer la modale si la fonction est disponible
+    if (onCloseModal) {
+      onCloseModal();
     }
+
+    // Attendre que la modale se ferme avant de scroller
+    setTimeout(() => {
+      // Scroll vers la section contact
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 300); // Délai pour permettre à la modale de se fermer
   };
 
   if (!hasSelections) {

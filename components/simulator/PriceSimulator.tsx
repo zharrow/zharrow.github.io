@@ -12,7 +12,11 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 
 type Section = 'design' | 'structure' | 'technical' | 'performance' | 'content';
 
-export function PriceSimulator() {
+interface PriceSimulatorProps {
+  onCloseModal?: () => void;
+}
+
+export function PriceSimulator({ onCloseModal }: PriceSimulatorProps = {}) {
   const t = useTranslations("simulator");
   const [expandedSections, setExpandedSections] = useState<Section[]>(['design']);
 
@@ -122,7 +126,7 @@ export function PriceSimulator() {
 
       {/* Summary - Right sticky sidebar */}
       <div className="lg:col-span-1">
-        <PriceSummary />
+        <PriceSummary onCloseModal={onCloseModal} />
       </div>
     </div>
   );

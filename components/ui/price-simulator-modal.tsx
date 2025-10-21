@@ -168,7 +168,7 @@ export function PriceSimulatorModal({
                 </div>
 
                 {/* Simulateur */}
-                <PriceSimulator />
+                <PriceSimulator onCloseModal={onClose} />
               </motion.div>
             </div>
           </motion.div>
