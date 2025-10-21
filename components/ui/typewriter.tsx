@@ -13,8 +13,8 @@ interface TypewriterProps {
 export function Typewriter({
   texts,
   className = "",
-  delay = 1500,
-  speed = 300,
+  delay = 2000,
+  speed = 80,
 }: TypewriterProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
@@ -44,19 +44,55 @@ export function Typewriter({
           }
         }
       },
-      isDeleting ? speed / 2 : speed
+      isDeleting ? speed * 0.5 : speed + Math.random() * 40
     );
 
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentTextIndex, texts, delay, speed]);
 
   return (
-    <span className={className}>
-      {displayText}
+    <span className={`inline-flex items-baseline ${className}`}>
+      <span className="relative whitespace-nowrap">
+        {displayText.split("").map((char, index) => (
+          <motion.span
+            key={`${currentTextIndex}-char-${index}`}
+            initial={{
+              opacity: 0,
+              y: 10,
+              filter: "blur(4px)"
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)"
+            }}
+            transition={{
+              duration: 0.2,
+              ease: [0.22, 1, 0.36, 1],
+              delay: 0
+            }}
+            className="inline-block"
+          >
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        ))}
+      </span>
+
+      {/* Curseur avec effet premium */}
       <motion.span
-        animate={{ opacity: [1, 0] }}
-        transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-        className="inline-block w-0.5 h-[1em] bg-current ml-1 align-middle"
+        animate={{
+          opacity: [1, 0.3, 1],
+          scaleY: [1, 0.9, 1]
+        }}
+        transition={{
+          duration: 1.2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="inline-block w-[3px] h-[1em] bg-current ml-1.5 rounded-full"
+        style={{
+          boxShadow: "0 0 8px currentColor"
+        }}
       />
     </span>
   );

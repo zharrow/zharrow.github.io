@@ -46,14 +46,25 @@ export default function ContactPremium() {
         body: JSON.stringify(formData),
       });
 
+      // Check if response is JSON
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Le serveur a renvoyé une réponse invalide. Vérifiez la configuration de l'API.");
+      }
+
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || t("form.error"));
+        throw new Error(data.details || data.error || t("form.error"));
       }
 
       setSubmitStatus("success");
       setFormData({ name: "", email: "", phone: "", company: "", budget: "", message: "" });
+
+      // Show warning if in dev mode
+      if (data.warning) {
+        console.warn('⚠️', data.warning);
+      }
 
       setTimeout(() => {
         setSubmitStatus("idle");

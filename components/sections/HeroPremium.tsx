@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Typewriter } from "@/components/ui/typewriter";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+import { CornerButton } from "@/components/ui/corner-button";
+import { CornerButtonGroup } from "@/components/ui/corner-button-group";
 
 export default function HeroPremium() {
   const t = useTranslations("hero");
@@ -19,7 +20,7 @@ export default function HeroPremium() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-[1280px] mx-auto w-full text-center px-6 md:px-12">
+      <div className="relative z-10 max-w-[1300px] mx-auto w-full text-center px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -27,9 +28,9 @@ export default function HeroPremium() {
           className="space-y-8"
         >
           {/* Main Heading */}
-          <h1 className="text-[clamp(2.5rem,8vw,7rem)] font-medium leading-[1.1] tracking-[-0.02em] text-black-deep">
+          <h1 className="text-[clamp(2.5rem,8vw,7rem)] h-64 font-medium leading-[1.1] tracking-[-0.02em] text-black-deep">
             {t("title")}{" "}
-            <span className="text-orange-pantone inline-block">
+            <span className="text-orange-pantone font-bold">
               <Typewriter
                 texts={[
                   t("titleHighlight.digital"),
@@ -58,24 +59,17 @@ export default function HeroPremium() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+            className="flex flex-col sm:flex-row gap-8 justify-center items-center pt-8"
           >
-            <MagneticButton
-              href="#portfolio"
-              strength={0.3}
-              className="bg-black-deep text-white-pure hover:bg-gray-secondary transition-all duration-500 px-8 py-6 text-base font-medium rounded-none group relative overflow-hidden inline-block"
-            >
-              <span className="relative z-10">{t("viewProjects")}</span>
-              <span className="absolute inset-0 bg-orange-pantone transform translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-            </MagneticButton>
+            <CornerButtonGroup>
+              <CornerButton href="#portfolio" variant="primary">
+                {t("viewProjects")}
+              </CornerButton>
 
-            <MagneticButton
-              href="#contact"
-              strength={0.3}
-              className="border-2 border-black-deep text-black-deep hover:bg-black-deep hover:text-white-pure transition-all duration-500 px-8 py-6 text-base font-medium rounded-none inline-block"
-            >
-              {t("contactMe")}
-            </MagneticButton>
+              <CornerButton href="#contact" variant="secondary">
+                {t("contactMe")}
+              </CornerButton>
+            </CornerButtonGroup>
           </motion.div>
         </motion.div>
 
@@ -90,7 +84,6 @@ export default function HeroPremium() {
             href="#services"
             className="flex flex-col items-center gap-2 text-gray-secondary hover:text-black-deep transition-colors duration-500 link-underline"
           >
-            <span className="text-sm tracking-wide uppercase">{t("scrollDown")}</span>
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

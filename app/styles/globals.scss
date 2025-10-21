@@ -9,6 +9,11 @@
   margin: 0;
 }
 
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
 html {
   scroll-behavior: auto; // Lenis will handle smooth scroll
 }

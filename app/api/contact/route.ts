@@ -2,8 +2,6 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { ContactEmailTemplate } from '@/components/emails/ContactEmailTemplate';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -26,12 +24,39 @@ export async function POST(request: Request) {
       );
     }
 
+    // Check if Resend API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured');
+
+      // Log the form data for development
+      console.log('📧 Contact Form Submission:', {
+        name,
+        email,
+        phone,
+        company,
+        budget,
+        message,
+        timestamp: new Date().toISOString(),
+      });
+
+      return NextResponse.json(
+        {
+          message: 'Message reçu (mode développement - email non envoyé)',
+          warning: 'Resend API key not configured'
+        },
+        { status: 200 }
+      );
+    }
+
+    // Initialize Resend only if API key is available
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     // Send email using Resend
     const data = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>', // Changez avec votre domaine vérifié
+      from: 'Portfolio Contact <contact.florentd.com>', // Changez avec votre domaine vérifié
       to: ['florent.detres@protonmail.com'], // Votre email
       replyTo: email,
-      subject: `Nouveau message de ${name} de la société ${company || 'Unknown'}`,
+      subject: `Nouveau message de ${name}${company ? ` - ${company}` : ''}`,
       react: ContactEmailTemplate({
         name,
         email,
@@ -48,8 +73,15 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     console.error('Erreur lors de l\'envoi de l\'email:', error);
+
+    // Return more detailed error information
+    const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
+
     return NextResponse.json(
-      { error: 'Erreur lors de l\'envoi du message' },
+      {
+        error: 'Erreur lors de l\'envoi du message',
+        details: errorMessage
+      },
       { status: 500 }
     );
   }
