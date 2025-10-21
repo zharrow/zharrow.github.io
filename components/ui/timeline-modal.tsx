@@ -78,6 +78,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [swipeDirection, setSwipeDirection] = useState<'up' | 'down' | null>(null);
+  const [activeButton, setActiveButton] = useState<'up' | 'down' | null>(null);
 
   // Reset to first card when modal opens
   useEffect(() => {
@@ -238,10 +239,14 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
         onClose();
       } else if (e.key === 'ArrowDown' && activeIndex < timelineEvents.length - 1) {
         e.preventDefault();
+        setActiveButton('down');
         scrollToCard(activeIndex + 1);
+        setTimeout(() => setActiveButton(null), 300);
       } else if (e.key === 'ArrowUp' && activeIndex > 0) {
         e.preventDefault();
+        setActiveButton('up');
         scrollToCard(activeIndex - 1);
+        setTimeout(() => setActiveButton(null), 300);
       }
     };
 
@@ -339,6 +344,78 @@ Scrollez pour naviguer dans la timeline
                   </motion.div>
                 )}
               </AnimatePresence>
+
+              {/* Navigation Buttons - Bottom Right */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="fixed bottom-8 right-8 z-40 flex flex-col gap-3"
+              >
+                {/* Bouton Monter */}
+                <motion.button
+                  onClick={() => {
+                    if (activeIndex > 0) {
+                      setActiveButton('up');
+                      scrollToCard(activeIndex - 1);
+                      setTimeout(() => setActiveButton(null), 300);
+                    }
+                  }}
+                  disabled={activeIndex === 0}
+                  animate={{
+                    scale: activeButton === 'up' ? 1.1 : 1,
+                    backgroundColor: activeButton === 'up' ? '#FF5722' : '#FFFFFF',
+                    borderColor: activeButton === 'up' ? '#FF5722' : 'rgba(0, 0, 0, 0.1)'
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className={`flex items-center gap-2 px-4 py-3 border-2 transition-all duration-300 ${
+                    activeIndex === 0
+                      ? 'opacity-40 cursor-not-allowed'
+                      : 'hover:border-orange-pantone hover:bg-orange-pantone/10 cursor-pointer'
+                  }`}
+                >
+                  <ChevronUp className={`w-5 h-5 transition-colors duration-300 ${
+                    activeButton === 'up' ? 'text-white-pure' : 'text-black-deep'
+                  }`} />
+                  <span className={`text-sm font-medium uppercase tracking-wider transition-colors duration-300 ${
+                    activeButton === 'up' ? 'text-white-pure' : 'text-black-deep'
+                  }`}>
+                    Monter
+                  </span>
+                </motion.button>
+
+                {/* Bouton Descendre */}
+                <motion.button
+                  onClick={() => {
+                    if (activeIndex < timelineEvents.length - 1) {
+                      setActiveButton('down');
+                      scrollToCard(activeIndex + 1);
+                      setTimeout(() => setActiveButton(null), 300);
+                    }
+                  }}
+                  disabled={activeIndex === timelineEvents.length - 1}
+                  animate={{
+                    scale: activeButton === 'down' ? 1.1 : 1,
+                    backgroundColor: activeButton === 'down' ? '#FF5722' : '#FFFFFF',
+                    borderColor: activeButton === 'down' ? '#FF5722' : 'rgba(0, 0, 0, 0.1)'
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className={`flex items-center gap-2 px-4 py-3 border-2 transition-all duration-300 ${
+                    activeIndex === timelineEvents.length - 1
+                      ? 'opacity-40 cursor-not-allowed'
+                      : 'hover:border-orange-pantone hover:bg-orange-pantone/10 cursor-pointer'
+                  }`}
+                >
+                  <ChevronDown className={`w-5 h-5 transition-colors duration-300 ${
+                    activeButton === 'down' ? 'text-white-pure' : 'text-black-deep'
+                  }`} />
+                  <span className={`text-sm font-medium uppercase tracking-wider transition-colors duration-300 ${
+                    activeButton === 'down' ? 'text-white-pure' : 'text-black-deep'
+                  }`}>
+                    Descendre
+                  </span>
+                </motion.button>
+              </motion.div>
 
               {/* Vertical Scroll Container */}
               <div
