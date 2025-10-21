@@ -6,6 +6,7 @@ import { ShoppingBag, Layout, Rocket, Calculator } from "lucide-react";
 import { Card3D } from "@/components/ui/card-3d";
 import { PriceSimulatorModal } from "@/components/ui/price-simulator-modal";
 import { MagneticButton } from "@/components/ui/magnetic-button";
+import { MorphingIcon } from "@/components/ui/morphing-icon";
 import { useState } from "react";
 
 const services = [
@@ -53,6 +54,7 @@ export default function ServicesPremium() {
   const t = useTranslations("services");
   const tSimulator = useTranslations("simulator");
   const [isSimulatorOpen, setIsSimulatorOpen] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
     <section id="services" className="py-32 md:py-40 bg-cream">
@@ -89,6 +91,8 @@ export default function ServicesPremium() {
               <motion.div
                 key={service.id}
                 variants={itemVariants}
+                onMouseEnter={() => setHoveredCard(service.id)}
+                onMouseLeave={() => setHoveredCard(null)}
               >
                 <Card3D
                   className="h-full"
@@ -102,10 +106,14 @@ export default function ServicesPremium() {
                   {String(index + 1).padStart(2, '0')}
                 </div>
 
-                {/* Icon */}
+                {/* Icon with Morphing Effect */}
                 <div className="mb-8 relative z-10">
                   <div className="w-16 h-16 flex items-center justify-center border border-black-deep/20 group-hover:border-orange-pantone group-hover:bg-orange-pantone transition-all duration-500">
-                    <Icon className="w-8 h-8 text-black-deep group-hover:text-white-pure transition-colors duration-500" />
+                    <MorphingIcon
+                      Icon={Icon}
+                      isHovered={hoveredCard === service.id}
+                      className="text-black-deep group-hover:text-white-pure transition-colors duration-500"
+                    />
                   </div>
                 </div>
 

@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import { Lightbulb, Palette, Code, Rocket, Heart } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -61,10 +62,12 @@ export default function ProcessPremium() {
       ref={containerRef}
       id="process"
       className="relative bg-cream"
-      style={{ height: '900vh' }}
+      style={{
+        height: '1020vh'
+      }}
     >
       {/* Pinned container - GSAP will pin this */}
-      <div ref={sliderRef} className="h-screen overflow-hidden flex flex-col bg-cream">
+      <div ref={sliderRef} className="h-screen overflow-hidden flex flex-col" style={{ background: 'transparent' }}>
 
         {/* Section Header */}
         <div className="flex-shrink-0 pt-16 pb-8 px-6 md:px-12 bg-cream">
@@ -90,7 +93,7 @@ export default function ProcessPremium() {
             ref={cardsContainerRef}
             className="flex gap-6 px-6 md:px-12 will-change-transform"
           >
-              {(["discovery", "design", "development", "launch", "support"] as const).map((stepKey) => {
+              {(["discovery", "design", "development", "launch", "support"] as const).map((stepKey, index) => {
                 const Icon = stepIcons[stepKey];
                 const stepNumber = t(`steps.${stepKey}.number`);
                 const stepTitle = t(`steps.${stepKey}.title`);
@@ -102,10 +105,14 @@ export default function ProcessPremium() {
                   <div
                     key={stepKey}
                     className="flex-shrink-0"
-                    style={{ width: 'min(66vw, 900px)' }}
+                    style={{
+                      width: 'min(66vw, 900px)'
+                    }}
                   >
                     {/* Card Container */}
-                    <div className="bg-white-pure border border-black-deep/10 hover:border-orange-pantone transition-all duration-500 p-8 md:p-12 h-[70vh] flex flex-col group overflow-y-auto">
+                    <div
+                      className="bg-white-pure border border-black-deep/10 hover:border-orange-pantone transition-all duration-500 p-8 md:p-12 h-[70vh] flex flex-col group overflow-y-auto"
+                    >
                       {/* Number */}
                       <div className="text-7xl md:text-8xl font-medium mb-6 text-black-deep/10 group-hover:text-orange-pantone transition-colors duration-500">
                         {stepNumber}

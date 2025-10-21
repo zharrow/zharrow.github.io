@@ -6,6 +6,7 @@ import { ExternalLink, Maximize2 } from "lucide-react";
 import Image from "next/image";
 import { Card3D } from "@/components/ui/card-3d";
 import { CaseStudyModal, type CaseStudy } from "@/components/ui/case-study-modal";
+import { VideoPreview } from "@/components/ui/video-preview";
 import { useState } from "react";
 
 // SVG Github icon (Lucide Github is deprecated)
@@ -549,6 +550,7 @@ export default function PortfolioPremium() {
   const tCase = useTranslations("caseStudy");
   const [modalOpen, setModalOpen] = useState(false);
   const [currentCaseStudyIndex, setCurrentCaseStudyIndex] = useState(0);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   // Fonction helper pour récupérer un projet traduit
   const getTranslatedProject = (projectId: string): CaseStudy => {
@@ -619,6 +621,8 @@ export default function PortfolioPremium() {
                 delay: index * 0.1,
                 ease: [0.22, 1, 0.36, 1],
               }}
+              onMouseEnter={() => setHoveredProject(project.id)}
+              onMouseLeave={() => setHoveredProject(null)}
             >
               <Card3D
                 className="h-full"
@@ -626,19 +630,17 @@ export default function PortfolioPremium() {
                 intensity={5}
               >
                 <article className="group relative bg-white-pure overflow-hidden h-full">
-              {/* Image Container */}
+              {/* Image Container with Video Preview */}
               <div
                 className="relative aspect-[4/3] bg-gray-light overflow-hidden cursor-pointer"
                 onClick={() => openCaseStudy(index)}
               >
-                {/* Project Image */}
-                <Image
-                  src={project.image}
+                {/* Video Preview Component */}
+                <VideoPreview
+                  image={project.image}
+                  videoSrc={undefined} // Add video path here later: `/videos/project-${project.id}.mp4`
                   alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority={index < 2}
+                  isHovered={hoveredProject === project.id}
                 />
 
                 {/* Dark overlay on hover */}

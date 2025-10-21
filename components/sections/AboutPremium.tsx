@@ -1,10 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, Coffee, Heart, Zap } from "lucide-react";
+import { Award, Coffee, Heart, Zap, Clock } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { InfiniteMarquee } from "@/components/ui/infinite-marquee";
+import { useState } from "react";
+import { EnhancedMarquee } from "@/components/ui/enhanced-marquee";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { AnimatedSkillGraph } from "@/components/ui/animated-skill-graph";
+import { TimelineModal } from "@/components/ui/timeline-modal";
 
 const valueIcons = {
   passion: Heart,
@@ -45,6 +48,8 @@ const technologies = [
 
 export default function AboutPremium() {
   const t = useTranslations("about");
+  const [isTimelineOpen, setIsTimelineOpen] = useState(false);
+
   return (
     <section id="apropos" className="relative z-10 py-32 md:py-40 bg-white-pure">
       <div className="section-container">
@@ -139,37 +144,28 @@ export default function AboutPremium() {
 
             <div className="space-y-8">
               {skillLevels.map((skill, index) => (
-                <motion.div
+                <AnimatedSkillGraph
                   key={skill.key}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
-                >
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-sm font-medium text-black-deep">
-                      {t(`expertise.skills.${skill.key}`)}
-                    </span>
-                    <span className="text-sm text-gray-secondary">
-                      {skill.level}%
-                    </span>
-                  </div>
-                  <div className="h-1 bg-black-deep/10 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 1.2,
-                        delay: index * 0.1,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                      className="h-full bg-orange-pantone"
-                    />
-                  </div>
-                </motion.div>
+                  skillKey={skill.key}
+                  label={t(`expertise.skills.${skill.key}`)}
+                  level={skill.level}
+                  index={index}
+                />
               ))}
             </div>
+
+            {/* Timeline Button */}
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              onClick={() => setIsTimelineOpen(true)}
+              className="mt-8 w-full px-6 py-4 border-2 border-black-deep text-black-deep hover:bg-black-deep hover:text-white-pure transition-all duration-500 text-sm font-medium tracking-wide uppercase flex items-center justify-center gap-3 group"
+            >
+              <Clock className="w-5 h-5 group-hover:rotate-12 transition-transform duration-500" />
+              <span>Voir mon parcours</span>
+            </motion.button>
           </motion.div>
         </div>
 
@@ -189,7 +185,7 @@ export default function AboutPremium() {
             {t("technologies.title")}
           </h3>
         </div>
-        <InfiniteMarquee speed={30} pauseOnHover className="py-8">
+        <EnhancedMarquee speed={30} className="py-8">
           {technologies.map((tech) => (
             <div
               key={tech}
@@ -198,7 +194,7 @@ export default function AboutPremium() {
               {tech}
             </div>
           ))}
-        </InfiniteMarquee>
+        </EnhancedMarquee>
       </motion.div>
 
       <div className="section-container">
@@ -248,6 +244,12 @@ export default function AboutPremium() {
           </div>
         </motion.div>
       </div>
+
+      {/* Timeline Modal */}
+      <TimelineModal
+        isOpen={isTimelineOpen}
+        onClose={() => setIsTimelineOpen(false)}
+      />
     </section>
   );
 }

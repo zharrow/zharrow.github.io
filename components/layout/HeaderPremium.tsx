@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useSpring } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -11,13 +11,31 @@ export default function HeaderPremium() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("accueil");
   const [scrollProgress, setScrollProgress] = useState(0);
+  const navRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
+
+  // Use spring animations for ultra-smooth transitions
+  const indicatorLeft = useSpring(0, { stiffness: 200, damping: 25, mass: 0.5 });
+  const indicatorWidth = useSpring(0, { stiffness: 200, damping: 25, mass: 0.5 });
 
   const navItems = [
     { href: "#accueil", label: t("home"), id: "accueil" },
     { href: "#services", label: t("services"), id: "services" },
     { href: "#portfolio", label: t("portfolio"), id: "portfolio" },
+    { href: "#process", label: t("process"), id: "process" },
     { href: "#apropos", label: t("about"), id: "apropos" },
+    { href: "#contact", label: t("contactMe"), id: "contact" },
   ];
+
+  // Update active indicator position with spring physics
+  useEffect(() => {
+    const activeLink = navRefs.current[activeSection];
+
+    if (activeLink) {
+      const { offsetLeft, offsetWidth } = activeLink;
+      indicatorLeft.set(offsetLeft);
+      indicatorWidth.set(offsetWidth);
+    }
+  }, [activeSection, indicatorLeft, indicatorWidth]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +65,7 @@ export default function HeaderPremium() {
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initial call
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navItems]);
 
   return (
     <>
@@ -70,51 +88,53 @@ export default function HeaderPremium() {
         )}
       >
       <nav className="max-w-[1290px] mx-auto px-6 md:px-12 py-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-8">
           {/* Logo */}
           <motion.a
             href="#accueil"
             className="text-xl font-medium text-black-deep tracking-tight hover:text-orange-pantone transition-colors duration-500"
-            whileHover={{ x: 2 }}
+            whileHover={{ scale: 1.05 }}
           >
             Florent Detres
           </motion.a>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-12">
-            {navItems.map((item, index) => (
-              <motion.li
-                key={item.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index, duration: 0.6 }}
-              >
-                <a
-                  href={item.href}
-                  className={cn(
-                    "text-sm text-gray-secondary hover:text-black-deep transition-colors duration-500 link-underline uppercase tracking-[0.1em]",
-                    activeSection === item.id && "text-orange-pantone"
-                  )}
+          {/* Desktop Navigation and Language Switcher */}
+          <div className="hidden md:flex items-center gap-8">
+            <ul className="flex items-center gap-12 relative">
+              {navItems.map((item, index) => (
+                <motion.li
+                  key={item.href}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index, duration: 0.6 }}
                 >
-                  {item.label}
-                </a>
-              </motion.li>
-            ))}
-            <motion.li
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex items-center gap-6"
-            >
-              <LanguageSwitcher />
-              <a
-                href="#contact"
-                className="px-6 py-3 border-2 border-black-deep text-black-deep hover:bg-black-deep hover:text-white-pure transition-all duration-500 text-sm font-medium tracking-wide uppercase"
-              >
-                {t("contactMe")}
-              </a>
-            </motion.li>
-          </ul>
+                  <a
+                    ref={(el) => { navRefs.current[item.id] = el; }}
+                    href={item.href}
+                    className={cn(
+                      "text-sm text-gray-secondary hover:text-black-deep transition-colors duration-500 uppercase tracking-[0.1em] relative pb-1",
+                      activeSection === item.id && "text-orange-pantone"
+                    )}
+                  >
+                    {item.label}
+                  </a>
+                </motion.li>
+              ))}
+
+              {/* Animated Active Indicator */}
+              <motion.div
+                className="absolute bottom-0 h-0.5 bg-orange-pantone"
+                style={{
+                  left: indicatorLeft,
+                  width: indicatorWidth,
+                  boxShadow: "0 0 8px rgba(255, 87, 34, 0.6)"
+                }}
+              />
+            </ul>
+
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+          </div>
 
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-3">

@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Mail, MapPin, Send } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { AnimatedInput } from "@/components/ui/animated-input";
+import { AnimatedTextarea } from "@/components/ui/animated-textarea";
 import { Confetti } from "@/components/ui/confetti";
 
 export default function ContactPremium() {
@@ -191,7 +191,7 @@ export default function ContactPremium() {
                     >
                       {t("form.name")}
                     </label>
-                    <Input
+                    <AnimatedInput
                       type="text"
                       id="name"
                       name="name"
@@ -211,7 +211,7 @@ export default function ContactPremium() {
                     >
                       {t("form.email")}
                     </label>
-                    <Input
+                    <AnimatedInput
                       type="email"
                       id="email"
                       name="email"
@@ -234,7 +234,7 @@ export default function ContactPremium() {
                     >
                       {t("form.phone")} <span className="text-gray-secondary/50">{t("form.phoneOptional")}</span>
                     </label>
-                    <Input
+                    <AnimatedInput
                       type="tel"
                       id="phone"
                       name="phone"
@@ -253,7 +253,7 @@ export default function ContactPremium() {
                     >
                       {t("form.company")} <span className="text-gray-secondary/50">{t("form.companyOptional")}</span>
                     </label>
-                    <Input
+                    <AnimatedInput
                       type="text"
                       id="company"
                       name="company"
@@ -297,7 +297,7 @@ export default function ContactPremium() {
                   >
                     {t("form.message")}
                   </label>
-                  <Textarea
+                  <AnimatedTextarea
                     id="message"
                     name="message"
                     value={formData.message}

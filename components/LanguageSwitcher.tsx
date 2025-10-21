@@ -44,16 +44,16 @@ export default function LanguageSwitcher() {
         >
           <div className="flex items-center gap-2">
             <Globe className="w-4 h-4 text-orange-pantone" />
-            <span className="text-sm font-medium text-black-deep">
+            {/* <span className="text-sm font-medium text-black-deep">
               {currentLanguage?.flag} {currentLanguage?.code.toUpperCase()}
-            </span>
+            </span> */}
           </div>
           <span className="sr-only">Change language</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="w-64 bg-white-pure border-2 border-black-deep/10 p-3"
+        className="w-48 bg-white-pure border-2 border-black-deep/10 p-3"
       >
         {languages.map((language) => {
           const isActive = currentLocale === language.code;
