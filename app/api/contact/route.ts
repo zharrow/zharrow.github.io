@@ -85,10 +85,18 @@ export async function POST(request: Request) {
 
         // Convertir le buffer en base64 pour Resend
         const base64Pdf = pdfBuffer.toString('base64');
-        const timestamp = new Date().toISOString().split('T')[0];
+
+        // Générer un nom de fichier unique
+        const now = new Date();
+        const timestamp = now.toISOString().split('T')[0];
+        const timeString = now.toTimeString().split(' ')[0].replace(/:/g, '');
+        const randomId = Math.random().toString(36).substring(2, 8).toUpperCase();
+
+        // Nettoyer le nom du client pour le nom de fichier
+        const safeClientName = name.replace(/[^a-zA-Z0-9-]/g, '_').substring(0, 30);
 
         pdfAttachment = {
-          filename: `devis_${timestamp}.pdf`,
+          filename: `devis_${safeClientName}_${timestamp}_${timeString}_${randomId}.pdf`,
           content: base64Pdf,
         };
       } catch (pdfError) {

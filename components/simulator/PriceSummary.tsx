@@ -89,12 +89,19 @@ export function PriceSummary({ onCloseModal }: PriceSummaryProps = {}) {
         throw new Error('Failed to generate PDF');
       }
 
-      // Télécharger le PDF
+      // Télécharger le PDF avec un nom unique
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `devis_${new Date().toISOString().split('T')[0]}.pdf`;
+
+      // Générer un nom de fichier unique
+      const now = new Date();
+      const timestamp = now.toISOString().split('T')[0];
+      const timeString = now.toTimeString().split(' ')[0].replace(/:/g, '');
+      const randomId = Math.random().toString(36).substring(2, 8).toUpperCase();
+      a.download = `devis_${timestamp}_${timeString}_${randomId}.pdf`;
+
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);

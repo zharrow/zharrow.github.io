@@ -49,25 +49,32 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 6,
+    marginBottom: 12,
     paddingVertical: 4,
+    alignItems: 'flex-start',
+    minHeight: 24,
   },
   itemName: {
     fontSize: 10,
     color: COLORS.blackDeep,
-    flex: 1,
+    marginBottom: 3,
   },
   itemPrice: {
     fontSize: 10,
     color: COLORS.graySecondary,
     textAlign: 'right',
-    width: 80,
+    width: 90,
+    flexShrink: 0,
   },
   categoryLabel: {
-    fontSize: 9,
+    fontSize: 8,
     color: COLORS.graySecondary,
     fontStyle: 'italic',
-    marginLeft: 10,
+    marginTop: 1,
+  },
+  itemContainer: {
+    flex: 1,
+    paddingRight: 15,
   },
   totalSection: {
     marginTop: 30,
@@ -158,7 +165,9 @@ const formatDate = (date: Date) => {
 };
 
 const formatPrice = (price: number) => {
-  return `${price.toLocaleString('fr-FR')} €`;
+  // Utiliser un espace normal au lieu de l'espace insécable pour éviter les problèmes de rendu PDF
+  const formattedNumber = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  return `${formattedNumber} €`;
 };
 
 // Fonction pour générer le Document PDF
@@ -172,6 +181,15 @@ export const generateQuotePDF = ({
   const projectType = simulatorConfig.projectTypes.find(
     (pt) => pt.id === quoteData.projectType
   );
+
+  // Calculer le coût mensuel de maintenance
+  let monthlyMaintenance = 0;
+  selections.maintenance.forEach(optionId => {
+    const option = simulatorConfig.maintenanceOptions.find(o => o.id === optionId);
+    if (option) {
+      monthlyMaintenance += option.monthlyPrice;
+    }
+  });
 
   return React.createElement(
     Document,
@@ -211,8 +229,168 @@ export const generateQuotePDF = ({
               { style: styles.itemName },
               `${projectType.name} - ${projectType.description}`
             ),
-            React.createElement(Text, { style: styles.itemPrice }, formatPrice(projectType.basePrice))
+            projectType.basePrice > 0
+              ? React.createElement(Text, { style: styles.itemPrice }, formatPrice(projectType.basePrice))
+              : React.createElement(
+                  Text,
+                  { style: [styles.itemPrice, { color: COLORS.orangePantone, fontStyle: 'italic' }] },
+                  '-25% sur total'
+                )
+          ),
+          projectType.id === 'refonte' && React.createElement(
+            Text,
+            { style: [styles.categoryLabel, { marginTop: 4, color: COLORS.orangePantone }] },
+            'Une réduction de 25% a été appliquée sur le montant total du devis'
           )
+        ),
+
+      // Options de design
+      selections.design.length > 0 &&
+        React.createElement(
+          View,
+          { style: styles.section },
+          React.createElement(Text, { style: styles.sectionTitle }, 'Options de design'),
+          ...selections.design.map(optionId => {
+            const option = simulatorConfig.designOptions.find(o => o.id === optionId);
+            if (!option) return null;
+            return React.createElement(
+              View,
+              { key: optionId, style: styles.row },
+              React.createElement(
+                View,
+                { style: styles.itemContainer },
+                React.createElement(Text, { style: styles.itemName }, option.name),
+                React.createElement(Text, { style: styles.categoryLabel }, option.description)
+              ),
+              React.createElement(Text, { style: styles.itemPrice }, formatPrice(option.price))
+            );
+          }).filter(Boolean)
+        ),
+
+      // Sections
+      selections.sections.length > 0 &&
+        React.createElement(
+          View,
+          { style: styles.section },
+          React.createElement(Text, { style: styles.sectionTitle }, 'Sections du site'),
+          ...selections.sections.map(({ sectionId, level }) => {
+            const section = simulatorConfig.sectionOptions.find(s => s.id === sectionId);
+            if (!section) return null;
+            const price = level === 'basic'
+              ? section.basicPrice
+              : level === 'advanced'
+              ? section.advancedPrice
+              : section.premiumPrice;
+            const levelLabel = level === 'basic' ? 'Basique' : level === 'advanced' ? 'Avancé' : 'Premium';
+            return React.createElement(
+              View,
+              { key: sectionId, style: styles.row },
+              React.createElement(
+                View,
+                { style: styles.itemContainer },
+                React.createElement(Text, { style: styles.itemName }, section.name),
+                React.createElement(Text, { style: styles.categoryLabel }, `Niveau ${levelLabel}`)
+              ),
+              React.createElement(Text, { style: styles.itemPrice }, formatPrice(price))
+            );
+          }).filter(Boolean)
+        ),
+
+      // Fonctionnalités techniques
+      selections.technical.length > 0 &&
+        React.createElement(
+          View,
+          { style: styles.section },
+          React.createElement(Text, { style: styles.sectionTitle }, 'Fonctionnalités techniques'),
+          ...selections.technical.map(featureId => {
+            const feature = simulatorConfig.technicalFeatures.find(f => f.id === featureId);
+            if (!feature) return null;
+            return React.createElement(
+              View,
+              { key: featureId, style: styles.row },
+              React.createElement(
+                View,
+                { style: styles.itemContainer },
+                React.createElement(Text, { style: styles.itemName }, feature.name),
+                React.createElement(Text, { style: styles.categoryLabel }, feature.description)
+              ),
+              React.createElement(Text, { style: styles.itemPrice }, formatPrice(feature.price))
+            );
+          }).filter(Boolean)
+        ),
+
+      // Maintenance
+      selections.maintenance.length > 0 &&
+        React.createElement(
+          View,
+          { style: styles.section },
+          React.createElement(Text, { style: styles.sectionTitle }, 'Options de maintenance'),
+          ...selections.maintenance.map(optionId => {
+            const option = simulatorConfig.maintenanceOptions.find(o => o.id === optionId);
+            if (!option) return null;
+            return React.createElement(
+              View,
+              { key: optionId, style: styles.row },
+              React.createElement(
+                View,
+                { style: styles.itemContainer },
+                React.createElement(Text, { style: styles.itemName }, option.name),
+                React.createElement(Text, { style: styles.categoryLabel }, option.description),
+                option.monthlyPrice > 0 && React.createElement(
+                  Text,
+                  { style: styles.maintenanceNote },
+                  `+ ${option.monthlyPrice} €/mois`
+                )
+              ),
+              React.createElement(Text, { style: styles.itemPrice }, formatPrice(option.setupPrice))
+            );
+          }).filter(Boolean)
+        ),
+
+      // Performance et SEO
+      selections.performance.length > 0 &&
+        React.createElement(
+          View,
+          { style: styles.section },
+          React.createElement(Text, { style: styles.sectionTitle }, 'Performance & SEO'),
+          ...selections.performance.map(optionId => {
+            const option = simulatorConfig.performanceOptions.find(o => o.id === optionId);
+            if (!option) return null;
+            return React.createElement(
+              View,
+              { key: optionId, style: styles.row },
+              React.createElement(
+                View,
+                { style: styles.itemContainer },
+                React.createElement(Text, { style: styles.itemName }, option.name),
+                React.createElement(Text, { style: styles.categoryLabel }, option.description)
+              ),
+              React.createElement(Text, { style: styles.itemPrice }, formatPrice(option.price))
+            );
+          }).filter(Boolean)
+        ),
+
+      // Contenu
+      Object.keys(selections.content).length > 0 &&
+        React.createElement(
+          View,
+          { style: styles.section },
+          React.createElement(Text, { style: styles.sectionTitle }, 'Création de contenu'),
+          ...Object.entries(selections.content).map(([optionId, quantity]) => {
+            const option = simulatorConfig.contentOptions.find(o => o.id === optionId);
+            if (!option || quantity <= 0) return null;
+            return React.createElement(
+              View,
+              { key: optionId, style: styles.row },
+              React.createElement(
+                View,
+                { style: styles.itemContainer },
+                React.createElement(Text, { style: styles.itemName }, `${option.name} (x${quantity})`),
+                React.createElement(Text, { style: styles.categoryLabel }, option.description)
+              ),
+              React.createElement(Text, { style: styles.itemPrice }, formatPrice(option.price * quantity))
+            );
+          }).filter(Boolean)
         ),
 
       // Total
@@ -236,6 +414,20 @@ export const generateQuotePDF = ({
           { style: styles.grandTotalRow },
           React.createElement(Text, { style: styles.grandTotalLabel }, 'TOTAL TTC'),
           React.createElement(Text, { style: styles.grandTotalValue }, formatPrice(pricing.total))
+        ),
+        monthlyMaintenance > 0 && React.createElement(
+          View,
+          { style: { marginTop: 10, paddingTop: 10, borderTop: `1px solid ${COLORS.grayLight}` } },
+          React.createElement(
+            Text,
+            { style: { fontSize: 10, color: COLORS.graySecondary, marginBottom: 3 } },
+            'Coût de maintenance mensuel'
+          ),
+          React.createElement(
+            Text,
+            { style: { fontSize: 14, fontWeight: 'bold', color: COLORS.orangePantone } },
+            `${monthlyMaintenance} € / mois`
+          )
         )
       ),
 

@@ -236,10 +236,17 @@ export async function POST(request: NextRequest) {
       })
     );
 
-    // Génération d'un nom de fichier sécurisé
-    const timestamp = new Date().toISOString().split('T')[0];
-    const safeClientName = clientName?.replace(/[^a-zA-Z0-9-]/g, '_') || 'client';
-    const filename = `devis_${safeClientName}_${timestamp}.pdf`;
+    // Génération d'un nom de fichier unique et sécurisé
+    const now = new Date();
+    const timestamp = now.toISOString().split('T')[0]; // YYYY-MM-DD
+    const timeString = now.toTimeString().split(' ')[0].replace(/:/g, ''); // HHMMSS
+    const randomId = Math.random().toString(36).substring(2, 8).toUpperCase(); // ID aléatoire de 6 caractères
+
+    // Si un nom de client est fourni, l'utiliser dans le nom du fichier
+    const safeClientName = clientName?.replace(/[^a-zA-Z0-9-]/g, '_') || '';
+    const clientPart = safeClientName ? `${safeClientName}_` : '';
+
+    const filename = `devis_${clientPart}${timestamp}_${timeString}_${randomId}.pdf`;
 
     // Retourner le PDF
     return new NextResponse(Buffer.from(pdfBuffer), {
