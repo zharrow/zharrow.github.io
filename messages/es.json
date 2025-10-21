@@ -464,6 +464,45 @@
       "6": {"title": "CRM Platform","category": "SaaS","description": "Solución CRM personalizada para PYMEs","client": "Agencia de Servicios B2B","duration": "8 meses","team": "4 Desarrolladores + Product Manager","role": "Full Stack Developer & Database Architect","challenge": {"title": "El Desafío","description": "Desarrollar un CRM personalizado adaptado a las necesidades específicas de PYMEs francesas, más simple y asequible que las soluciones existentes.","points": ["Interfaz simple sin necesidad de formación","Gestión completa del pipeline de ventas","Automatización de tareas repetitivas","Reportes y analytics en tiempo real","Integraciones con herramientas existentes (emails, calendario)"]},"solution": {"title": "La Solución","description": "Aplicación web moderna construida con React y Node.js, desplegada en AWS con arquitectura de microservicios para escalabilidad.","approach": [{"title": "Stack MERN Moderno","description": "Frontend React con Redux para gestión de estado, backend Node.js/Express y base de datos MongoDB para flexibilidad de datos de clientes."},{"title": "Pipeline Visual","description": "Interfaz Kanban drag-and-drop para visualizar y gestionar el pipeline de ventas con estados personalizables y automatizaciones."},{"title": "Automatizaciones","description": "Sistema de automatización no-code que permite crear flujos de trabajo personalizados (emails automáticos, recordatorios, tareas)."},{"title": "Integraciones","description": "Conexiones con Gmail, Outlook, Google Calendar, Zapier y webhooks para integrarse con el ecosistema existente de las empresas."}]},"results": {"title": "Resultados e Impacto","metrics": [{"label": "Clientes","value": "50+","description": "PYMEs usuarias activas"},{"label": "Productividad","value": "+60%","description": "Ahorro de tiempo reportado"},{"label": "Satisfacción","value": "4.7/5","description": "Puntuación de satisfacción del cliente"}],"testimonial": {"quote": "¡Por fin un CRM pensado para PYMEs! Simple, eficaz y el soporte es excelente. Hemos ganado muchísimo tiempo en nuestra gestión comercial.","author": "Marc Durand","position": "Director Comercial"}},"gallery": [{"alt": "Dashboard", "caption": "Vista general del pipeline"},{"alt": "Contactos", "caption": "Gestión de contactos"},{"alt": "Analytics", "caption": "Reportes de ventas"},{"alt": "Automatización", "caption": "Editor de automatizaciones"}]}
     }
   },
+  "timeline": {
+    "title": "Mi Trayectoria",
+    "subtitle": "Desplázate para navegar por la línea de tiempo",
+    "close": "Cerrar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "up": "Subir",
+    "down": "Bajar",
+    "events": [
+      {
+        "year": "2019",
+        "title": "Máster en Desarrollo Web",
+        "company": "Universidad",
+        "description": "Especialización en desarrollo web moderno y arquitectura de software",
+        "type": "education"
+      },
+      {
+        "year": "2020",
+        "title": "Desarrollador Full Stack",
+        "company": "Startup Tech",
+        "description": "Desarrollo de SaaS y aplicaciones React/Node.js",
+        "type": "work"
+      },
+      {
+        "year": "2022",
+        "title": "Lead Developer",
+        "company": "Agencia Digital",
+        "description": "Dirección técnica y desarrollo de soluciones e-commerce Shopify Plus",
+        "type": "work"
+      },
+      {
+        "year": "2024",
+        "title": "Desarrollador Full Stack Senior",
+        "company": "Freelance",
+        "description": "Desarrollo de aplicaciones web premium para clientes internacionales",
+        "type": "work"
+      }
+    ]
+  },
   "simulator": {
     "cta": "Simular mi cotización",
     "modalTitle": "Simulador",

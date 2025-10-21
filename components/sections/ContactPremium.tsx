@@ -277,7 +277,7 @@ export default function ContactPremium() {
                     id="budget"
                     name="budget"
                     value={formData.budget}
-                    onChange={handleChange as any}
+                    onChange={handleChange}
                     className="w-full bg-white-pure border-2 border-black-deep/10 focus:border-orange-pantone rounded-none h-14 text-base px-4 transition-all duration-300 hover:border-black-deep/20 cursor-pointer"
                   >
                     <option value="">{t("form.budgetPlaceholder")}</option>

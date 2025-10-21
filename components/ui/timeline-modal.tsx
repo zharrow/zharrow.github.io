@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Briefcase, GraduationCap, ChevronUp, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
 
 interface TimelineEvent {
   year: string;
@@ -16,37 +17,6 @@ interface TimelineModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-const timelineEvents: TimelineEvent[] = [
-  {
-    year: "2019",
-    title: "Master Développement Web",
-    company: "Université",
-    description: "Spécialisation en développement web moderne et architecture logicielle",
-    type: "education"
-  },
-  {
-    year: "2020",
-    title: "Développeur Full Stack",
-    company: "Startup Tech",
-    description: "Développement de SaaS et applications React/Node.js",
-    type: "work"
-  },
-  {
-    year: "2022",
-    title: "Lead Developer",
-    company: "Agence Digitale",
-    description: "Direction technique et développement de solutions e-commerce Shopify Plus",
-    type: "work"
-  },
-  {
-    year: "2024",
-    title: "Développeur Full Stack Senior",
-    company: "Freelance",
-    description: "Développement d'applications web premium pour clients internationaux",
-    type: "work"
-  },
-];
 
 // Sparkle component with fixed positions
 const Sparkle = ({ delay = 0, style }: { delay?: number; style?: React.CSSProperties }) => (
@@ -71,7 +41,114 @@ const Sparkle = ({ delay = 0, style }: { delay?: number; style?: React.CSSProper
   />
 );
 
+// Timeline Card Component - Simple version
+interface TimelineCardProps {
+  event: TimelineEvent;
+  index: number;
+  isActive: boolean;
+}
+
+const TimelineCard = ({ event, index, isActive }: TimelineCardProps) => {
+  const Icon = event.type === "work" ? Briefcase : GraduationCap;
+
+  return (
+    <motion.div
+      data-card-index={index}
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        scale: 1
+      }}
+      transition={{
+        delay: 0.6 + (index * 0.15),
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1]
+      }}
+      className="flex-shrink-0 relative z-10 w-full max-w-5xl px-6 md:px-12"
+    >
+      {/* Sparkles when active */}
+      {isActive && (
+        <>
+          <Sparkle delay={0} style={{ top: '10%', left: '10%' }} />
+          <Sparkle delay={0.3} style={{ top: '10%', right: '10%' }} />
+          <Sparkle delay={0.6} style={{ bottom: '10%', left: '10%' }} />
+          <Sparkle delay={0.9} style={{ bottom: '10%', right: '10%' }} />
+        </>
+      )}
+
+      <motion.div
+        animate={{
+          scale: isActive ? 1 : 0.95,
+          y: isActive ? 0 : 10
+        }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className={`bg-white-pure border-2 p-8 md:p-12 transition-all duration-500 relative overflow-hidden ${
+          isActive
+            ? 'border-orange-pantone shadow-2xl'
+            : 'border-black-deep/10 opacity-60'
+        }`}
+      >
+        {/* Active glow effect */}
+        {isActive && (
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.1, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            style={{
+              background: 'radial-gradient(circle at 50% 50%, rgba(255, 87, 34, 0.2) 0%, transparent 70%)'
+            }}
+          />
+        )}
+
+        <div className="flex items-center justify-between mb-6">
+          <motion.div
+            animate={{
+              scale: isActive ? 1 : 0.9,
+              rotate: isActive ? [0, 5, -5, 0] : 0
+            }}
+            transition={{
+              rotate: { duration: 0.6, ease: "easeInOut" }
+            }}
+            className={`w-14 h-14 md:w-16 md:h-16 flex items-center justify-center border-2 transition-all duration-500 ${
+              isActive
+                ? 'border-orange-pantone bg-orange-pantone'
+                : 'border-black-deep/10 bg-white-pure'
+            }`}
+          >
+            <Icon className={`w-6 h-6 md:w-7 md:h-7 transition-colors duration-500 ${
+              isActive ? 'text-white-pure' : 'text-gray-secondary'
+            }`} />
+          </motion.div>
+
+          <span className={`text-xl md:text-2xl font-bold px-4 py-2 md:px-5 md:py-2 border-2 transition-all duration-500 ${
+            isActive
+              ? 'text-orange-pantone border-orange-pantone bg-white-pure'
+              : 'text-gray-secondary border-black-deep/10 bg-white-pure'
+          }`}>
+            {event.year}
+          </span>
+        </div>
+
+        <h3 className={`text-3xl md:text-4xl font-medium mb-4 transition-colors duration-500 ${
+          isActive ? 'text-orange-pantone' : 'text-black-deep'
+        }`}>
+          {event.title}
+        </h3>
+        <p className="text-lg md:text-xl text-gray-secondary font-medium mb-6">
+          {event.company}
+        </p>
+        <p className="text-gray-secondary leading-relaxed text-lg md:text-xl">
+          {event.description}
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
+  const t = useTranslations('timeline');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollPositionRef = useRef(0);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -79,6 +156,23 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
   const [touchEnd, setTouchEnd] = useState(0);
   const [swipeDirection, setSwipeDirection] = useState<'up' | 'down' | null>(null);
   const [activeButton, setActiveButton] = useState<'up' | 'down' | null>(null);
+
+  // Get timeline events from translations
+  interface RawTimelineEvent {
+    year: string;
+    title: string;
+    company: string;
+    description: string;
+    type: "work" | "education";
+  }
+
+  const timelineEvents: TimelineEvent[] = (t.raw('events') as RawTimelineEvent[]).map((event) => ({
+    year: event.year,
+    title: event.title,
+    company: event.company,
+    description: event.description,
+    type: event.type
+  }));
 
   // Reset to first card when modal opens
   useEffect(() => {
@@ -289,7 +383,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
                     transition={{ delay: 0.2, duration: 0.6 }}
                     className="text-3xl md:text-4xl font-medium text-black-deep"
                   >
-                    Mon Parcours
+                    {t('title')}
                   </motion.h2>
                   <motion.p
                     initial={{ opacity: 0, x: -20 }}
@@ -297,7 +391,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
                     transition={{ delay: 0.3, duration: 0.6 }}
                     className="text-sm text-gray-secondary mt-2"
                   >
-Scrollez pour naviguer dans la timeline
+                    {t('subtitle')}
                   </motion.p>
                 </div>
 
@@ -308,7 +402,7 @@ Scrollez pour naviguer dans la timeline
                   transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
                   onClick={onClose}
                   className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-black-deep hover:bg-orange-pantone text-white-pure transition-all duration-300 flex-shrink-0 group"
-                  aria-label="Fermer"
+                  aria-label={t('close')}
                 >
                   <X className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-90 transition-transform duration-300" />
                 </motion.button>
@@ -338,7 +432,7 @@ Scrollez pour naviguer dans la timeline
                         <ChevronUp className="w-8 h-8 text-white-pure" />
                       )}
                       <span className="text-white-pure font-medium text-lg">
-                        {swipeDirection === 'down' ? 'Suivant' : 'Précédent'}
+                        {swipeDirection === 'down' ? t('next') : t('previous')}
                       </span>
                     </motion.div>
                   </motion.div>
@@ -380,7 +474,7 @@ Scrollez pour naviguer dans la timeline
                   <span className={`text-sm font-medium uppercase tracking-wider transition-colors duration-300 ${
                     activeButton === 'up' ? 'text-white-pure' : 'text-black-deep'
                   }`}>
-                    Monter
+                    {t('up')}
                   </span>
                 </motion.button>
 
@@ -412,7 +506,7 @@ Scrollez pour naviguer dans la timeline
                   <span className={`text-sm font-medium uppercase tracking-wider transition-colors duration-300 ${
                     activeButton === 'down' ? 'text-white-pure' : 'text-black-deep'
                   }`}>
-                    Descendre
+                    {t('down')}
                   </span>
                 </motion.button>
               </motion.div>
@@ -463,106 +557,14 @@ Scrollez pour naviguer dans la timeline
                   </svg>
 
                   {/* Cards */}
-                  {timelineEvents.map((event, index) => {
-                    const Icon = event.type === "work" ? Briefcase : GraduationCap;
-                    const isActive = index === activeIndex;
-
-                    return (
-                      <motion.div
-                        key={index}
-                        data-card-index={index}
-                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                        animate={{
-                          opacity: 1,
-                          y: 0,
-                          scale: 1
-                        }}
-                        transition={{
-                          delay: 0.6 + (index * 0.15),
-                          duration: 0.6,
-                          ease: [0.22, 1, 0.36, 1]
-                        }}
-                        className="flex-shrink-0 relative z-10 w-full max-w-5xl px-6 md:px-12"
-                      >
-                        {/* Sparkles when active */}
-                        {isActive && (
-                          <>
-                            <Sparkle delay={0} style={{ top: '10%', left: '10%' }} />
-                            <Sparkle delay={0.3} style={{ top: '10%', right: '10%' }} />
-                            <Sparkle delay={0.6} style={{ bottom: '10%', left: '10%' }} />
-                            <Sparkle delay={0.9} style={{ bottom: '10%', right: '10%' }} />
-                          </>
-                        )}
-
-                        <motion.div
-                          animate={{
-                            scale: isActive ? 1 : 0.95,
-                            y: isActive ? 0 : 10
-                          }}
-                          transition={{ duration: 0.4, ease: "easeOut" }}
-                          className={`bg-white-pure border-2 p-8 md:p-12 transition-all duration-500 relative overflow-hidden ${
-                            isActive
-                              ? 'border-orange-pantone shadow-2xl'
-                              : 'border-black-deep/10 opacity-60'
-                          }`}
-                        >
-                          {/* Active glow effect */}
-                          {isActive && (
-                            <motion.div
-                              className="absolute inset-0 pointer-events-none"
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: [0, 0.1, 0] }}
-                              transition={{ duration: 2, repeat: Infinity }}
-                              style={{
-                                background: 'radial-gradient(circle at 50% 50%, rgba(255, 87, 34, 0.2) 0%, transparent 70%)'
-                              }}
-                            />
-                          )}
-
-                          <div className="flex items-center justify-between mb-6">
-                            <motion.div
-                              animate={{
-                                scale: isActive ? 1 : 0.9,
-                                rotate: isActive ? [0, 5, -5, 0] : 0
-                              }}
-                              transition={{
-                                rotate: { duration: 0.6, ease: "easeInOut" }
-                              }}
-                              className={`w-14 h-14 md:w-16 md:h-16 flex items-center justify-center border-2 transition-all duration-500 ${
-                                isActive
-                                  ? 'border-orange-pantone bg-orange-pantone'
-                                  : 'border-black-deep/10 bg-white-pure'
-                              }`}
-                            >
-                              <Icon className={`w-6 h-6 md:w-7 md:h-7 transition-colors duration-500 ${
-                                isActive ? 'text-white-pure' : 'text-gray-secondary'
-                              }`} />
-                            </motion.div>
-
-                            <span className={`text-xl md:text-2xl font-bold px-4 py-2 md:px-5 md:py-2 border-2 transition-all duration-500 ${
-                              isActive
-                                ? 'text-orange-pantone border-orange-pantone bg-white-pure'
-                                : 'text-gray-secondary border-black-deep/10 bg-white-pure'
-                            }`}>
-                              {event.year}
-                            </span>
-                          </div>
-
-                          <h3 className={`text-3xl md:text-4xl font-medium mb-4 transition-colors duration-500 ${
-                            isActive ? 'text-orange-pantone' : 'text-black-deep'
-                          }`}>
-                            {event.title}
-                          </h3>
-                          <p className="text-lg md:text-xl text-gray-secondary font-medium mb-6">
-                            {event.company}
-                          </p>
-                          <p className="text-gray-secondary leading-relaxed text-lg md:text-xl">
-                            {event.description}
-                          </p>
-                        </motion.div>
-                      </motion.div>
-                    );
-                  })}
+                  {timelineEvents.map((event, index) => (
+                    <TimelineCard
+                      key={index}
+                      event={event}
+                      index={index}
+                      isActive={index === activeIndex}
+                    />
+                  ))}
                 </div>
               </div>
             </div>

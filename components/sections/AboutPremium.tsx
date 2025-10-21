@@ -9,6 +9,12 @@ import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { AnimatedSkillGraph } from "@/components/ui/animated-skill-graph";
 import { TimelineModal } from "@/components/ui/timeline-modal";
 
+// Hook personnalisé pour gérer l'état de hover des technologies
+function useTechHover() {
+  const [hoveredTech, setHoveredTech] = useState<string | null>(null);
+  return { hoveredTech, setHoveredTech };
+}
+
 const valueIcons = {
   passion: Heart,
   performance: Zap,
@@ -49,6 +55,7 @@ const technologies = [
 export default function AboutPremium() {
   const t = useTranslations("about");
   const [isTimelineOpen, setIsTimelineOpen] = useState(false);
+  const { hoveredTech, setHoveredTech } = useTechHover();
 
   return (
     <section id="apropos" className="relative z-10 py-32 md:py-40 bg-white-pure">
@@ -185,15 +192,39 @@ export default function AboutPremium() {
             {t("technologies.title")}
           </h3>
         </div>
-        <EnhancedMarquee speed={30} className="py-8">
-          {technologies.map((tech) => (
-            <div
-              key={tech}
-              className="px-8 py-4 border border-white-pure/20 bg-transparent text-white-pure text-sm font-medium tracking-wide whitespace-nowrap hover:border-orange-pantone hover:text-orange-pantone transition-all duration-500"
-            >
-              {tech}
-            </div>
-          ))}
+        <EnhancedMarquee
+          speed={30}
+          className="py-8"
+          pauseOnHover={true}
+        >
+          {technologies.map((tech) => {
+            const isHovered = hoveredTech === tech;
+            const isOtherHovered = hoveredTech !== null && hoveredTech !== tech;
+
+            return (
+              <motion.div
+                key={tech}
+                onMouseEnter={() => setHoveredTech(tech)}
+                onMouseLeave={() => setHoveredTech(null)}
+                animate={{
+                  scale: isHovered ? 1.1 : 1,
+                  filter: isOtherHovered ? "blur(4px)" : "blur(0px)",
+                  opacity: isOtherHovered ? 0.5 : 1,
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeOut"
+                }}
+                className={`px-8 py-4 border bg-transparent text-sm font-medium tracking-wide whitespace-nowrap transition-all duration-300 ${
+                  isHovered
+                    ? 'border-orange-pantone text-orange-pantone shadow-[0_0_20px_rgba(255,87,34,0.6)]'
+                    : 'border-white-pure/20 text-white-pure'
+                }`}
+              >
+                {tech}
+              </motion.div>
+            );
+          })}
         </EnhancedMarquee>
       </motion.div>
 

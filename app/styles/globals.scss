@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'variables' as *;
 @use 'mixins' as *;
 @use 'utilities';
@@ -94,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 4px;
 
     &:hover {
-      background: darken($orange-pantone, 10%);
+      background: color.scale($orange-pantone, $lightness: -10%);
     }
   }
 }

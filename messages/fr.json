@@ -752,6 +752,45 @@
       }
     }
   },
+  "timeline": {
+    "title": "Mon Parcours",
+    "subtitle": "Scrollez pour naviguer dans la timeline",
+    "close": "Fermer",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "up": "Monter",
+    "down": "Descendre",
+    "events": [
+      {
+        "year": "2019",
+        "title": "Master Développement Web",
+        "company": "Université",
+        "description": "Spécialisation en développement web moderne et architecture logicielle",
+        "type": "education"
+      },
+      {
+        "year": "2020",
+        "title": "Développeur Full Stack",
+        "company": "Startup Tech",
+        "description": "Développement de SaaS et applications React/Node.js",
+        "type": "work"
+      },
+      {
+        "year": "2022",
+        "title": "Lead Developer",
+        "company": "Agence Digitale",
+        "description": "Direction technique et développement de solutions e-commerce Shopify Plus",
+        "type": "work"
+      },
+      {
+        "year": "2024",
+        "title": "Développeur Full Stack Senior",
+        "company": "Freelance",
+        "description": "Développement d'applications web premium pour clients internationaux",
+        "type": "work"
+      }
+    ]
+  },
   "simulator": {
     "cta": "Simuler mon devis",
     "modalTitle": "Simulateur",

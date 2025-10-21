@@ -47,7 +47,6 @@ export const ContactEmailTemplate: React.FC<ContactEmailTemplateProps> = ({
       }}>
         <h2 style={{
           margin: '0 0 20px 0',
-          fontSize: '18px',
           color: '#0A0A0A',
           textTransform: 'uppercase',
           letterSpacing: '0.1em',

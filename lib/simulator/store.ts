@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { SimulatorState, SelectedSection } from './types';
+import { SimulatorState, DesignOption, TechnicalFeature } from './types';
 import { simulatorConfig } from './config';
 
 const HOURLY_RATE = 70; // €/h
@@ -14,8 +14,8 @@ const getAllDependencies = (optionId: string, type: 'design' | 'technical'): str
   if (!option) return [];
 
   const deps = type === 'design'
-    ? (option as any).dependencies || []
-    : (option as any).requiredFeatures || [];
+    ? (option as DesignOption).dependencies || []
+    : (option as TechnicalFeature).requiredFeatures || [];
 
   if (deps.length === 0) return [];
 

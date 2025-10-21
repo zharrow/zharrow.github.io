@@ -464,6 +464,45 @@
       "6": {"title": "CRM Platform","category": "SaaS","description": "Custom CRM solution for SMEs","client": "B2B Services Agency","duration": "8 months","team": "4 Developers + Product Manager","role": "Full Stack Developer & Database Architect","challenge": {"title": "The Challenge","description": "Develop a custom CRM adapted to the specific needs of French SMEs, simpler and more affordable than existing solutions.","points": ["Simple interface without training needed","Complete sales pipeline management","Automation of repetitive tasks","Real-time reports and analytics","Integrations with existing tools (emails, calendar)"]},"solution": {"title": "The Solution","description": "Modern web application built with React and Node.js, deployed on AWS with microservices architecture for scalability.","approach": [{"title": "Modern MERN Stack","description": "React frontend with Redux for state management, Node.js/Express backend, and MongoDB database for client data flexibility."},{"title": "Visual Pipeline","description": "Kanban drag-and-drop interface to visualize and manage sales pipeline with customizable statuses and automations."},{"title": "Automations","description": "No-code automation system allowing creation of custom workflows (automatic emails, reminders, tasks)."},{"title": "Integrations","description": "Connections with Gmail, Outlook, Google Calendar, Zapier, and webhooks to integrate with existing business ecosystems."}]},"results": {"title": "Results & Impact","metrics": [{"label": "Clients","value": "50+","description": "Active SME users"},{"label": "Productivity","value": "+60%","description": "Reported time savings"},{"label": "Satisfaction","value": "4.7/5","description": "Customer satisfaction score"}],"testimonial": {"quote": "Finally a CRM designed for SMEs! Simple, effective, and the support is excellent. We've saved so much time in our sales management.","author": "Marc Durand","position": "Sales Director"}},"gallery": [{"alt": "Dashboard", "caption": "Pipeline overview"},{"alt": "Contacts", "caption": "Contact management"},{"alt": "Analytics", "caption": "Sales reports"},{"alt": "Automation", "caption": "Automation editor"}]}
     }
   },
+  "timeline": {
+    "title": "My Journey",
+    "subtitle": "Scroll to navigate through the timeline",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous",
+    "up": "Up",
+    "down": "Down",
+    "events": [
+      {
+        "year": "2019",
+        "title": "Master's in Web Development",
+        "company": "University",
+        "description": "Specialization in modern web development and software architecture",
+        "type": "education"
+      },
+      {
+        "year": "2020",
+        "title": "Full Stack Developer",
+        "company": "Tech Startup",
+        "description": "SaaS development and React/Node.js applications",
+        "type": "work"
+      },
+      {
+        "year": "2022",
+        "title": "Lead Developer",
+        "company": "Digital Agency",
+        "description": "Technical leadership and development of Shopify Plus e-commerce solutions",
+        "type": "work"
+      },
+      {
+        "year": "2024",
+        "title": "Senior Full Stack Developer",
+        "company": "Freelance",
+        "description": "Development of premium web applications for international clients",
+        "type": "work"
+      }
+    ]
+  },
   "simulator": {
     "cta": "Simulate my quote",
     "modalTitle": "Simulator",

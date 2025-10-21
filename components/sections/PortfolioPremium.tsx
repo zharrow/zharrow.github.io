@@ -554,8 +554,13 @@ export default function PortfolioPremium() {
 
   // Fonction helper pour récupérer un projet traduit
   const getTranslatedProject = (projectId: string): CaseStudy => {
-    const project = tCase.raw(`projects.${projectId}`);
+    const project = tCase.raw(`projects.${projectId}`) as Partial<CaseStudy>;
     const baseProject = caseStudies.find(p => p.id === parseInt(projectId));
+
+    interface GalleryItem {
+      alt: string;
+      caption: string;
+    }
 
     return {
       id: parseInt(projectId),
@@ -564,12 +569,12 @@ export default function PortfolioPremium() {
       stack: baseProject?.stack || [],
       tools: baseProject?.tools || [],
       links: baseProject?.links,
-      gallery: project.gallery?.map((g: any, idx: number) => ({
+      gallery: (project.gallery as GalleryItem[] | undefined)?.map((g, idx) => ({
         src: baseProject?.gallery?.[idx]?.src || `/projects/project-${projectId}.jpg`,
         alt: g.alt,
         caption: g.caption
       }))
-    };
+    } as CaseStudy;
   };
 
   const openCaseStudy = (index: number) => {
@@ -716,18 +721,6 @@ export default function PortfolioPremium() {
                         {tech}
                       </span>
                     ))}
-                  </div>
-                </div>
-
-                {/* Result */}
-                <div className="pt-6 border-t border-black-deep/10">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs uppercase tracking-[0.15em] text-gray-secondary">
-                      Résultat
-                    </span>
-                    <span className="text-lg font-medium text-orange-pantone">
-                      {project.result}
-                    </span>
                   </div>
                 </div>
               </div>

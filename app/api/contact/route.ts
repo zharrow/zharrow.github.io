@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import React from 'react';
 import { ContactEmailTemplate } from '@/components/emails/ContactEmailTemplate';
 
 export async function POST(request: Request) {
@@ -57,7 +58,7 @@ export async function POST(request: Request) {
       to: ['florent.detres@protonmail.com'], // Votre email
       replyTo: email,
       subject: `Nouveau message de ${name}${company ? ` - ${company}` : ''}`,
-      react: ContactEmailTemplate({
+      react: React.createElement(ContactEmailTemplate, {
         name,
         email,
         phone,
@@ -68,7 +69,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(
-      { message: 'Email envoyé avec succès', id: data.id },
+      { message: 'Email envoyé avec succès', data },
       { status: 200 }
     );
   } catch (error) {
