@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useSimulatorStore } from "@/lib/simulator/store";
 import { getTTC, getTax, getMonthlyMaintenanceCost } from "@/lib/simulator/store";
-import { Calculator, Clock, TrendingUp, Download } from "lucide-react";
+import { Calculator, Clock, TrendingUp, Download, Mail } from "lucide-react";
+import { useState } from "react";
+import { QuoteData } from "@/lib/simulator/types";
 
 export function PriceSummary() {
   const t = useTranslations("simulator");
@@ -14,12 +16,20 @@ export function PriceSummary() {
     estimatedDuration,
     complexity,
     maintenanceOptions,
+    designOptions,
+    sections,
+    technicalFeatures,
+    performanceOptions,
+    contentOptions,
     reset,
   } = useSimulatorStore();
 
   const taxAmount = getTax(totalPrice);
   const ttcPrice = getTTC(totalPrice);
   const monthlyMaintenance = getMonthlyMaintenanceCost(maintenanceOptions);
+
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
 
   // Convertir les jours en semaines
   const estimatedWeeks = Math.ceil(estimatedDuration / 5);
@@ -29,6 +39,83 @@ export function PriceSummary() {
   const complexityPercentage = Math.min((complexity / 200) * 100, 100);
 
   const hasSelections = projectType !== null;
+
+  // Préparer les données du devis
+  const prepareQuoteData = (): QuoteData => {
+    return {
+      projectType: projectType || '',
+      selections: {
+        design: designOptions,
+        sections,
+        technical: technicalFeatures,
+        maintenance: maintenanceOptions,
+        performance: performanceOptions,
+        content: contentOptions,
+      },
+      pricing: {
+        subtotal: totalPrice,
+        tax: taxAmount,
+        total: ttcPrice,
+      },
+      estimation: {
+        duration: estimatedDuration,
+        complexity,
+      },
+      generatedAt: new Date(),
+    };
+  };
+
+  // Télécharger le PDF
+  const handleDownloadPDF = async () => {
+    setIsDownloading(true);
+    setDownloadError(null);
+
+    try {
+      const quoteData = prepareQuoteData();
+
+      const response = await fetch('/api/generate-quote-pdf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ quoteData }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate PDF');
+      }
+
+      // Télécharger le PDF
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `devis_${new Date().toISOString().split('T')[0]}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+      setDownloadError('Erreur lors du téléchargement du PDF');
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  // Envoyer le devis par email (redirige vers le formulaire de contact)
+  const handleSendByEmail = () => {
+    const quoteData = prepareQuoteData();
+
+    // Stocker les données du devis dans sessionStorage pour les récupérer dans le formulaire
+    sessionStorage.setItem('pendingQuote', JSON.stringify(quoteData));
+
+    // Scroll vers la section contact
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   if (!hasSelections) {
     return (
@@ -153,12 +240,29 @@ export function PriceSummary() {
 
         {/* Actions */}
         <div className="space-y-3 pt-4 border-t border-black-deep/10">
+          {downloadError && (
+            <div className="text-xs text-red-500 text-center p-2 bg-red-50 border border-red-200">
+              {downloadError}
+            </div>
+          )}
+
           <button
             type="button"
-            className="w-full bg-orange-pantone text-white-pure py-4 px-6 hover:bg-black-deep transition-all font-medium uppercase tracking-wide text-sm flex items-center justify-center gap-3 group"
+            onClick={handleDownloadPDF}
+            disabled={isDownloading}
+            className="w-full bg-orange-pantone text-white-pure py-4 px-6 hover:bg-black-deep transition-all font-medium uppercase tracking-wide text-sm flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Download className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
-            <span>{t("summary.actions.download")}</span>
+            <span>{isDownloading ? 'Génération...' : t("summary.actions.download")}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={handleSendByEmail}
+            className="w-full bg-black-deep text-white-pure py-4 px-6 hover:bg-orange-pantone transition-all font-medium uppercase tracking-wide text-sm flex items-center justify-center gap-3 group"
+          >
+            <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            <span>Envoyer par email</span>
           </button>
 
           <button

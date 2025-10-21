@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Mail, MapPin, Send } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Mail, MapPin, Send, FileText, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { AnimatedInput } from "@/components/ui/animated-input";
 import { AnimatedTextarea } from "@/components/ui/animated-textarea";
 import { Confetti } from "@/components/ui/confetti";
+import { QuoteData } from "@/lib/simulator/types";
 
 export default function ContactPremium() {
   const t = useTranslations("contact");
@@ -22,6 +23,22 @@ export default function ContactPremium() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [attachedQuote, setAttachedQuote] = useState<QuoteData | null>(null);
+
+  // Vérifier s'il y a un devis en attente au montage du composant
+  useEffect(() => {
+    const pendingQuote = sessionStorage.getItem('pendingQuote');
+    if (pendingQuote) {
+      try {
+        const quoteData = JSON.parse(pendingQuote);
+        setAttachedQuote(quoteData);
+        // Ne pas supprimer immédiatement, attendre la soumission du formulaire
+      } catch (error) {
+        console.error('Error parsing pending quote:', error);
+        sessionStorage.removeItem('pendingQuote');
+      }
+    }
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -38,12 +55,18 @@ export default function ContactPremium() {
     setErrorMessage("");
 
     try {
+      // Préparer les données à envoyer, incluant le devis si présent
+      const submitData = {
+        ...formData,
+        quoteData: attachedQuote,
+      };
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submitData),
       });
 
       // Check if response is JSON
@@ -60,6 +83,10 @@ export default function ContactPremium() {
 
       setSubmitStatus("success");
       setFormData({ name: "", email: "", phone: "", company: "", budget: "", message: "" });
+      setAttachedQuote(null);
+
+      // Supprimer le devis en attente après soumission réussie
+      sessionStorage.removeItem('pendingQuote');
 
       // Show warning if in dev mode
       if (data.warning) {
@@ -81,6 +108,12 @@ export default function ContactPremium() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Fonction pour retirer le devis attaché
+  const handleRemoveQuote = () => {
+    setAttachedQuote(null);
+    sessionStorage.removeItem('pendingQuote');
   };
 
   return (
@@ -288,6 +321,53 @@ export default function ContactPremium() {
                     <option value="> 50k">{t("form.budgetOptions.moreThan50k")}</option>
                   </select>
                 </div>
+
+                {/* Devis attaché */}
+                {attachedQuote && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="bg-orange-pantone/5 border-2 border-orange-pantone/30 p-6"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-start gap-3 flex-1">
+                        <div className="w-10 h-10 bg-orange-pantone/20 flex items-center justify-center flex-shrink-0">
+                          <FileText className="w-5 h-5 text-orange-pantone" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-sm font-medium text-black-deep mb-1 uppercase tracking-wider">
+                            Devis attaché
+                          </h4>
+                          <p className="text-xs text-gray-secondary mb-2">
+                            Votre devis sera joint à l'email en format PDF
+                          </p>
+                          <div className="grid grid-cols-2 gap-4 mt-3">
+                            <div>
+                              <span className="text-xs text-gray-secondary">Montant TTC</span>
+                              <p className="text-base font-medium text-orange-pantone">
+                                {attachedQuote.pricing.total.toLocaleString('fr-FR')} €
+                              </p>
+                            </div>
+                            <div>
+                              <span className="text-xs text-gray-secondary">Durée estimée</span>
+                              <p className="text-base font-medium text-black-deep">
+                                {attachedQuote.estimation.duration} jours
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleRemoveQuote}
+                        className="w-8 h-8 flex items-center justify-center hover:bg-orange-pantone/20 transition-colors flex-shrink-0"
+                        aria-label="Retirer le devis"
+                      >
+                        <X className="w-4 h-4 text-gray-secondary hover:text-orange-pantone" />
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
 
                 {/* Message */}
                 <div className="relative">
