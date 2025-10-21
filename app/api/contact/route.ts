@@ -4,7 +4,7 @@ import React from 'react';
 import { renderToBuffer } from '@react-pdf/renderer';
 import { ContactEmailTemplate } from '@/components/emails/ContactEmailTemplate';
 import { QuoteEmailTemplate } from '@/components/emails/QuoteEmailTemplate';
-import { QuotePDFTemplate } from '@/components/pdf/QuotePDFTemplate';
+import { generateQuotePDF } from '@/components/pdf/QuotePDFTemplate';
 import { QuoteData } from '@/lib/simulator/types';
 import { simulatorConfig } from '@/lib/simulator/config';
 
@@ -77,7 +77,7 @@ export async function POST(request: Request) {
     if (validatedQuote) {
       try {
         const pdfBuffer = await renderToBuffer(
-          React.createElement(QuotePDFTemplate, {
+          generateQuotePDF({
             quoteData: validatedQuote,
             clientName: name,
           })

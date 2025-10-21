@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import React from 'react';
 import { renderToBuffer } from '@react-pdf/renderer';
-import { QuotePDFTemplate } from '@/components/pdf/QuotePDFTemplate';
+import { generateQuotePDF } from '@/components/pdf/QuotePDFTemplate';
 import { QuoteData } from '@/lib/simulator/types';
 import { simulatorConfig } from '@/lib/simulator/config';
 
@@ -230,7 +229,7 @@ export async function POST(request: NextRequest) {
 
     // Génération du PDF
     const pdfBuffer = await renderToBuffer(
-      React.createElement(QuotePDFTemplate, {
+      generateQuotePDF({
         quoteData: validatedQuoteData,
         clientName,
         quoteNumber,

@@ -161,20 +161,19 @@ const formatPrice = (price: number) => {
   return `${price.toLocaleString('fr-FR')} €`;
 };
 
-export const QuotePDFTemplate: React.FC<QuotePDFTemplateProps> = ({
+// Fonction pour générer le Document PDF
+export const generateQuotePDF = ({
   quoteData,
   clientName,
   quoteNumber,
-}) => {
+}: QuotePDFTemplateProps) => {
   const { selections, pricing, estimation } = quoteData;
 
   const projectType = simulatorConfig.projectTypes.find(
     (pt) => pt.id === quoteData.projectType
   );
 
-  // Utiliser React.createElement au lieu de JSX pour éviter les problèmes de compatibilité
   return React.createElement(
-    // @ts-expect-error - react-pdf types incompatibility
     Document,
     {},
     React.createElement(
