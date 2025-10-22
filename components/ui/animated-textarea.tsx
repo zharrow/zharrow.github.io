@@ -55,7 +55,7 @@ export function AnimatedTextarea({
   };
 
   return (
-    <div className="relative">
+    <div className="relative overflow-visible">
       <textarea
         ref={textareaRef}
         id={id}
@@ -68,17 +68,9 @@ export function AnimatedTextarea({
         rows={rows}
         className={`${className} relative z-10`}
         placeholder={placeholder}
-      />
-
-      {/* Animated bottom border */}
-      <motion.div
-        className="absolute bottom-0 left-0 h-0.5 bg-orange-pantone"
-        initial={{ width: "0%" }}
-        animate={{
-          width: isFocused ? "100%" : "0%",
-          boxShadow: isFocused ? "0 0 8px rgba(255, 87, 34, 0.6)" : "0 0 0px rgba(255, 87, 34, 0)"
+        style={{
+          caretColor: '#FF5722',
         }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
       />
 
       {/* Particles */}
@@ -86,7 +78,13 @@ export function AnimatedTextarea({
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="absolute w-1.5 h-1.5 rounded-full bg-orange-pantone/40 pointer-events-none"
+            className="absolute rounded-full pointer-events-none z-20"
+            style={{
+              width: '3px',
+              height: '3px',
+              backgroundColor: '#FF5722',
+              boxShadow: '0 0 6px rgba(255, 87, 34, 0.8), 0 0 3px rgba(255, 87, 34, 1)',
+            }}
             initial={{
               x: particle.x,
               y: particle.y,
@@ -94,15 +92,15 @@ export function AnimatedTextarea({
               scale: 0
             }}
             animate={{
-              y: particle.y - 40,
+              y: particle.y - 25,
               x: particle.x + (Math.random() - 0.5) * 20,
               opacity: 0,
-              scale: [0, 1.5, 0]
+              scale: [0, 1.2, 0.8, 0]
             }}
             exit={{ opacity: 0 }}
             transition={{
-              duration: 1.2,
-              ease: "easeOut"
+              duration: 0.9,
+              ease: [0.25, 0.46, 0.45, 0.94]
             }}
           />
         ))}

@@ -178,6 +178,11 @@ ul, ol {
   }
 }
 
+// Active card state for scroll-triggered effects
+.active-card {
+  border-color: $orange-pantone !important;
+}
+
 .fade-in-up {
   opacity: 0;
   transform: translateY(40px);
