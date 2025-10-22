@@ -128,11 +128,33 @@
     },
     "expertise": {
       "title": "Expertise",
-      "skills": {
+      "categories": {
         "frontend": "Frontend Development",
-        "backend": "Backend Architecture",
-        "uiux": "UI/UX Design",
-        "ecommerce": "E-commerce"
+        "backend": "Backend Development",
+        "design": "UI/UX Design",
+        "tools": "Outils & Méthodes"
+      },
+      "skills": {
+        "frontend": {
+          "react": "React & Next.js",
+          "typescript": "TypeScript / JavaScript",
+          "scss": "SCSS / CSS avancé"
+        },
+        "backend": {
+          "nodejs": "Node.js & Express",
+          "postgresql": "PostgreSQL & MongoDB",
+          "api": "REST API & GraphQL"
+        },
+        "design": {
+          "uiux": "Design UX/UI",
+          "animations": "Animations & Motion",
+          "responsive": "Responsive Design"
+        },
+        "tools": {
+          "git": "Git & GitHub",
+          "docker": "Docker & DevOps",
+          "cicd": "CI/CD & Automatisation"
+        }
       }
     },
     "technologies": {
@@ -158,6 +180,9 @@
           "description": "Communication claire et transparente tout au long"
         }
       }
+    },
+    "cta": {
+      "timeline": "Voir mon parcours"
     }
   },
   "contact": {

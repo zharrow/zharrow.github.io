@@ -293,7 +293,7 @@ export function CaseStudyModal({
               </div>
 
               {/* Project Info Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <div>
                   <div className="flex items-center gap-2 text-orange-pantone mb-2">
                     <Users size={18} />

@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, Coffee, Heart, Zap, Clock } from "lucide-react";
+import { Award, Coffee, Heart, Zap, Clock, Code, Server, Palette, Wrench } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import Image from "next/image";
 import { EnhancedMarquee } from "@/components/ui/enhanced-marquee";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
-import { AnimatedSkillGraph } from "@/components/ui/animated-skill-graph";
+import { ExpertiseTimeline } from "@/components/ui/expertise-timeline";
 import { TimelineModal } from "@/components/ui/timeline-modal";
 
 // Hook personnalisé pour gérer l'état de hover des technologies
@@ -22,11 +23,44 @@ const valueIcons = {
   collaboration: Coffee,
 };
 
-const skillLevels = [
-  { key: "frontend", level: 95 },
-  { key: "backend", level: 90 },
-  { key: "uiux", level: 85 },
-  { key: "ecommerce", level: 92 },
+// Données d'expertise avec années d'expérience
+const expertiseData = [
+  {
+    categoryKey: "frontend",
+    icon: "Code",
+    skills: [
+      { nameKey: "react", years: "5+" },
+      { nameKey: "typescript", years: "5+" },
+      { nameKey: "scss", years: "4+" },
+    ],
+  },
+  {
+    categoryKey: "backend",
+    icon: "Server",
+    skills: [
+      { nameKey: "nodejs", years: "3+" },
+      { nameKey: "postgresql", years: "3+" },
+      { nameKey: "api", years: "4+" },
+    ],
+  },
+  {
+    categoryKey: "design",
+    icon: "Palette",
+    skills: [
+      { nameKey: "uiux", years: "5+" },
+      { nameKey: "animations", years: "4+" },
+      { nameKey: "responsive", years: "5+" },
+    ],
+  },
+  {
+    categoryKey: "tools",
+    icon: "Wrench",
+    skills: [
+      { nameKey: "git", years: "5+" },
+      { nameKey: "docker", years: "2+" },
+      { nameKey: "cicd", years: "3+" },
+    ],
+  },
 ];
 
 const technologies = [
@@ -52,10 +86,27 @@ const technologies = [
   "Kubernetes",
 ];
 
+const iconMap = {
+  Code,
+  Server,
+  Palette,
+  Wrench,
+};
+
 export default function AboutPremium() {
   const t = useTranslations("about");
   const [isTimelineOpen, setIsTimelineOpen] = useState(false);
   const { hoveredTech, setHoveredTech } = useTechHover();
+
+  // Transform expertiseData with translated strings and icons
+  const expertise = expertiseData.map((category) => ({
+    category: t(`expertise.categories.${category.categoryKey}`),
+    icon: iconMap[category.icon as keyof typeof iconMap],
+    skills: category.skills.map((skill) => ({
+      name: t(`expertise.skills.${category.categoryKey}.${skill.nameKey}`),
+      years: skill.years,
+    })),
+  }));
 
   return (
     <section id="apropos" className="relative z-10 py-32 md:py-40 bg-white-pure">
@@ -79,62 +130,109 @@ export default function AboutPremium() {
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-40">
-          {/* Left Column - Text */}
+          {/* Left Column - Photo + Text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-6"
           >
-            <p className="text-lg leading-relaxed text-black-deep">
-              {t("intro.greeting")}{" "}
-              <span className="font-medium text-orange-pantone">
-                {t("intro.name")}
-              </span>
-              , {t("intro.description")}
-            </p>
+            {/* Photo avec Stats en overlay */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="relative mb-12"
+            >
+              <div className="relative aspect-[4/5] w-full overflow-hidden border-2 border-black-deep/10 hover:border-orange-pantone transition-all duration-500 group">
+                {/* Image principale */}
+                <Image
+                  src="/IMG_9916.jpg"
+                  alt="Florent Detres"
+                  fill
+                  className="object-cover transition-opacity duration-700 group-hover:opacity-0"
+                  priority
+                />
+                {/* Image au hover (lobster) */}
+                <Image
+                  src="/lobster.jpg"
+                  alt="Florent Detres - Alternative"
+                  fill
+                  className="object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100"
+                />
+                {/* Decorative corner elements */}
+                <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-orange-pantone opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-orange-pantone opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-            <p className="text-gray-secondary leading-relaxed">
-              {t("paragraphs.experience")}
-            </p>
-
-            <p className="text-gray-secondary leading-relaxed">
-              {t("paragraphs.approach")} <strong className="text-black-deep">{t("paragraphs.pillars.design")}</strong>, <strong className="text-black-deep">{t("paragraphs.pillars.code")}</strong> et <strong className="text-black-deep">{t("paragraphs.pillars.results")}</strong>.
-            </p>
-
-            <p className="text-gray-secondary leading-relaxed">
-              {t("paragraphs.services")}
-            </p>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-black-deep/10">
-              {[
-                { number: 5, suffix: "+", labelKey: "years" },
-                { number: 50, suffix: "+", labelKey: "projects" },
-                { number: 100, suffix: "%", labelKey: "satisfaction" },
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.labelKey}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
-                  className="text-center"
-                >
-                  <div className="text-4xl font-medium text-orange-pantone mb-2">
-                    <AnimatedCounter
-                      from={0}
-                      to={stat.number}
-                      duration={2}
-                      suffix={stat.suffix}
-                    />
+                {/* Stats Banner Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-black-deep/95 backdrop-blur-sm py-8 px-6 z-10">
+                  <div className="grid grid-cols-3 gap-6">
+                    {[
+                      { number: 5, suffix: "+", labelKey: "years" },
+                      { number: 50, suffix: "+", labelKey: "projects" },
+                      { number: 100, suffix: "%", labelKey: "satisfaction" },
+                    ].map((stat, index) => (
+                      <motion.div
+                        key={stat.labelKey}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
+                        className="text-center"
+                      >
+                        <div className="text-3xl md:text-4xl font-medium text-orange-pantone mb-1">
+                          <AnimatedCounter
+                            from={0}
+                            to={stat.number}
+                            duration={2}
+                            suffix={stat.suffix}
+                          />
+                        </div>
+                        <div className="text-xs text-white-pure/80 uppercase tracking-[0.15em]">
+                          {t(`stats.${stat.labelKey}`)}
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
-                  <div className="text-sm text-gray-secondary uppercase tracking-[0.15em]">
-                    {t(`stats.${stat.labelKey}`)}
-                  </div>
-                </motion.div>
-              ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Text Content */}
+            <div className="space-y-6">
+              <p className="text-lg leading-relaxed text-black-deep">
+                {t("intro.greeting")}{" "}
+                <span className="font-medium text-orange-pantone">
+                  {t("intro.name")}
+                </span>
+                , {t("intro.description")}
+              </p>
+
+              <p className="text-gray-secondary leading-relaxed">
+                {t("paragraphs.experience")}
+              </p>
+
+              <p className="text-gray-secondary leading-relaxed">
+                {t("paragraphs.approach")} <strong className="text-black-deep">{t("paragraphs.pillars.design")}</strong>, <strong className="text-black-deep">{t("paragraphs.pillars.code")}</strong> et <strong className="text-black-deep">{t("paragraphs.pillars.results")}</strong>.
+              </p>
+
+              <p className="text-gray-secondary leading-relaxed">
+                {t("paragraphs.services")}
+              </p>
+
+              {/* Timeline Button */}
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                onClick={() => setIsTimelineOpen(true)}
+                className="mt-8 w-full px-6 py-4 border-2 border-black-deep text-black-deep hover:bg-black-deep hover:text-white-pure transition-all duration-500 text-sm font-medium tracking-wide uppercase flex items-center justify-center gap-3 group"
+              >
+                <Clock className="w-5 h-5 group-hover:rotate-12 transition-transform duration-500" />
+                <span>{t("cta.timeline")}</span>
+              </motion.button>
             </div>
           </motion.div>
 
@@ -149,30 +247,7 @@ export default function AboutPremium() {
               {t("expertise.title")}
             </h3>
 
-            <div className="space-y-8">
-              {skillLevels.map((skill, index) => (
-                <AnimatedSkillGraph
-                  key={skill.key}
-                  skillKey={skill.key}
-                  label={t(`expertise.skills.${skill.key}`)}
-                  level={skill.level}
-                  index={index}
-                />
-              ))}
-            </div>
-
-            {/* Timeline Button */}
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              onClick={() => setIsTimelineOpen(true)}
-              className="mt-8 w-full px-6 py-4 border-2 border-black-deep text-black-deep hover:bg-black-deep hover:text-white-pure transition-all duration-500 text-sm font-medium tracking-wide uppercase flex items-center justify-center gap-3 group"
-            >
-              <Clock className="w-5 h-5 group-hover:rotate-12 transition-transform duration-500" />
-              <span>Voir mon parcours</span>
-            </motion.button>
+            <ExpertiseTimeline expertise={expertise} />
           </motion.div>
         </div>
 

@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useSpring } from "framer-motion";
+import { motion, useSpring, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function HeaderPremium() {
@@ -11,6 +12,7 @@ export default function HeaderPremium() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("accueil");
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   // Use spring animations for ultra-smooth transitions
@@ -66,6 +68,23 @@ export default function HeaderPremium() {
     handleScroll(); // Initial call
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navItems]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on navigation
+  const handleMobileNavClick = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -136,31 +155,97 @@ export default function HeaderPremium() {
             <LanguageSwitcher />
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-3">
             <LanguageSwitcher />
-            <a
-              href="#contact"
-              className="relative px-5 py-2.5 bg-orange-pantone text-white-pure text-xs font-medium tracking-wide uppercase group overflow-hidden border border-orange-pantone"
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="w-10 h-10 flex items-center justify-center border border-black-deep/20 hover:border-orange-pantone hover:bg-orange-pantone hover:text-white-pure text-black-deep transition-all duration-300"
+              aria-label="Toggle menu"
             >
-              <span className="absolute inset-0 bg-black-deep transform translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              <span className="relative z-10 flex items-center gap-1.5">
-                <svg
-                  className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform duration-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                {t("contactMe")}
-              </span>
-            </a>
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </div>
       </nav>
     </motion.header>
+
+    {/* Mobile Menu Overlay */}
+    <AnimatePresence>
+      {isMobileMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="fixed inset-0 z-40 bg-black-deep/50 backdrop-blur-sm md:hidden"
+          />
+
+          {/* Menu Panel */}
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className="fixed top-0 right-0 bottom-0 z-50 w-[80vw] max-w-sm bg-cream border-l border-black-deep/10 md:hidden"
+          >
+            <div className="flex flex-col h-full">
+              {/* Header */}
+              <div className="flex items-center justify-between p-6 border-b border-black-deep/10">
+                <span className="text-lg font-medium text-black-deep">Menu</span>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-10 h-10 flex items-center justify-center border border-black-deep/20 hover:border-orange-pantone hover:bg-orange-pantone hover:text-white-pure text-black-deep transition-all duration-300"
+                  aria-label="Close menu"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="flex-1 overflow-y-auto py-8 px-6">
+                <ul className="space-y-2">
+                  {navItems.map((item, index) => (
+                    <motion.li
+                      key={item.href}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 * index, duration: 0.3 }}
+                    >
+                      <a
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={cn(
+                          "block px-4 py-4 text-base font-medium transition-all duration-300 border-l-2",
+                          activeSection === item.id
+                            ? "border-orange-pantone text-orange-pantone bg-orange-pantone/5"
+                            : "border-transparent text-gray-secondary hover:text-black-deep hover:border-black-deep/20 hover:bg-black-deep/5"
+                        )}
+                      >
+                        {item.label}
+                      </a>
+                    </motion.li>
+                  ))}
+                </ul>
+              </nav>
+
+              {/* Footer CTA */}
+              <div className="p-6 border-t border-black-deep/10">
+                <a
+                  href="#contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full px-6 py-4 bg-orange-pantone text-white-pure text-center text-sm font-medium tracking-wide uppercase hover:bg-black-deep transition-colors duration-300"
+                >
+                  {t("contactMe")}
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
     </>
   );
 }

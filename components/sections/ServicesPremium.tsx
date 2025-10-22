@@ -99,7 +99,7 @@ export default function ServicesPremium() {
                   glowColor="rgba(255, 122, 0, 0.2)"
                   intensity={8}
                 >
-                  <div className="group relative bg-cream hover:bg-white-pure card-hover border border-black-deep/10 p-12 min-h-[500px] flex flex-col cursor-default h-full">
+                  <div className="group relative bg-cream hover:bg-white-pure card-hover border border-black-deep/10 p-8 md:p-12 min-h-[400px] md:min-h-[500px] flex flex-col cursor-default h-full">
 
                 {/* Number */}
                 <div className="absolute top-8 right-8 text-[120px] font-medium leading-none text-black-deep/5 group-hover:text-orange-pantone/10 transition-colors duration-700">

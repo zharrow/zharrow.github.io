@@ -215,7 +215,7 @@ export default function ContactPremium() {
 
               <div className="space-y-8">
                 {/* Name & Email on same row for desktop */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Name */}
                   <div className="relative">
                     <label
@@ -258,7 +258,7 @@ export default function ContactPremium() {
                 </div>
 
                 {/* Phone & Company on same row for desktop */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Phone */}
                   <div className="relative">
                     <label

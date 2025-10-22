@@ -36,6 +36,10 @@
 
 @include mobile {
   .sm\:flex-row { flex-direction: row; }
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sm\:gap-6 { gap: 1.5rem; }
+  .sm\:gap-8 { gap: 2rem; }
 }
 
 @include tablet {
@@ -52,6 +56,7 @@
 @include tablet {
   .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .md\:gap-8 { gap: 2rem; }
 }
 
 @include desktop {
@@ -60,6 +65,8 @@
   .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .lg\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .lg\:col-span-2 { grid-column: span 2 / span 2; }
+  .lg\:hidden { display: none; }
+  .lg\:block { display: block; }
 }
 
 // Position
@@ -74,15 +81,24 @@
 .top-corner { top: -3px; right: -3px; }
 .bottom-corner { bottom: -3px; left: -3px; }
 .right-0 { right: 0; }
+.right-4 { right: 1rem; }
+.right-8 { right: 2rem; }
 .bottom-0 { bottom: 0; }
+.bottom-4 { bottom: 1rem; }
+.bottom-8 { bottom: 2rem; }
 .left-0 { left: 0; }
 
 // Z-index
+.z-0 { z-index: 0; }
 .z-10 { z-index: 10; }
 .z-20 { z-index: 20; }
 .z-30 { z-index: 30; }
+.z-40 { z-index: 40; }
 .z-50 { z-index: 50; }
 .z-\[9999\] { z-index: 9999; }
+.z-\[99998\] { z-index: 99998; }
+.z-\[99999\] { z-index: 99999; }
+.z-\[100000\] { z-index: 100000; }
 
 // Origin
 .origin-center { transform-origin: center; }
@@ -109,6 +125,7 @@
 .w-96 { width: 24rem; }
 .w-fit { width: fit-content; }
 .w-px { width: 1px; }
+.w-\[80vw\] { width: 80vw; }
 
 @include tablet {
   .md\:w-auto { width: auto; }
@@ -151,8 +168,16 @@
 .h-px { height: 1px; }
 .min-h-screen { min-height: 100vh; }
 .min-h-\[500px\] { min-height: 500px; }
+.min-h-\[400px\] { min-height: 400px; }
+.min-h-\[12rem\] { min-height: 12rem; }
+.min-h-64 { min-height: 16rem; }
 .h-screen { height: 100vh; }
 .h-\[85vh\] { height: 85vh; }
+
+@include tablet {
+  .md\:min-h-\[500px\] { min-height: 500px; }
+  .md\:min-h-64 { min-height: 16rem; }
+}
 
 // Rounded full for dots
 .rounded-full { border-radius: 9999px; }
@@ -198,12 +223,15 @@
 .p-12 { padding: 3rem; }
 .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
 .px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
 .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
 .px-8 { padding-left: 2rem; padding-right: 2rem; }
 .px-12 { padding-left: 3rem; padding-right: 3rem; }
 .px-24 { padding-left: 6rem; padding-right: 6rem; }
 .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+.py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
 .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
 .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
 .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
 .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
@@ -214,8 +242,11 @@
 .pt-6 { padding-top: 1.5rem; }
 .pt-8 { padding-top: 2rem; }
 .pt-16 { padding-top: 4rem; }
+.pt-24 { padding-top: 6rem; }
 .pb-8 { padding-bottom: 2rem; }
 .pb-12 { padding-bottom: 3rem; }
+.pb-32 { padding-bottom: 8rem; }
+.pb-48 { padding-bottom: 12rem; }
 .pb-0 { padding-bottom: 0; }
 .pl-8 { padding-left: 2rem; }
 
@@ -227,12 +258,13 @@
   .md\:px-12 { padding-left: 3rem; padding-right: 3rem; }
   .md\:px-24 { padding-left: 6rem; padding-right: 6rem; }
   .md\:p-8 { padding: 2rem; }
+  .md\:p-12 { padding: 3rem; }
   .md\:p-16 { padding: 4rem; }
-}
-
-@include tablet {
   .md\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
   .md\:py-40 { padding-top: 10rem; padding-bottom: 10rem; }
+  .md\:pt-24 { padding-top: 6rem; }
+  .md\:pb-48 { padding-bottom: 12rem; }
+  .md\:gap-24 { gap: 6rem; }
 }
 
 // Spacing
@@ -304,7 +336,9 @@
 .overflow-hidden { overflow: hidden; }
 .overflow-x-hidden { overflow-x: hidden; }
 .overflow-x-auto { overflow-x: auto; }
+.overflow-y-auto { overflow-y: auto; }
 .overflow-y-hidden { overflow-y: hidden; }
+.overflow-y-scroll { overflow-y: scroll; }
 
 // Resize
 .resize-none { resize: none; }
@@ -314,8 +348,11 @@
 .border-2 { border-width: 2px; border-style: solid; }
 .border-t { border-top-width: 1px; border-top-style: solid; }
 .border-b { border-bottom-width: 1px; border-bottom-style: solid; }
+.border-l { border-left-width: 1px; border-left-style: solid; }
+.border-r { border-right-width: 1px; border-right-style: solid; }
 
 // Border colors
+.border-transparent { border-color: transparent; }
 .border-dark-700 { border-color: rgb(55, 65, 81); }
 .border-dark-800 { border-color: rgb(31, 41, 55); }
 .border-accent-gold\/50 { border-color: rgba(212, 175, 55, 0.5); }
@@ -349,12 +386,16 @@
 .opacity-5 { opacity: 0.05; }
 .opacity-20 { opacity: 0.2; }
 .opacity-30 { opacity: 0.3; }
+.opacity-40 { opacity: 0.4; }
 .opacity-50 { opacity: 0.5; }
+.opacity-60 { opacity: 0.6; }
 .opacity-100 { opacity: 1; }
 .opacity-\[0\.02\] { opacity: 0.02; }
 
 // Cursor
 .cursor-pointer { cursor: pointer; }
+.cursor-not-allowed { cursor: not-allowed; }
+.cursor-default { cursor: default; }
 
 // Transition
 .transition { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
@@ -382,6 +423,8 @@
 
 // Aspect ratio
 .aspect-\[4\/3\] { aspect-ratio: 4 / 3; }
+.aspect-\[4\/5\] { aspect-ratio: 4 / 5; }
+.aspect-\[16\/9\] { aspect-ratio: 16 / 9; }
 
 // Object fit
 .object-cover { object-fit: cover; }
@@ -420,9 +463,13 @@
 .bg-white-pure { background-color: #FFFFFF; }
 .bg-black-deep { background-color: #0A0A0A; }
 .bg-black-deep\/0 { background-color: rgba(10, 10, 10, 0); }
+.bg-black-deep\/5 { background-color: rgba(10, 10, 10, 0.05); }
 .bg-black-deep\/20 { background-color: rgba(10, 10, 10, 0.2); }
+.bg-black-deep\/50 { background-color: rgba(10, 10, 10, 0.5); }
 .bg-black-deep\/90 { background-color: rgba(10, 10, 10, 0.9); }
+.bg-black-deep\/95 { background-color: rgba(10, 10, 10, 0.95); }
 .bg-orange-pantone { background-color: #FF7A00; }
+.bg-orange-pantone\/5 { background-color: rgba(255, 122, 0, 0.05); }
 .bg-orange-pantone\/10 { background-color: rgba(255, 122, 0, 0.1); }
 .bg-red-500\/10 { background-color: rgba(239, 68, 68, 0.1); }
 .bg-cream { background-color: #FAF9F7; }

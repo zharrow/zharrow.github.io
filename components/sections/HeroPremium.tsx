@@ -40,7 +40,7 @@ export default function HeroPremium() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             style={{ y: titleY }}
-            className="text-[clamp(2.5rem,8vw,7rem)] h-64 font-medium leading-[1.1] tracking-[-0.02em] text-black-deep"
+            className="text-[clamp(2.5rem,8vw,7rem)] min-h-[12rem] md:min-h-64 font-medium leading-[1.1] tracking-[-0.02em] text-black-deep flex flex-col items-center justify-center"
           >
             {t("title")}{" "}
             <span className="text-orange-pantone">

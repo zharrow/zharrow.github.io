@@ -526,8 +526,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
               >
                 {/* Cards container vertical */}
                 <div
-                  className="w-full flex flex-col items-center gap-16 md:gap-24 relative"
-                  style={{ paddingTop: '18vh', paddingBottom: '50vh' }}
+                  className="w-full flex flex-col items-center gap-16 md:gap-24 relative pt-16 md:pt-24 pb-32 md:pb-48"
                 >
                   {/* Vertical connecting line SVG */}
                   <svg className="absolute left-1/2 top-0 w-1 h-full pointer-events-none z-0" style={{ transform: 'translateX(-50%)' }}>

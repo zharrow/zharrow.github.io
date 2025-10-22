@@ -656,8 +656,8 @@ export default function PortfolioPremium() {
                   {String(project.id).padStart(2, '0')}
                 </div>
 
-                {/* Hover overlay with links */}
-                <div className="absolute inset-0 bg-black-deep/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-6 z-30">
+                {/* Hover overlay with links - Desktop */}
+                <div className="hidden md:flex absolute inset-0 bg-black-deep/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 items-center justify-center gap-6 z-30">
                   <motion.button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -687,6 +687,22 @@ export default function PortfolioPremium() {
                   >
                     <ExternalLink size={20} />
                   </motion.a>
+                </div>
+
+                {/* Mobile buttons - Always visible */}
+                <div className="md:hidden absolute bottom-4 right-4 flex gap-3 z-30">
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openCaseStudy(index);
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-12 h-12 flex items-center justify-center bg-orange-pantone text-white-pure shadow-lg transition-all duration-300"
+                    aria-label="View case study"
+                    type="button"
+                  >
+                    <Maximize2 size={18} />
+                  </motion.button>
                 </div>
               </div>
 

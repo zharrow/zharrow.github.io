@@ -31,6 +31,10 @@ export default function ProcessPremium() {
 
     if (!container || !slider || !cardsContainer) return;
 
+    // Only enable horizontal scroll on desktop (>= 1024px)
+    const isDesktop = window.innerWidth >= 1024;
+    if (!isDesktop) return;
+
     // Calculate total width to scroll (5 cards × 66vw + gaps)
     const totalWidth = cardsContainer.scrollWidth - window.innerWidth;
 
@@ -138,34 +142,34 @@ export default function ProcessPremium() {
       id="process"
       className="relative bg-cream"
     >
-      {/* Pinned container - GSAP will pin this */}
-      <div ref={sliderRef} className="h-screen overflow-hidden flex flex-col" style={{ background: 'transparent' }}>
-
-        {/* Section Header */}
-        <div className="flex-shrink-0 pt-16 pb-8 px-6 md:px-12 bg-cream">
-          <div className="section-container">
-            <div className="text-center">
-              <span className="text-sm uppercase tracking-[0.2em] text-gray-secondary mb-4 block">
-                {t("label")}
-              </span>
-              <h2 className="text-[clamp(2rem,5vw,4rem)] font-medium leading-tight tracking-[-0.02em] text-black-deep">
-                {t("title")}{" "}
-                <span className="text-orange-pantone">{t("titleHighlight")}</span>
-              </h2>
-              <p className="text-gray-secondary mt-6 max-w-2xl mx-auto">
-                {t("subtitle")}
-              </p>
+      {/* Desktop: Pinned horizontal scroll container */}
+      <div ref={sliderRef} className="hidden lg:block h-screen overflow-hidden" style={{ background: 'transparent' }}>
+        <div className="flex flex-col h-full">
+          {/* Section Header */}
+          <div className="flex-shrink-0 pt-16 pb-8 px-6 md:px-12 bg-cream">
+            <div className="section-container">
+              <div className="text-center">
+                <span className="text-sm uppercase tracking-[0.2em] text-gray-secondary mb-4 block">
+                  {t("label")}
+                </span>
+                <h2 className="text-[clamp(2rem,5vw,4rem)] font-medium leading-tight tracking-[-0.02em] text-black-deep">
+                  {t("title")}{" "}
+                  <span className="text-orange-pantone">{t("titleHighlight")}</span>
+                </h2>
+                <p className="text-gray-secondary mt-6 max-w-2xl mx-auto">
+                  {t("subtitle")}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Horizontal slider - GSAP will animate this */}
-        <div className="flex-1 flex items-center overflow-hidden">
-          <div
-            ref={cardsContainerRef}
-            className="flex gap-6 will-change-transform"
-            style={{ paddingLeft: 'max(12vw, 96px)', paddingRight: '96px' }}
-          >
+          {/* Horizontal slider - GSAP will animate this */}
+          <div className="flex-1 flex items-center overflow-hidden">
+            <div
+              ref={cardsContainerRef}
+              className="flex gap-6 will-change-transform"
+              style={{ paddingLeft: 'max(12vw, 96px)', paddingRight: '96px' }}
+            >
               {(["discovery", "design", "development", "launch", "support"] as const).map((stepKey, index) => {
                 const Icon = stepIcons[stepKey];
                 const stepNumber = t(`steps.${stepKey}.number`);
@@ -275,9 +279,103 @@ export default function ProcessPremium() {
                   </div>
                 );
               })}
+            </div>
           </div>
         </div>
+      </div>
 
+      {/* Mobile/Tablet: Vertical scroll layout */}
+      <div className="lg:hidden py-20 md:py-32 bg-cream">
+        <div className="section-container">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center mb-16"
+          >
+            <span className="text-sm uppercase tracking-[0.2em] text-gray-secondary mb-4 block">
+              {t("label")}
+            </span>
+            <h2 className="text-[clamp(2rem,5vw,4rem)] font-medium leading-tight tracking-[-0.02em] text-black-deep">
+              {t("title")}{" "}
+              <span className="text-orange-pantone">{t("titleHighlight")}</span>
+            </h2>
+            <p className="text-gray-secondary mt-6 max-w-2xl mx-auto">
+              {t("subtitle")}
+            </p>
+          </motion.div>
+
+          {/* Vertical Cards */}
+          <div className="space-y-8">
+            {(["discovery", "design", "development", "launch", "support"] as const).map((stepKey, index) => {
+              const Icon = stepIcons[stepKey];
+              const stepNumber = t(`steps.${stepKey}.number`);
+              const stepTitle = t(`steps.${stepKey}.title`);
+              const stepDescription = t(`steps.${stepKey}.description`);
+              const stepDuration = t(`steps.${stepKey}.duration`);
+              const stepDetails = t.raw(`steps.${stepKey}.details`) as string[];
+
+              return (
+                <motion.div
+                  key={stepKey}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className="bg-white-pure border-2 border-black-deep/10 p-6 md:p-8 hover:border-orange-pantone transition-all duration-500"
+                >
+                  {/* Header: Number + Icon */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="text-5xl md:text-6xl font-medium text-black-deep/10">
+                      {stepNumber}
+                    </div>
+                    <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center border-2 border-black-deep/10">
+                      <Icon className="w-6 h-6 md:w-7 md:h-7 text-black-deep" />
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl md:text-3xl font-medium mb-3 text-black-deep">
+                    {stepTitle}
+                  </h3>
+
+                  {/* Duration badge */}
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-black-deep/10 bg-gray-light text-xs text-gray-secondary mb-4">
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>
+                    <span>{stepDuration}</span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm md:text-base text-gray-secondary leading-relaxed mb-6">
+                    {stepDescription}
+                  </p>
+
+                  {/* Details */}
+                  <div className="pt-6 border-t border-black-deep/10 space-y-3">
+                    {stepDetails.map((detail, detailIndex) => (
+                      <div
+                        key={detailIndex}
+                        className="flex items-start gap-2 text-xs md:text-sm text-gray-secondary"
+                      >
+                        <span className="text-orange-pantone mt-0.5 flex-shrink-0">•</span>
+                        <span>{detail}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
