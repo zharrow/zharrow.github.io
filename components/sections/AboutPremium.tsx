@@ -145,7 +145,7 @@ export default function AboutPremium() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="relative mb-12"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden border-2 border-black-deep/10 hover:border-orange-pantone transition-all duration-500 group">
+              <div className="relative aspect-[4/5] w-full overflow-hidden border-2 border-orange-pantone transition-all duration-500 group">
                 {/* Image principale */}
                 <Image
                   src="/IMG_9916.jpg"
@@ -166,7 +166,7 @@ export default function AboutPremium() {
                 <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-orange-pantone opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                 {/* Stats Banner Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-black-deep/95 backdrop-blur-sm py-8 px-6 z-10">
+                <div className="absolute bottom-0 left-0 right-0 bg-white-pure/80 backdrop-blur-lg py-8 px-6 z-10">
                   <div className="grid grid-cols-3 gap-6">
                     {[
                       { number: 5, suffix: "+", labelKey: "years" },
@@ -189,7 +189,7 @@ export default function AboutPremium() {
                             suffix={stat.suffix}
                           />
                         </div>
-                        <div className="text-xs text-white-pure/80 uppercase tracking-[0.15em]">
+                        <div className="text-xs text-black-deep/70 uppercase tracking-[0.15em]">
                           {t(`stats.${stat.labelKey}`)}
                         </div>
                       </motion.div>

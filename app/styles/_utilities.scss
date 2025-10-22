@@ -461,11 +461,13 @@
 .bg-dark-950 { background-color: rgb(3, 7, 18); }
 .bg-accent-copper { background-color: rgb(184, 115, 51); }
 .bg-white-pure { background-color: #FFFFFF; }
+.bg-white-pure\/80 { background-color: rgba(255, 255, 255, 0.8); }
 .bg-black-deep { background-color: #0A0A0A; }
 .bg-black-deep\/0 { background-color: rgba(10, 10, 10, 0); }
 .bg-black-deep\/5 { background-color: rgba(10, 10, 10, 0.05); }
 .bg-black-deep\/20 { background-color: rgba(10, 10, 10, 0.2); }
 .bg-black-deep\/50 { background-color: rgba(10, 10, 10, 0.5); }
+.bg-black-deep\/70 { background-color: rgba(10, 10, 10, 0.7); }
 .bg-black-deep\/90 { background-color: rgba(10, 10, 10, 0.9); }
 .bg-black-deep\/95 { background-color: rgba(10, 10, 10, 0.95); }
 .bg-orange-pantone { background-color: #FF7A00; }
@@ -517,6 +519,7 @@
 .text-white-pure\/80 { color: rgba(255, 255, 255, 0.8); }
 .text-black-deep { color: #0A0A0A; }
 .text-black-deep\/5 { color: rgba(10, 10, 10, 0.05); }
+.text-black-deep\/70 { color: rgba(10, 10, 10, 0.7); }
 .text-gray-secondary { color: #666666; }
 .text-gray-secondary\/50 { color: rgba(102, 102, 102, 0.5); }
 .text-orange-pantone { color: #FF7A00; }
